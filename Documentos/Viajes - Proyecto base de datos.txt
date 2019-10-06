@@ -1,0 +1,235 @@
+# Viajes - Proyecto base de datos
+	Se debe desarrollar un sistema administrativo de seguimiento de viajes, teniendo el propósito de mostrar la administración de los mismos y concebir la solución de posibles problemas dentro del sistema u acto de viajar.
+
+	A continuación estableceremos los requisitos del proyecto y trabajaremos según lo que se tenga pensado ademas de lo recomendado por el profesor.
+
+## Reporte de aerolíneas registradas en el sistema y reporte de la flota.
+	Como dato central tenemos la entidad “Aerolínea” la cual llevara el control de la disposición de una flota de aviones para ser usada. Consta con los atributos:
+
+* Logo de aerolinea
+* Tipo de aerolinea
+* Nombre de aerolinea
+* Tasa
+* Porcentaje Ejecutivo.
+
+	La aerolínea agrupa a todos los aviones que le pertenecen y ademas definen su distribución pero no sus características especificas como lo es la signaron de los asientos según la clase que precede la compra del boleto.
+	La flota es un resultado calculado de la consulta de todas las unidades de cierto modelo y avión que usa una aerolínea, donde ademas tiene el identificador único como marca que lo usa.
+	Consta de 3 entidades:
+
+* Avion
+	* Nombre
+* Modelo_Avion
+	* Nombre
+	* Desc
+	* Velocidad max
+	* Alcance
+	* Altitud Max
+	* Envergadura
+	* Ancho del interior de la cabina
+	* Altura del interior de la cabina.
+	* Foto del avión
+* Unidad_Avion
+	* Distribución EJ
+	* Distribución CP
+	* Ubicación
+	* Status
+
+	Estas 3 entidades están vinculadas jerárquicamente en el mismo orden en el que se presentan. La entidad que esta conectada con la aerolínea para llevar un control de esto se presenta en la unidad_avión.
+	
+::Nota: se obvia el uso de los identificadores porque ya se toman por sentado.::
+
+	A través de estas entidades tenemos las principales consideraciones a tomar en cuenta para abordar la simulación:
+
+### Consideraciones
+
+* Alcance para recorrer ciertas rutas definidas (O usar escalas para evitar este problema).
+* Consideraciones de la forma de distribución de los asientos
+* El uso máximo de aviones para ciertas rutas (no puede repetirse el uso de un avión dentro del mismo viaje)
+* Limitación de uso por los asientos del avión (no pueden usarse más de los que ya están).
+* Definir el estado del avión para conocer y permitir ciertas acciones una tras otra al realizar los viajes: define a través del atributo status si el avión tiene estos estados:
+	* Perdido
+	* En mantenimiento
+	* En preparación
+	* En ruta
+	* En origen
+	* En destino
+
+## Reporte de usuarios registrados
+	Los usuarios son los que realizan diferentes acciones dentro del sistema o preparan las mismas para ser ejecutadas posteriormente. Entidad designada al usuario final de uso del sistema.
+	Consta de los atributos:
+* Correo de usuario
+* Foto
+* Nombre
+* Apellido
+* Numero de telefono
+* Millas acum
+* Status ::No definido::
+* Ubicación ::No definido::
+
+### Consideraciones
+
+* Cualquier persona que vaya a disfrutar de cualquier acción dentro del sistema, como obtener un boleto, no puede ser intermediado por un usuario sino que debe existir él mismo dentro del sistema para poder obtener un boleto.
+* Cada viaje que ejecute un usuario debe repercutir en las millas acumuladas del mismo en su cuenta para desarrollar el vuelo, así mismo estas mismas pueden usarse en el reporte de pago.
+* Status y ubicación son de control para un plan de viaje concreto que desee desarrollar el usuario, sin embargo estaría en consideración futura. ::En duda::
+
+## Reporte de reservaciones de viaje
+	Para abordar este reporte hay que visualizar un orden claro y efectivo para solucionar las distintas problemáticas que se pueden controlar en esto mismo, para ello realizamos una división de 3 entidades: Vuelo, Plan_viaje, Ruta (que deriva en aeropuerto).
+
+__Vuelo__: Define el vuelo que desempeñara un avión especifico de cierta aerolínea con todo lo necesario para él mismo.
+	Atributos:
+* Fecha_Salida: Establece la fecha de salida para ese vuelo en especifico.
+* Fecha_Llegada: Establece la fecha de llegada esperada para ese vuelo en especifico.
+* Duración: Establece la duración aproximada del vuelo.
+* Status: Establece el estado del vuelo, para poder controlar retrasos y demás.
+	* Retrasado
+	* Iniciado
+	* En Proceso
+	* Finalizado
+	* Cancelado
+* Precio: Establece el precio del vuelo.
+
+__Plan_Viaje__: Define los distintos vuelos que tiene que desarrollar un usuario para poder realizar un viaje de un punto a otro, definiendo de esta manera un medio por el cual establecer cuales vuelos son de escala, cuales de ida y cuales de regreso.
+	Atributos:
+* Fecha_Salida: Establece la fecha inicial de todo el plan definido para el/los usuarios.
+* Fecha_Regreso: Establece el regreso si es de ida y vuelta.
+* Precio_Total: Define el precio total de todas las reservaciones realizadas para este plan.
+
+__Ruta__: Define el origen y destino de cada vuelo, y a su vez de esta manera establecemos la forma en que se ejecutara y cual será la distancia de cada ruta. Estas rutas pueden ser predefinidas para luego ser ejecutadas por otra entidad de uso para cada vuelo.
+	Atributos:
+* Mod: Establece si es el destino u origen de un vuelo especifico.
+
+__Vuelo_Plan__: Establece la entidad intermedia que rompe la relación muchos a muchos (entidad débil) que relaciona los distintos vuelos con el plan que establecerá el viaje. Esta entidad puede determinar si es de escala y si es de ida o de regreso.
+	Atributos:
+* Tipo: Establece si es de escala o final. Estableceremos esto como un atributo check.
+* Conc: Define si es una reservación ejecutiva o de la cabina principal.
+
+_Aeropuerto_: Son los nodos de destino y origen para definir los trayectos de vuelo, los definen como rutas y esta conectada a los vuelos por la entidad débil ruta.
+* Nombre: establece el nombre del aeropuerto.
+* Pais: establece el pais.
+* Estado: Estado en el que se encuentra el aeropuerto.
+* Dirección
+
+* Los retrasos deben ser controlados en los vuelos directamente y establecer las condiciones en las que se debe actuar.
+	* 	Los retrasos superiores a cierto lapso de tiempo deben ser controlados con reservaciones de hotel para ciertos planes.
+	* Los retrasos inferiores a cierto lapso de tiempo se controlaran bajo el cambio de fechas directamente en el vuelo y puesto a retraso.
+	* Si el retraso se origina por un estado de cancelado debe estar condicionado directamente al estado de la unidad del avión u otros aspectos relacionados a la ubicación de los nodos, aunque esto queda en duda.
+* Control de asientos disponibles se maneja por el numero de reservaciones que se dan en cierto lapso de tiempo, pero esto se maneja bajo un calculo de la cantidad de usuarios en cierto plan vinculado a un vuelo_plan.
+* Calculo de los precios vinculado directamente a través del aerolínea con cobro por porcentaje ejecutivo y tasa por millas/distancia.
+* Control de ubicación de los aviones a través de este punto. Si no se encuentran aviones en cierta ubicación debe generarse un vuelo para ubicarlo en ese punto y hacer un control del mismo.
+* Control de fechas para reservación de hoteles según los vuelos que están establecidos en un plan de viaje, al igual que el de alquiler de vehículos. Hay que tener en cuenta que las reservaciones son independientes.
+
+## Reporte de pagos
+	Los reportes de pagos son definidos por ciertas particularidades como es el método de pago y que se esta pagando, para ello encontramos el uso de un único reporte de pago, con diferentes pagos realizados hasta llegar a un total.
+
+	Las entidades relacionadas a este reporte están centradas en dos formas:
+__Reporte_Pago__: Establece el monto y el numero de la tarjeta para realizar el pago, esta es una entidad débil que se relaciona con el precio total de un plan de viaje para su pago.
+* Monto.
+* Tarj_Num.
+
+__Forma_Pago__: Establece la forma en que se realizo el pago. Establece las 3 opciones de pago con su respectiva descripción.
+* Nombre
+* Desc
+
+### Consideraciones
+
+* No exceder los pagos respectivo a los que se encuentran en un plan.
+* Los pagos por los atrasos de nuevas reservaciones deben ser cargados a través del sistema para un control.
+* Se deben realizar devoluciones respectivamente según un porcentaje respectivo al usuario, dependiendo de las distintas reservaciones. (Si se elimina una entidad débil de relación, se debe realizar el registro de devoluciones y la eliminación respectiva).
+
+## Reporte de destinos mas solicitados (calculado)
+	Esto se abarca como una forma calculada, no tiene que ser vista como una tabla o que origine los mismos, por lo tanto no necesita una explicación mas detallada.
+
+## Reporte de aerolíneas que prestan más servicios
+	Esto se abarca como una forma calculada, no tiene que ser vista como una tabla o que origine los mismos, por lo tanto no necesita una explicación mas detallada.
+
+## Reporte de reservaciones de hotel
+	Actúa de la misma forma que los vuelos, sin embargo estas tienen una entidad débil respectivamente aparte.
+
+__Reserva_Hotel__: Entidad débil que relaciona la habitación con el plan de viaje y define ciertos parámetros para abarcar estas reservaciones en un plan de viaje.
+* Fecha_Entrada
+* Fecha_Salida
+* Puntuación: opcional, establecido por el usuario.
+* Precio_Total:
+
+__Tipo_Habitacion__: Establece la habitación en especifico del hotel, sin embargo este abarca como si fuese un tipo de habitación, por lo tanto hay que crear una entidad aparte de esta misma.
+* Huespedes
+* Foto
+* Desc
+* Precio
+
+::En consideración de ser cambiado por Tipo de habitación::
+
+__Hotel__: Establece los datos del hotel que abarca todas las habitaciones que pueden ser reservados, ademas de especificar las distintas ubicaciones.
+* Nombre
+* Puntuación
+* Desc
+* Pais
+* Foto
+* Estado
+* Direccion
+
+__Habitación__: Establece las unidades especificas de la habitación de un hotel.
+* Piso
+* Numero
+
+### Consideraciones
+
+* Reservas dentro de lapsos en los que las habitaciones estén vacías sin otras reservaciones.
+* Que abarque las reservas comprendidas a los distintos usuarios dentro del plan de viaje
+* Deben estar contrastados con las distintas ubicaciones o recorridos de los vuelos, aunque estas son independientes.
+
+## Reporte de alquiler de autos
+	Actúa de la misma forma que las otras reservaciones dentro del sistema.
+
+__Auto__: Unidad especifica del auto que se va a usar.
+* Precio_Dia
+* Color
+
+__Modelo_Auto__: modelo que establece el auto.
+* Foto
+* Nombre
+* Desc
+* Pasajeros
+* Status
+* Ubicación
+
+__Marca__
+* Nombre
+
+__Alquiler_Auto__: Alquiler de cierta unidad.
+* Direcc_Recogida
+* Direcc_Devolucion
+* Fecha_Inicio
+* Fecha_Final
+* Precio_Total
+
+__Alquiler_ISP__: Establece la empresa que realiza el servicio de alquiler de autos.
+* Nombre
+* Logo
+
+### Consideraciones
+
+* Control de autos para los alquileres de distintos usuarios, por lo que seria convergencia de uso, sin sobrepasar otros alquileres.
+* Control de los status de la unidad.
+* Control de las distintas ubicaciones del auto para evitar incoherencias de uso entre diferentes lugares.
+
+## Reporte de aseguradoras y seguros.
+	La aseguradora actua de forma dependiente del plan de viaje y a que se esta realizando un seguro, por lo que se debe tener en consideración este punto para poder trabajarlos en las distintas reservaciones y los servicios de un seguro en especifico.
+
+__Seguro__: Especifica el plan de seguro que se quiere contratar por persona respecto a algo.
+* Nombre
+* Desc
+* Precio: calculado con los servicios que se quieren trabajar.
+
+__Servicio__: Especifica el servicio que ofrece el seguro como solución de alguna problema.
+* Nombre
+* Condicion
+
+__Aseguradora__: Establece la compañía que ofrece los servicios del seguro.
+* Nombre
+* Desc
+* Logo.
+
+::Se debe trabajar en las consideraciones de este reporte y el uso de los distintos seguros::
+
+#ProyectoBDDII
