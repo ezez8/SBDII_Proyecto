@@ -1,4 +1,7 @@
+-----------------------------------------------------------------------------------
 ----------------------------------------TDAS---------------------------------------
+-----------------------------------------------------------------------------------
+
 create or replace type reg_ope as object(
     fecha_in  date,
     fecha_out date,
@@ -28,6 +31,7 @@ is
         return 0;
     end;
 end;
+/
 
 create or replace type reg_loc as object(
     ciudad    varchar(20),
@@ -54,6 +58,7 @@ is
         return 0;
     end;
 end;
+/
 
 create or replace type reg_sta as object(
     status varchar(3),
@@ -76,6 +81,7 @@ is
         return 0;
     end;
 end;
+/
 
 create or replace type cartera as object(
     millas number,
@@ -106,3 +112,115 @@ is
         return 0;
     end;
 end;
+/
+
+--------------------------------------------------------------------------
+-----------------------------------TABLES---------------------------------
+--------------------------------------------------------------------------
+
+-----------------------------PLAN_VIAJE-----------------------------------
+create table plan_viaje(
+    id           number primary key,
+    fecha        date   not null,
+    precio_total number not null
+);
+/
+
+-----------------------------USUARIO--------------------------------------
+create table usuario(
+    id        number primary key,
+    nombre    varchar(20) not null,
+    apellido  varchar(20) not null,
+    telf      varchar(20) not null,
+    correo    varchar(20) not null,
+    billetera cartera     not null,
+    passw     varchar(20) not null,
+    nick      varchar(20) not null,
+    foto      blob
+);
+/
+create table plan_usuario(
+    id            number    primary key,
+    comprador     number(1) not null check(comprador in (1,0)),
+    id_plan_viaje number    not null references plan_viaje(id),
+    id_usuario    number    not null references usuario(id)
+);
+/
+
+-----------------------------ALQUILER DE AUTOS-----------------------------
+create table alquiler_sp(
+    id        number      primary key,
+    nombre    varchar(20) not null,
+    logo      blob
+);
+/
+create table marca(
+    id     number      primary key,
+    nombre varchar(20) not null
+);
+/
+create table modelo_auto(
+    id        number      primary key,
+    nombre    varchar(20) not null,
+    des       varchar(20) not null,
+    pasajeros number      not null,
+    id_marca  number      not null references marca(id),
+    foto      blob
+);
+/
+create table automovil(
+    id             number      primary key,
+    precio         number      not null,
+    color          varchar(20) not null,
+    id_alquiler_sp number      not null references alquiler_sp(id),
+    id_modelo_auto number      not null references modelo_auto(id)
+);
+/
+create table alquiler_auto(
+    id             number  primary key,
+    dir_recogida   reg_loc not null,
+    dir_devolucion reg_loc not null,
+    fecha          reg_ope not null,
+    precio_total   number  not null,
+    status         reg_sta not null,
+    id_plan_viaje  number  not null references plan_viaje(id),
+    id_automovil   number  not null references automovil(id)
+);
+
+-----------------------------HOTEL--------------------------------------
+create table hotel(
+    id         number      primary key,
+    nombre     varchar(20) not null,
+    puntuacion number      not null,
+    des        varchar(20) not null,
+    locacion   reg_loc     not null,
+    foto       blob
+);
+/
+create table tipo_habitacion(
+    id        number      primary key,
+    huespedes number      not null,
+    des       varchar(20) not null,
+    precio    number      not null,
+    id_hotel  number      not null references hotel(id),
+    foto      blob
+);
+/
+create table habitacion(
+    id                 number      primary key,
+    des                varchar(20) not null,
+    id_tipo_habitacion number      not null references tipo_habitacion(id)
+);
+/
+create table reserva_hotel(
+    id            number  primary key,
+    fecha         reg_ope not null,
+    precio_total  number  not null,
+    status        reg_sta not null,
+    id_plan_viaje number  not null references plan_viaje(id),
+    id_habitacion number  not null references habitacion(id),
+    puntuacion    number
+);
+/
+
+-----------------------------HOTEL--------------------------------------
