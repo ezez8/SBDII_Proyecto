@@ -1,0 +1,30 @@
+----------------------------------------TDAS---------------------------------------
+create or replace type reg_ope as object(
+    fecha_in date,
+    fecha_out date,
+    
+    member function validar_fechas return number,
+    member function validar_solapamiento return number,
+    member function calcular_precio return number
+);
+/
+create or replace type body reg_ope
+is
+    member function validar_fechas return number
+    is
+    begin
+        return 0;
+    end;
+    
+    member function validar_solapamiento return number
+    is
+    begin
+        return 0;
+    end;
+    
+    member function calcular_precio return number
+    is
+    begin
+        return 0;
+    end;
+end;
