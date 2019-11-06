@@ -223,4 +223,119 @@ create table reserva_hotel(
 );
 /
 
------------------------------HOTEL--------------------------------------
+-----------------------------VUELO_PLAN--------------------------------------
+create table aerolinea(
+    id     number      primary key,
+    nombre varchar(20) not null,
+    tipo   varchar(3)  not null check(tipo in ('REG','RED','ESC')),
+    logo   blob
+);
+/
+create table avion(
+    id     number      primary key,
+    nombre varchar(20) not null
+);
+/
+create table modelo_avion(
+    id       number      primary key,
+    nombre   varchar(20) not null,
+    vel_max  number      not null,
+    alc      number      not null,
+    alt_max  number      not null,
+    enverg   number      not null,
+    anch_cab number      not null,
+    alt_cab  number      not null,
+    id_avion number      not null references avion(id),
+    foto     blob
+);
+/
+create table unidad_avion(
+    id              number primary key,
+    dist_ej         number not null,
+    dist_cp         number not null,
+    dist_ee         number not null,
+    id_aerolinea    number not null references aerolinea(id),
+    id_modelo_avion number not null references modelo_avion(id)
+);
+/
+create table asiento(
+    id              number      primary key,
+    clase           varchar(2)  not null check(clase in ('EJ','CP','EE')),
+    a_nombre        varchar(20) not null,
+    id_unidad_avion number      not null references unidad_avion(id)
+);
+/
+create table aeropuerto(
+    id       number      primary key,
+    nombre   varchar(20) not null,
+    locacion reg_loc     not null,
+    status   reg_sta     not null
+);
+/
+create table vuelo(
+    id        number  primary key,
+    fecha     reg_ope not null,
+    duracion  number  not null,
+    status    reg_sta not null,
+    precio_ej number  not null,
+    precio_cp number  not null,
+    precio_ee number  not null
+);
+/
+create table nodo(
+    id            number     primary key,
+    modo          varchar(3) not null check(modo in ('ORI','DES')),
+    status        reg_sta    not null,
+    id_aeropuerto number     not null references aeropuerto(id),
+    id_vuelo      number     not null references vuelo(id)
+);
+/
+create table vuelo_plan(
+    id            number     primary key,
+    tipo          varchar(3) not null check(tipo in ('ESC','NOR')),
+    modo          varchar(3) not null check(modo in ('IDA','IYV')),
+    status        reg_sta    not null,
+    id_plan_viaje number     not null references plan_viaje(id),
+    id_asiento    number     not null references asiento(id),
+    id_vuelo      number     not null references vuelo(id)
+);
+/
+
+-----------------------------PAGO--------------------------------------
+create table forma_pago(
+    id     number      primary key,
+    nombre varchar(20) not null,
+    des    varchar(20) not null
+);
+/
+create table reporte_pago(
+    id            number primary key,
+    monto         number not null,
+    id_plan_viaje number not null references plan_viaje(id),
+    id_forma_pago number not null references forma_pago(id),
+    tarj_num      varchar(20)
+);
+/
+
+-----------------------------SEGURO--------------------------------------
+create table aseguradora(
+    id     number      primary key,
+    nombre varchar(20) not null,
+    des    varchar(20) not null,
+    logo   blob
+);
+/
+create table seguro(
+    id             number      primary key,
+    nombre         varchar(20) not null,
+    des            varchar(20) not null,
+    precio         number      not null,
+    id_aseguradora number      not null references aseguradora(id)
+);
+/
+create table contrato(
+    id            number primary key,
+    cantidad      number not null,
+    id_plan_viaje number not null references plan_viaje(id),
+    id_seguro     number not null references seguro(id)
+);
