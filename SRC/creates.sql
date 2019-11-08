@@ -144,206 +144,275 @@ create table usuario(
 );
 /
 create table plan_usuario(
-    pu_id         number    generated always as identity,
-    pu_comprador  number(1) not null check(pu_comprador in (1,0)),
-    fk_pv_id         number    not null,
-    fk_u_id          number    not null,
+    pu_id        number    generated always as identity,
+    pu_comprador number(1) not null check(pu_comprador in (1,0)),
+    pu_pv_id     number    not null,
+    pu_u_id      number    not null,
 
-    constraint pk_pu primary key(pu_id),
-    constraint fk_pv foreign key(fk_pv_id) references plan_viaje(pv_id),
-    constraint fk_u  foreign key(fk_u_id)  references usuario(u_id)
+    constraint pk_pu    primary key(pu_id),
+    constraint fk_pu_pv foreign key(pu_pv_id) references plan_viaje(pv_id),
+    constraint fk_pu_u  foreign key(pu_u_id)  references usuario(u_id)
 );
 /
 
 -----------------------------ALQUILER DE AUTOS-----------------------------
 create table alquiler_sp(
-    id        number      primary key generated always as identity,
-    nombre    varchar(20) not null,
-    logo      blob
+    asp_id     number      generated always as identity,
+    asp_nombre varchar(20) not null,
+    asp_logo   blob,
+
+    constraint pk_asp primary key(asp_id)
 );
 /
 create table marca(
-    id     number      primary key generated always as identity,
-    nombre varchar(20) not null
+    m_id     number      generated always as identity,
+    m_nombre varchar(20) not null,
+
+    constraint pk_m primary key(m_id)
 );
 /
 create table modelo_auto(
-    id        number      primary key generated always as identity,
-    nombre    varchar(20) not null,
-    des       varchar(20) not null,
-    pasajeros number      not null,
-    id_marca  number      not null references marca(id),
-    foto      blob
+    mau_id        number      generated always as identity,
+    mau_nombre    varchar(20) not null,
+    mau_des       varchar(20) not null,
+    mau_pasajeros number      not null,
+    mau_m_id      number      not null,
+    mau_foto      blob,
+
+    constraint pk_mau   primary key(mau_id),
+    constraint fk_mau_m foreign key(mau_m_id) references marca(m_id)
 );
 /
 create table automovil(
-    id             number      primary key generated always as identity,
-    precio         number      not null,
-    color          varchar(20) not null,
-    id_alquiler_sp number      not null references alquiler_sp(id),
-    id_modelo_auto number      not null references modelo_auto(id)
+    au_id     number      generated always as identity,
+    au_precio number      not null,
+    au_color  varchar(20) not null,
+    au_asp_id number      not null,
+    au_mau_id number      not null,
+
+    constraint pk_au     primary key(au_id),
+    constraint fk_au_asp foreign key(au_asp_id) references alquiler_sp(asp_id),
+    constraint fk_au_mau foreign key(au_mau_id) references modelo_auto(mau_id)
 );
 /
 create table alquiler_auto(
-    id             number  primary key generated always as identity,
-    dir_recogida   reg_loc not null,
-    dir_devolucion reg_loc not null,
-    fecha          reg_ope not null,
-    precio_total   number  not null,
-    status         reg_sta not null,
-    id_plan_viaje  number  not null references plan_viaje(id),
-    id_automovil   number  not null references automovil(id)
+    aa_id             number  generated always as identity,
+    aa_dir_recogida   reg_loc not null,
+    aa_dir_devolucion reg_loc not null,
+    aa_fecha          reg_ope not null,
+    aa_precio_total   number  not null,
+    aa_status         reg_sta not null,
+    aa_pv_id          number  not null,
+    aa_au_id          number  not null,
+
+    constraint pk_aa primary key(aa_id),
+    constraint fk_aa_pv foreign key(aa_pv_id) references plan_viaje(pv_id),
+    constraint fk_aa_au foreign key(aa_au_id) references automovil(au_id)
 );
 
 -----------------------------HOTEL--------------------------------------
 create table hotel(
-    id         number      primary key generated always as identity,
-    nombre     varchar(20) not null,
-    puntuacion number      not null,
-    des        varchar(20) not null,
-    locacion   reg_loc     not null,
-    foto       blob
+    ho_id         number      generated always as identity,
+    ho_nombre     varchar(20) not null,
+    ho_puntuacion number      not null,
+    ho_des        varchar(20) not null,
+    ho_locacion   reg_loc     not null,
+    ho_foto       blob,
+
+    constraint pk_ho primary key(ho_id)
 );
 /
 create table tipo_habitacion(
-    id        number      primary key generated always as identity,
-    huespedes number      not null,
-    des       varchar(20) not null,
-    precio    number      not null,
-    id_hotel  number      not null references hotel(id),
-    foto      blob
+    th_id        number      generated always as identity,
+    th_huespedes number      not null,
+    th_des       varchar(20) not null,
+    th_precio    number      not null,
+    th_ho_id     number      not null,
+    th_foto      blob,
+
+    constraint pk_th    primary key(th_id),
+    constraint fk_th_ho foreign key(th_ho_id) references hotel(ho_id)
 );
 /
 create table habitacion(
-    id                 number      primary key generated always as identity,
-    des                varchar(20) not null,
-    id_tipo_habitacion number      not null references tipo_habitacion(id)
+    ha_id    number      generated always as identity,
+    ha_des   varchar(20) not null,
+    ha_th_id number      not null,
+
+    constraint pk_ha    primary key(ha_id),
+    constraint fk_ha_th foreign key(ha_th_id) references tipo_habitacion(th_id)
 );
 /
 create table reserva_hotel(
-    id            number  primary key generated always as identity,
-    fecha         reg_ope not null,
-    precio_total  number  not null,
-    status        reg_sta not null,
-    id_plan_viaje number  not null references plan_viaje(id),
-    id_habitacion number  not null references habitacion(id),
-    puntuacion    number
+    rh_id           number  generated always as identity,
+    rh_fecha        reg_ope not null,
+    rh_precio_total number  not null,
+    rh_status       reg_sta not null,
+    rh_pv_id        number  not null,
+    rh_ha_id        number  not null,
+    rh_puntuacion   number,
+
+    constraint pk_rh    primary key(rh_id),
+    constraint fk_rh_pv foreign key(rh_pv_id) references plan_viaje(pv_id),
+    constraint fk_rh_ha foreign key(rh_ha_id) references habitacion(ha_id)
 );
 /
 
 -----------------------------VUELO_PLAN--------------------------------------
 create table aerolinea(
-    id     number      primary key generated always as identity,
-    nombre varchar(20) not null,
-    tipo   varchar(3)  not null check(tipo in ('REG','RED','ESC')),
-    logo   blob
+    al_id     number      generated always as identity,
+    al_nombre varchar(20) not null,
+    al_tipo   varchar(3)  not null check(al_tipo in ('REG','RED','ESC')),
+    al_logo   blob,
+
+    constraint pk_al primary key(al_id)
 );
 /
 create table avion(
-    id     number      primary key generated always as identity,
-    nombre varchar(20) not null
+    av_id     number      generated always as identity,
+    av_nombre varchar(20) not null,
+
+    constraint pk_av primary key(av_id)
 );
 /
 create table modelo_avion(
-    id       number      primary key generated always as identity,
-    nombre   varchar(20) not null,
-    vel_max  number      not null,
-    alc      number      not null,
-    alt_max  number      not null,
-    enverg   number      not null,
-    anch_cab number      not null,
-    alt_cab  number      not null,
-    id_avion number      not null references avion(id),
-    foto     blob
+    mav_id       number      generated always as identity,
+    mav_nombre   varchar(20) not null,
+    mav_vel_max  number      not null,
+    mav_alc      number      not null,
+    mav_alt_max  number      not null,
+    mav_enverg   number      not null,
+    mav_anch_cab number      not null,
+    mav_alt_cab  number      not null,
+    mav_av_id    number      not null,
+    mav_foto     blob,
+
+    constraint pk_mav    primary key(mav_id),
+    constraint fk_mav_av foreign key(mav_av_id) references avion(av_id)
 );
 /
 create table unidad_avion(
-    id              number primary key generated always as identity,
-    dist_ej         number not null,
-    dist_cp         number not null,
-    dist_ee         number not null,
-    id_aerolinea    number not null references aerolinea(id),
-    id_modelo_avion number not null references modelo_avion(id)
+    ua_id      number generated always as identity,
+    ua_dist_ej number not null,
+    ua_dist_cp number not null,
+    ua_dist_ee number not null,
+    ua_al_id   number not null,
+    ua_mav_id  number not null,
+
+    constraint pk_ua     primary key(ua_id),
+    constraint fk_ua_al  foreign key(ua_al_id)  references aerolinea(al_id),
+    constraint fk_ua_mav foreign key(ua_mav_id) references modelo_avion(mav_id)
 );
 /
 create table asiento(
-    id              number      primary key generated always as identity,
-    clase           varchar(2)  not null check(clase in ('EJ','CP','EE')),
-    a_nombre        varchar(20) not null,
-    id_unidad_avion number      not null references unidad_avion(id)
+    asi_id       number      generated always as identity,
+    asi_clase    varchar(2)  not null check(asi_clase in ('EJ','CP','EE')),
+    asi_a_nombre varchar(20) not null,
+    asi_ua_id    number      not null,
+
+    constraint pk_asi    primary key(asi_id),
+    constraint fk_asi_ua foreign key(asi_ua_id) references unidad_avion(ua_id)
 );
 /
 create table aeropuerto(
-    id       number      primary key generated always as identity,
-    nombre   varchar(20) not null,
-    locacion reg_loc     not null,
-    status   reg_sta     not null
+    ap_id       number      generated always as identity,
+    ap_nombre   varchar(20) not null,
+    ap_locacion reg_loc     not null,
+    ap_status   reg_sta     not null,
+
+    constraint pk_ap primary key(ap_id)
 );
 /
 create table vuelo(
-    id        number  primary key generated always as identity,
-    fecha     reg_ope not null,
-    duracion  number  not null,
-    status    reg_sta not null,
-    precio_ej number  not null,
-    precio_cp number  not null,
-    precio_ee number  not null
+    vu_id        number  generated always as identity,
+    vu_fecha     reg_ope not null,
+    vu_duracion  number  not null,
+    vu_status    reg_sta not null,
+    vu_precio_ej number  not null,
+    vu_precio_cp number  not null,
+    vu_precio_ee number  not null,
+
+    constraint pk_vu primary key(vu_id)
 );
 /
 create table nodo(
-    id            number     primary key generated always as identity,
-    modo          varchar(3) not null check(modo in ('ORI','DES')),
-    status        reg_sta    not null,
-    id_aeropuerto number     not null references aeropuerto(id),
-    id_vuelo      number     not null references vuelo(id)
+    no_id     number     generated always as identity,
+    no_modo   varchar(3) not null check(no_modo in ('ORI','DES')),
+    no_status reg_sta    not null,
+    no_ap_id  number     not null,
+    no_vu_id  number     not null,
+
+    constraint pk_no    primary key(no_id),
+    constraint fk_no_ap foreign key(no_ap_id) references aeropuerto(ap_id),
+    constraint fk_no_vu foreign key(no_vu_id) references vuelo(vu_id)
 );
 /
 create table vuelo_plan(
-    id            number     primary key generated always as identity,
-    tipo          varchar(3) not null check(tipo in ('ESC','NOR')),
-    modo          varchar(3) not null check(modo in ('IDA','IYV')),
-    status        reg_sta    not null,
-    id_plan_viaje number     not null references plan_viaje(id),
-    id_asiento    number     not null references asiento(id),
-    id_vuelo      number     not null references vuelo(id)
+    vp_id     number     generated always as identity,
+    vp_tipo   varchar(3) not null check(vp_tipo in ('ESC','NOR')),
+    vp_modo   varchar(3) not null check(vp_modo in ('IDA','IYV')),
+    vp_status reg_sta    not null,
+    vp_pv_id  number     not null,
+    vp_asi_id number     not null,
+    vp_vu_id  number     not null,
+
+    constraint pk_vp     primary key(vp_id),
+    constraint fk_vp_pv  foreign key(vp_pv_id)  references plan_viaje(pv_id),
+    constraint fk_vp_asi foreign key(vp_asi_id) references asiento(asi_id),
+    constraint fk_vp_vu  foreign key(vp_vu_id)  references vuelo(vu_id)
 );
 /
 
 -----------------------------PAGO--------------------------------------
 create table forma_pago(
-    id     number      primary key generated always as identity,
-    nombre varchar(20) not null,
-    des    varchar(20) not null
+    fp_id     number      generated always as identity,
+    fp_nombre varchar(20) not null,
+    fp_des    varchar(20) not null,
+
+    constraint pk_fp primary key(fp_id)
 );
 /
 create table reporte_pago(
-    id            number primary key generated always as identity,
-    monto         number not null,
-    id_plan_viaje number not null references plan_viaje(id),
-    id_forma_pago number not null references forma_pago(id),
-    tarj_num      varchar(20)
+    rp_id       number generated always as identity,
+    rp_monto    number not null,
+    rp_pv_id    number not null,
+    rp_fp_id    number not null,
+    rp_tarj_num varchar(20),
+
+    constraint pk_rp    primary key(rp_id),
+    constraint fk_rp_pv foreign key(rp_pv_id) references plan_viaje(pv_id),
+    constraint fk_rp_fp foreign key(rp_fp_id) references forma_pago(fp_id)
 );
 /
 
 -----------------------------SEGURO--------------------------------------
 create table aseguradora(
-    id     number      primary key generated always as identity,
-    nombre varchar(20) not null,
-    des    varchar(20) not null,
-    logo   blob
+    ase_id     number      generated always as identity,
+    ase_nombre varchar(20) not null,
+    ase_des    varchar(20) not null,
+    ase_logo   blob,
+
+    constraint pk_ase primary key(ase_id)
 );
 /
 create table seguro(
-    id             number      primary key generated always as identity,
-    nombre         varchar(20) not null,
-    des            varchar(20) not null,
-    precio         number      not null,
-    id_aseguradora number      not null references aseguradora(id)
+    se_id     number      generated always as identity,
+    se_nombre varchar(20) not null,
+    se_des    varchar(20) not null,
+    se_precio number      not null,
+    se_ase_id number      not null,
+
+    constraint pk_se primary key(se_id),
+    constraint fk_se_ase foreign key(se_ase_id) references aseguradora(ase_id)
 );
 /
 create table contrato(
-    id            number primary key generated always as identity,
-    cantidad      number not null,
-    id_plan_viaje number not null references plan_viaje(id),
-    id_seguro     number not null references seguro(id)
+    co_id       number generated always as identity,
+    co_cantidad number not null,
+    co_pv_id    number not null,
+    co_se_id    number not null,
+
+    constraint pk_co    primary key(co_id),
+    constraint fk_co_pv foreign key(co_pv_id) references plan_viaje(pv_id),
+    constraint fk_co_se foreign key(co_se_id) references seguro(se_id)
 );
