@@ -113,6 +113,112 @@ is
     end;
 end;
 /
+---------------------------------------------------------------------
+----------------------------------SEQUENCES--------------------------
+---------------------------------------------------------------------
+create sequence seq_pv_id
+    start with 1
+    increment by 1;
+
+create sequence seq_u_id
+    start with 1
+    increment by 1;
+
+create sequence seq_pu_id
+    start with 1
+    increment by 1;
+
+create sequence seq_asp_id
+    start with 1
+    increment by 1;
+
+create sequence seq_m_id
+    start with 1
+    increment by 1;
+
+create sequence seq_mau_id
+    start with 1
+    increment by 1;
+
+create sequence seq_au_id
+    start with 1
+    increment by 1;
+
+create sequence seq_aa_id
+    start with 1
+    increment by 1;
+
+create sequence seq_ho_id
+    start with 1
+    increment by 1;
+
+create sequence seq_th_id
+    start with 1
+    increment by 1;
+
+create sequence seq_ha_id
+    start with 1
+    increment by 1;
+
+create sequence seq_rh_id
+    start with 1
+    increment by 1;
+
+create sequence seq_al_id
+    start with 1
+    increment by 1;
+
+create sequence seq_av_id
+    start with 1
+    increment by 1;
+
+create sequence seq_mav_id
+    start with 1
+    increment by 1;
+
+create sequence seq_ua_id
+    start with 1
+    increment by 1;
+
+create sequence seq_asi_id
+    start with 1
+    increment by 1;
+
+create sequence seq_ap_id
+    start with 1
+    increment by 1;
+
+create sequence seq_vu_id
+    start with 1
+    increment by 1;
+
+create sequence seq_no_id
+    start with 1
+    increment by 1;
+
+create sequence seq_vp_id
+    start with 1
+    increment by 1;
+
+create sequence seq_fp_id
+    start with 1
+    increment by 1;
+
+create sequence seq_rp_id
+    start with 1
+    increment by 1;
+
+create sequence seq_ase_id
+    start with 1
+    increment by 1;
+
+create sequence seq_se_id
+    start with 1
+    increment by 1;
+
+create sequence seq_co_id
+    start with 1
+    increment by 1;
 
 --------------------------------------------------------------------------
 -----------------------------------TABLES---------------------------------
@@ -120,7 +226,7 @@ end;
 
 -----------------------------PLAN_VIAJE-----------------------------------
 create table plan_viaje(
-    pv_id           number generated always as identity,
+    pv_id           number,
     pv_fecha        date   not null,
     pv_precio_total number not null,
 
@@ -130,7 +236,7 @@ create table plan_viaje(
 
 -----------------------------USUARIO--------------------------------------
 create table usuario(
-    u_id        number generated always as identity,
+    u_id        number,
     u_nombre    varchar(20) not null,
     u_apellido  varchar(20) not null,
     u_telf      varchar(20) not null,
@@ -138,13 +244,13 @@ create table usuario(
     u_billetera cartera     not null,
     u_passw     varchar(20) not null,
     u_nick      varchar(20) not null,
-    u_foto      blob,
+    u_foto      blob        default empty_blob(),
 
     constraint pk_u primary key(u_id)
 );
 /
 create table plan_usuario(
-    pu_id        number    generated always as identity,
+    pu_id        number,
     pu_comprador number(1) not null check(pu_comprador in (1,0)),
     pu_pv_id     number    not null,
     pu_u_id      number    not null,
@@ -157,34 +263,34 @@ create table plan_usuario(
 
 -----------------------------ALQUILER DE AUTOS-----------------------------
 create table alquiler_sp(
-    asp_id     number      generated always as identity,
+    asp_id     number,
     asp_nombre varchar(20) not null,
-    asp_logo   blob,
+    asp_logo   blob        default empty_blob(),
 
     constraint pk_asp primary key(asp_id)
 );
 /
 create table marca(
-    m_id     number      generated always as identity,
+    m_id     number,
     m_nombre varchar(20) not null,
 
     constraint pk_m primary key(m_id)
 );
 /
 create table modelo_auto(
-    mau_id        number      generated always as identity,
+    mau_id        number,
     mau_nombre    varchar(20) not null,
     mau_des       varchar(20) not null,
     mau_pasajeros number      not null,
     mau_m_id      number      not null,
-    mau_foto      blob,
+    mau_foto      blob        default empty_blob(),
 
     constraint pk_mau   primary key(mau_id),
     constraint fk_mau_m foreign key(mau_m_id) references marca(m_id)
 );
 /
 create table automovil(
-    au_id     number      generated always as identity,
+    au_id     number,
     au_precio number      not null,
     au_color  varchar(20) not null,
     au_asp_id number      not null,
@@ -196,7 +302,7 @@ create table automovil(
 );
 /
 create table alquiler_auto(
-    aa_id             number  generated always as identity,
+    aa_id             number,
     aa_dir_recogida   reg_loc not null,
     aa_dir_devolucion reg_loc not null,
     aa_fecha          reg_ope not null,
@@ -212,30 +318,30 @@ create table alquiler_auto(
 
 -----------------------------HOTEL--------------------------------------
 create table hotel(
-    ho_id         number      generated always as identity,
+    ho_id         number,
     ho_nombre     varchar(20) not null,
     ho_puntuacion number      not null,
     ho_des        varchar(20) not null,
     ho_locacion   reg_loc     not null,
-    ho_foto       blob,
+    ho_foto       blob        default empty_blob(),
 
     constraint pk_ho primary key(ho_id)
 );
 /
 create table tipo_habitacion(
-    th_id        number      generated always as identity,
+    th_id        number,
     th_huespedes number      not null,
     th_des       varchar(20) not null,
     th_precio    number      not null,
     th_ho_id     number      not null,
-    th_foto      blob,
+    th_foto      blob        default empty_blob(),
 
     constraint pk_th    primary key(th_id),
     constraint fk_th_ho foreign key(th_ho_id) references hotel(ho_id)
 );
 /
 create table habitacion(
-    ha_id    number      generated always as identity,
+    ha_id    number,
     ha_des   varchar(20) not null,
     ha_th_id number      not null,
 
@@ -244,7 +350,7 @@ create table habitacion(
 );
 /
 create table reserva_hotel(
-    rh_id           number  generated always as identity,
+    rh_id           number,
     rh_fecha        reg_ope not null,
     rh_precio_total number  not null,
     rh_status       reg_sta not null,
@@ -260,23 +366,23 @@ create table reserva_hotel(
 
 -----------------------------VUELO_PLAN--------------------------------------
 create table aerolinea(
-    al_id     number      generated always as identity,
+    al_id     number,
     al_nombre varchar(20) not null,
     al_tipo   varchar(3)  not null check(al_tipo in ('REG','RED','ESC')),
-    al_logo   blob,
+    al_logo   blob        default empty_blob(),
 
     constraint pk_al primary key(al_id)
 );
 /
 create table avion(
-    av_id     number      generated always as identity,
+    av_id     number,
     av_nombre varchar(20) not null,
 
     constraint pk_av primary key(av_id)
 );
 /
 create table modelo_avion(
-    mav_id       number      generated always as identity,
+    mav_id       number,
     mav_nombre   varchar(20) not null,
     mav_vel_max  number      not null,
     mav_alc      number      not null,
@@ -285,14 +391,14 @@ create table modelo_avion(
     mav_anch_cab number      not null,
     mav_alt_cab  number      not null,
     mav_av_id    number      not null,
-    mav_foto     blob,
+    mav_foto     blob        default empty_blob(),
 
     constraint pk_mav    primary key(mav_id),
     constraint fk_mav_av foreign key(mav_av_id) references avion(av_id)
 );
 /
 create table unidad_avion(
-    ua_id      number generated always as identity,
+    ua_id      number,
     ua_dist_ej number not null,
     ua_dist_cp number not null,
     ua_dist_ee number not null,
@@ -305,7 +411,7 @@ create table unidad_avion(
 );
 /
 create table asiento(
-    asi_id       number      generated always as identity,
+    asi_id       number,
     asi_clase    varchar(2)  not null check(asi_clase in ('EJ','CP','EE')),
     asi_a_nombre varchar(20) not null,
     asi_ua_id    number      not null,
@@ -315,7 +421,7 @@ create table asiento(
 );
 /
 create table aeropuerto(
-    ap_id       number      generated always as identity,
+    ap_id       number,
     ap_nombre   varchar(20) not null,
     ap_locacion reg_loc     not null,
     ap_status   reg_sta     not null,
@@ -324,7 +430,7 @@ create table aeropuerto(
 );
 /
 create table vuelo(
-    vu_id        number  generated always as identity,
+    vu_id        number,
     vu_fecha     reg_ope not null,
     vu_duracion  number  not null,
     vu_status    reg_sta not null,
@@ -336,7 +442,7 @@ create table vuelo(
 );
 /
 create table nodo(
-    no_id     number     generated always as identity,
+    no_id     number,
     no_modo   varchar(3) not null check(no_modo in ('ORI','DES')),
     no_status reg_sta    not null,
     no_ap_id  number     not null,
@@ -348,7 +454,7 @@ create table nodo(
 );
 /
 create table vuelo_plan(
-    vp_id     number     generated always as identity,
+    vp_id     number,
     vp_tipo   varchar(3) not null check(vp_tipo in ('ESC','NOR')),
     vp_modo   varchar(3) not null check(vp_modo in ('IDA','IYV')),
     vp_status reg_sta    not null,
@@ -365,7 +471,7 @@ create table vuelo_plan(
 
 -----------------------------PAGO--------------------------------------
 create table forma_pago(
-    fp_id     number      generated always as identity,
+    fp_id     number,
     fp_nombre varchar(20) not null,
     fp_des    varchar(20) not null,
 
@@ -373,7 +479,7 @@ create table forma_pago(
 );
 /
 create table reporte_pago(
-    rp_id       number generated always as identity,
+    rp_id       number,
     rp_monto    number not null,
     rp_pv_id    number not null,
     rp_fp_id    number not null,
@@ -387,16 +493,16 @@ create table reporte_pago(
 
 -----------------------------SEGURO--------------------------------------
 create table aseguradora(
-    ase_id     number      generated always as identity,
+    ase_id     number,
     ase_nombre varchar(20) not null,
     ase_des    varchar(20) not null,
-    ase_logo   blob,
+    ase_logo   blob        default empty_blob(),
 
     constraint pk_ase primary key(ase_id)
 );
 /
 create table seguro(
-    se_id     number      generated always as identity,
+    se_id     number,
     se_nombre varchar(20) not null,
     se_des    varchar(20) not null,
     se_precio number      not null,
@@ -407,7 +513,7 @@ create table seguro(
 );
 /
 create table contrato(
-    co_id       number generated always as identity,
+    co_id       number,
     co_cantidad number not null,
     co_pv_id    number not null,
     co_se_id    number not null,
@@ -416,3 +522,34 @@ create table contrato(
     constraint fk_co_pv foreign key(co_pv_id) references plan_viaje(pv_id),
     constraint fk_co_se foreign key(co_se_id) references seguro(se_id)
 );
+
+--------------------------------------------------------------------------
+-----------------------------------DIRECTORY------------------------------
+--------------------------------------------------------------------------
+create or replace directory imagenes as '/u01/app/oracle/SBDII_Proyecto/imagenes';
+
+--------------------------------------------------------------------------
+-----------------------------------VIEWS----------------------------------
+--------------------------------------------------------------------------
+create or replace view vi_asp as
+    select asp_id, asp_nombre from alquiler_sp;
+
+--------------------------------------------------------------------------
+-----------------------------------TRIGGERS-------------------------------
+--------------------------------------------------------------------------
+create or replace trigger tri_vi_asp
+instead of insert on vi_asp
+for each row
+begin
+    DECLARE 
+    V_blob BLOB;
+    V_bfile BFILE;
+    BEGIN 
+        INSERT INTO alquiler_sp(asp_id, asp_nombre, asp_logo) VALUES (:new.asp_id, :new.asp_nombre, empty_blob()) RETURNING asp_logo INTO V_blob;
+        V_bfile := BFILENAME('imagenes', :new.asp_nombre||'.jpg');
+        DBMS_LOB.OPEN(V_bfile, DBMS_LOB.LOB_READONLY);
+        DBMS_LOB.LOADFROMFILE(V_blob, V_bfile, SYS.DBMS_LOB.GETLENGTH(V_bfile));
+        DBMS_LOB.CLOSE(V_bfile);
+        COMMIT;
+    END;
+end;
