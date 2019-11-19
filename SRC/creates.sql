@@ -280,10 +280,10 @@ create table marca(
 create table modelo_auto(
     mau_id        number,
     mau_nombre    varchar(20) not null,
-    mau_des       varchar(20) not null,
     mau_pasajeros number      not null,
     mau_m_id      number      not null,
     mau_foto      blob        default empty_blob(),
+    mau_des       varchar(20),
 
     constraint pk_mau   primary key(mau_id),
     constraint fk_mau_m foreign key(mau_m_id) references marca(m_id)
@@ -522,34 +522,3 @@ create table contrato(
     constraint fk_co_pv foreign key(co_pv_id) references plan_viaje(pv_id),
     constraint fk_co_se foreign key(co_se_id) references seguro(se_id)
 );
-
---------------------------------------------------------------------------
------------------------------------DIRECTORY------------------------------
---------------------------------------------------------------------------
-create or replace directory imagenes as '/u01/app/oracle/SBDII_Proyecto/imagenes';
-
---------------------------------------------------------------------------
------------------------------------VIEWS----------------------------------
---------------------------------------------------------------------------
-create or replace view vi_asp as
-    select asp_id, asp_nombre from alquiler_sp;
-
---------------------------------------------------------------------------
------------------------------------TRIGGERS-------------------------------
---------------------------------------------------------------------------
-create or replace trigger tri_vi_asp
-instead of insert on vi_asp
-for each row
-begin
-    DECLARE 
-    V_blob BLOB;
-    V_bfile BFILE;
-    BEGIN 
-        INSERT INTO alquiler_sp(asp_id, asp_nombre, asp_logo) VALUES (:new.asp_id, :new.asp_nombre, empty_blob()) RETURNING asp_logo INTO V_blob;
-        V_bfile := BFILENAME('imagenes', :new.asp_nombre||'.jpg');
-        DBMS_LOB.OPEN(V_bfile, DBMS_LOB.LOB_READONLY);
-        DBMS_LOB.LOADFROMFILE(V_blob, V_bfile, SYS.DBMS_LOB.GETLENGTH(V_bfile));
-        DBMS_LOB.CLOSE(V_bfile);
-        COMMIT;
-    END;
-end;
