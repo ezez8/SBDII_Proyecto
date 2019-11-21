@@ -34,37 +34,37 @@ insert into marca(m_id, m_nombre) values(12,'land-rover'   );
 insert into marca(m_id, m_nombre) values(13,'mini'         );
 insert into marca(m_id, m_nombre) values(14,'ferrari'      );
 insert into marca(m_id, m_nombre) values(15,'tesla'        );
---------------------------------MODELO_AUTO--------------------------------
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(1 ,'aygo'    , 2, 1);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(2 ,'camry'   , 4, 1);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(3 ,'clase-c' , 4, 2);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(4 ,'cls'     , 4, 2 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(5 ,'x1'      , 4, 3 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(6 ,'x5'      , 4, 3 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(7 ,'civic'   , 4, 4 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(8 ,'jazz'    , 4, 4 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(9 ,'mondeo'  , 4, 5 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(10,'puma'    , 4, 5 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(11,'i20'     , 4, 6 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(12,'i30'     , 4, 6 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(13,'a4'      , 4, 7 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(14,'a1'      , 4, 7 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(15,'juke'    , 4, 8 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(16,'gt-r'    , 4, 8 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(17,'passat'  , 4, 9 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(18,'t-cross' , 4, 9 );
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(19,'macan'   , 4, 10);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(20,'911'     , 4, 10);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(21,'ceed'    , 4, 11);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(22,'optima'  , 4, 11);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(23,'defender', 4, 12);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(24,'evoque'  , 4, 12);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(25,'clubman' , 4, 13);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(26,'mini'    , 4, 13);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(27,'f8'      , 4, 14);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(28,'roma'    , 4, 14);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(29,'model-y' , 4, 15);
-insert into modelo_auto(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(30,'model-s' , 4, 15);
+-------------------------------MODELO_AUTO----------------------------------
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(1 ,'aygo'    , 2, 1);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(2 ,'camry'   , 4, 1);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(3 ,'clase-c' , 4, 2);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(4 ,'cls'     , 4, 2 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(5 ,'x1'      , 4, 3 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(6 ,'x5'      , 4, 3 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(7 ,'civic'   , 4, 4 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(8 ,'jazz'    , 4, 4 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(9 ,'mondeo'  , 4, 5 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(10,'puma'    , 4, 5 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(11,'i20'     , 4, 6 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(12,'i30'     , 4, 6 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(13,'a4'      , 4, 7 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(14,'a1'      , 4, 7 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(15,'juke'    , 4, 8 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(16,'gt-r'    , 4, 8 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(17,'passat'  , 4, 9 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(18,'t-cross' , 4, 9 );
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(19,'macan'   , 4, 10);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(20,'911'     , 4, 10);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(21,'ceed'    , 4, 11);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(22,'optima'  , 4, 11);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(23,'defender', 4, 12);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(24,'evoque'  , 4, 12);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(25,'clubman' , 4, 13);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(26,'mini'    , 4, 13);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(27,'f8'      , 4, 14);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(28,'roma'    , 4, 14);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(29,'model-y' , 4, 15);
+insert into vi_mau(mau_id, mau_nombre, mau_pasajeros, mau_m_id) values(30,'model-s' , 4, 15);
 --------------------------------------AUTOMOVIL-----------------------------------
 insert into automovil(au_id, au_precio, au_color, au_asp_id, au_mau_id) values(1 , 10 , 'rojo'    , 1 , 1 );
 insert into automovil(au_id, au_precio, au_color, au_asp_id, au_mau_id) values(2 , 20 , 'azul'    , 2 , 2 );
@@ -96,3 +96,17 @@ insert into automovil(au_id, au_precio, au_color, au_asp_id, au_mau_id) values(2
 insert into automovil(au_id, au_precio, au_color, au_asp_id, au_mau_id) values(28, 280, 'rojo'    , 13, 28);
 insert into automovil(au_id, au_precio, au_color, au_asp_id, au_mau_id) values(29, 290, 'morado'  , 14, 29);
 insert into automovil(au_id, au_precio, au_color, au_asp_id, au_mau_id) values(30, 300, 'verde'   , 15, 30);
+
+----------------------------------------------------------------------------
+---------------------------------------HOTEL--------------------------------
+----------------------------------------------------------------------------
+
+---------------------------------------HOTEL--------------------------------
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(1, 'nayara', 4.8, reg_loc('Alajuela','Costa Rica','702 road 21007'));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(2, 'shinta', 4.7, reg_loc('Krong Siem Reap','Camboya','Oum Khun St and 14th street'));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(3, 'four-seasons', 4.8, reg_loc('Budapest','Hungría','Széchenyi István tér 5-6'));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(4, 'belmond', 4.9, reg_loc('Cusco','Perú','Nazarenas 223'));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(5, 'alpin', 4.8, reg_loc('Vorderlanersbach','Austria','6293 Tux'));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(6, 'estalagem', 4.9, reg_loc('Gramado','Brasil','R. da Carrieri, 974 - Planalto'));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(7, 'estalagem', 4.8, reg_loc('Urubamba','Perú','Sacred Valley, Av. Ferrocarril S/N'));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(8, 'estalagem', 4.8, reg_loc('Urubamba','Perú','Sacred Valley, Av. Ferrocarril S/N'));

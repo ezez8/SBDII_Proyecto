@@ -36,9 +36,7 @@ end;
 create or replace type reg_loc as object(
     ciudad    varchar(20),
     pais      varchar(20),
-    latitud   number,
-    longitud  number,
-    direccion varchar(20),
+    direccion varchar(40),
     
     member function calculo_distancia return number,
     member function calculo_precio return number
@@ -321,9 +319,9 @@ create table hotel(
     ho_id         number,
     ho_nombre     varchar(20) not null,
     ho_puntuacion number      not null,
-    ho_des        varchar(20) not null,
     ho_locacion   reg_loc     not null,
     ho_foto       blob        default empty_blob(),
+    ho_des        varchar(20),
 
     constraint pk_ho primary key(ho_id)
 );
@@ -331,10 +329,9 @@ create table hotel(
 create table tipo_habitacion(
     th_id        number,
     th_huespedes number      not null,
-    th_des       varchar(20) not null,
     th_precio    number      not null,
     th_ho_id     number      not null,
-    th_foto      blob        default empty_blob(),
+    th_des       varchar(20),
 
     constraint pk_th    primary key(th_id),
     constraint fk_th_ho foreign key(th_ho_id) references hotel(ho_id)
