@@ -4,6 +4,8 @@
 
 @/u01/app/oracle/SBDII_Proyecto/SRC/tables;
 
+@/u01/app/oracle/SBDII_Proyecto/SRC/tdas_body;
+
 @/u01/app/oracle/SBDII_Proyecto/SRC/seq;
 
 @/u01/app/oracle/SBDII_Proyecto/SRC/views;
