@@ -115,8 +115,8 @@ create table tipo_habitacion(
 /
 create table habitacion(
     ha_id    number,
-    ha_des   varchar(20) not null,
     ha_th_id number      not null,
+    ha_des   varchar(20),
 
     constraint pk_ha    primary key(ha_id),
     constraint fk_ha_th foreign key(ha_th_id) references tipo_habitacion(th_id)

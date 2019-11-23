@@ -48,3 +48,38 @@ begin
         --COMMIT;
     END;
 end;
+/
+create or replace trigger tri_vi_al
+instead of insert on vi_al
+for each row
+begin
+    DECLARE 
+    V_blob BLOB;
+    V_bfile BFILE;
+    BEGIN 
+        INSERT INTO aerolinea(al_id, al_nombre, al_tipo, al_logo) VALUES (:new.al_id, :new.al_nombre, :new.al_tipo, empty_blob()) RETURNING al_logo INTO V_blob;
+        V_bfile := BFILENAME('IMGS_AL', :new.al_nombre||'.jpg');
+        DBMS_LOB.OPEN(V_bfile, DBMS_LOB.LOB_READONLY);
+        DBMS_LOB.LOADFROMFILE(V_blob, V_bfile, SYS.DBMS_LOB.GETLENGTH(V_bfile));
+        DBMS_LOB.CLOSE(V_bfile);
+        --COMMIT;
+    END;
+end;
+/
+create or replace trigger tri_vi_mav
+instead of insert on vi_mav
+for each row
+begin
+    DECLARE 
+    V_blob BLOB;
+    V_bfile BFILE;
+    BEGIN 
+        INSERT INTO modelo_avion(mav_id, mav_nombre, mav_vel_max, mav_alc, mav_alt_max, mav_enverg, mav_anch_cab, mav_alt_cab, mav_av_id, mav_foto) 
+        VALUES (:new.mav_id, :new.mav_nombre, :new.mav_vel_max, :new.mav_alc, :new.mav_alt_max, :new.mav_enverg, :new.mav_anch_cab, :new.mav_alt_cab, :new.mav_av_id, empty_blob()) RETURNING mav_foto INTO V_blob;
+        V_bfile := BFILENAME('IMGS_MAV', :new.mav_nombre||'.jpg');
+        DBMS_LOB.OPEN(V_bfile, DBMS_LOB.LOB_READONLY);
+        DBMS_LOB.LOADFROMFILE(V_blob, V_bfile, SYS.DBMS_LOB.GETLENGTH(V_bfile));
+        DBMS_LOB.CLOSE(V_bfile);
+        --COMMIT;
+    END;
+end;
