@@ -11,6 +11,15 @@ create or replace type reg_ope as object(
     member function calcular_precio (fechaIn DATE, fechaOut DATE, precio NUMBER) return number
 );
 /
+create or replace type cartera as object(
+    millas number,
+    dinero number,
+    
+    member function cambio_moneda return number,
+    member function calculo_pago (identificador number, modo number) return number,
+    member function ejecucion_pago (tarj varchar, tipo number, identificador number, modo number) return number
+);
+/
 create or replace type body reg_ope
 is
     member function validar_fechas (fechaIn DATE, fechaOut DATE) return number
@@ -44,7 +53,13 @@ is
     end;
 end;
 /
-
+create or replace type reg_sta as object(
+    status varchar(3),
+    ubicacion varchar(50),
+    
+    member procedure validar_cambio_status(tipo number, identificador number, status varchar)
+);
+/
 create or replace type reg_loc as object(
     ciudad    varchar(20),
     pais      varchar(20),
@@ -484,15 +499,6 @@ create table contrato(
     constraint fk_co_se foreign key(co_se_id) references seguro(se_id)
 );
 /
-create or replace type cartera as object(
-    millas number,
-    dinero number,
-    
-    member function cambio_moneda return number,
-    member function calculo_pago (identificador number, modo number) return number,
-    member function ejecucion_pago (tarj varchar, tipo number, identificador number, modo number) return number
-);
-/
 create or replace type body cartera
 is
     member function cambio_moneda return number
@@ -626,13 +632,6 @@ is
         INSERT INTO REPORTE_PAGO (rp_monto, rp_tarj_num, rp_fp_id, rp_pv_id) VALUES (precio_total, tarj, tipo, identificador);
     end;
 end;
-/
-create or replace type reg_sta as object(
-    status varchar(3),
-    ubicacion varchar(50),
-    
-    member procedure validar_cambio_status(tipo number, identificador number, status varchar)
-);
 /
 create or replace type body reg_sta
 is
