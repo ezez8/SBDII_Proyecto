@@ -102,11 +102,18 @@ insert into automovil(au_id, au_precio, au_color, au_asp_id, au_mau_id) values(3
 ----------------------------------------------------------------------------
 
 ---------------------------------------HOTEL--------------------------------
-insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(1, 'nayara', 4.8, reg_loc('Alajuela','Costa Rica','702 road 21007'));
-insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(2, 'shinta', 4.7, reg_loc('Krong Siem Reap','Camboya','Oum Khun St and 14th street'));
-insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(3, 'four-seasons', 4.8, reg_loc('Budapest','Hungría','Széchenyi István tér 5-6'));
-insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(4, 'belmond', 4.9, reg_loc('Cusco','Perú','Nazarenas 223'));
-insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(5, 'alpin', 4.8, reg_loc('Vorderlanersbach','Austria','6293 Tux'));
-insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(6, 'estalagem', 4.9, reg_loc('Gramado','Brasil','R. da Carrieri, 974 - Planalto'));
-insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(7, 'estalagem', 4.8, reg_loc('Urubamba','Perú','Sacred Valley, Av. Ferrocarril S/N'));
-insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(8, 'estalagem', 4.8, reg_loc('Urubamba','Perú','Sacred Valley, Av. Ferrocarril S/N'));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(1 , 'nayara'      , 4.8, reg_loc('Alajuela'        ,'Costa Rica' ,'702 road 21007'                ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(2 , 'shinta'      , 4.7, reg_loc('Krong Siem Reap' ,'Camboya'    ,'Oum Khun St and 14th street'   ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(3 , 'four-seasons', 4.8, reg_loc('Budapest'        ,'Hungria'    ,'Széchenyi István tér 5-6'      ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(4 , 'belmond'     , 4.9, reg_loc('Cusco'           ,'Peru'       ,'Nazarenas 223'                 ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(5 , 'alpin'       , 4.8, reg_loc('Vorderlanersbach','Austria'    ,'6293 Tux'                      ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(6 , 'estalagem'   , 4.9, reg_loc('Gramado'         ,'Brasil'     ,'R. da Carrieri, 974 - Planalto',null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(7 , 'tambo'       , 4.8, reg_loc('Urubamba'        ,'Peru'       ,'Sacred Valley, Av. Ferrocarril',null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(8 , 'belvedere'   , 4.7, reg_loc('Riccione'        ,'Italia'     ,'Viale Gramsci, 95'             ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(9 , 'mandarin'    , 4.7, reg_loc('Shanghai'        ,'China'      ,'111 Pudong S Rd, Pudong'       ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(10, 'gritti'      , 4.7, reg_loc('Venecia'         ,'Italia'     ,'Campo Santa Maria del Giglio'  ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(11, 'harvey'      , 4.8, reg_loc('Donegal'         ,'Irlanda'    ,'Lough Eske Rd, Tawnyvorgal'    ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(12, 'haymarket'   , 4.6, reg_loc('Londres'         ,'Reino Unido','1 Suffolk Pl'                  ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(13, 'kayakapi'    , 4.7, reg_loc('Urgup'           ,'Turquia'    ,'Kuşçular Sokak No:43'          ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(14, 'savoy'       , 5.0, reg_loc('Sharm El Sheikh' ,'Egipto'     ,'Soho Square'                   ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(15, 'eurobuilding', 4.6, reg_loc('Caracas'         ,'Venezuela'  ,'Calle La Guairita'             ,null,null));
