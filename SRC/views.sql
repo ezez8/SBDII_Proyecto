@@ -6,3 +6,9 @@ create or replace view vi_mau as
 
 create or replace view vi_ho as
     select ho_id, ho_nombre, ho_puntuacion, ho_locacion from hotel;
+
+create or replace view vi_al as
+    select al_id, al_nombre, al_tipo from aerolinea;
+
+create or replace view vi_mav as
+    select mav_id, mav_nombre, mav_vel_max, mav_alc, mav_alt_max, mav_enverg, mav_anch_cab, mav_alt_cab, mav_av_id from modelo_avion;
