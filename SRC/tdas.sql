@@ -1,7 +1,7 @@
 create or replace type reg_ope as object(
     fecha_in  date,
     fecha_out date,
-    
+
     member function validar_fechas return number,
     member function validar_solapamiento return number,
     member function calcular_precio return number
@@ -33,6 +33,8 @@ create or replace type reg_loc as object(
     ciudad    varchar(20),
     pais      varchar(20),
     direccion varchar(40),
+    latitud number,
+    longitud number,
     
     member function calculo_distancia return number,
     member function calculo_precio return number
