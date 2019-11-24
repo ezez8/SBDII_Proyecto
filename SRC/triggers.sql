@@ -13,20 +13,16 @@ BEGIN
             raise_application_error(-1020, 'No se puede realizar la reservacion a un vuelo inactivo/invalido');
     END IF;
     close reg_vuelo;
-    OPEN comp_reservas_ant;
     FOR reg_vue IN comp_reservas_ant LOOP
         IF (reg_vue.vu_fecha.validar_solapamiento(reg_vue.vu_fecha.fecha_in, reg_vue.vu_fecha.fecha_out, reg_vue_el.vu_fecha.fecha_in, reg_vue_el.vu_fecha.fecha_out) = 1) THEN
             raise_application_error(-1020, 'No se puede realizar la reservacion de un vuelo, cuando se tiene una reserva realizada en el mismo lapso de tiempo');
         END IF;
     END LOOP;
-    close comp_reservas_ant;
-    OPEN asiento_ocupado;
     FOR asiento_ocu in asiento_ocupado LOOP
         IF (asiento_ocu.contador > 1) THEN
             raise_application_error(-1020, 'Asiento ocupado');
         END IF;
     END LOOP;
-    close asiento_ocupado;
 END;
 /
 CREATE OR REPLACE TRIGGER validacion_reserva_vuelo_stats
@@ -50,7 +46,6 @@ FOR EACH ROW
 DECLARE
 CURSOR reg_reserva_habitacion IS SELECT * FROM Reserva_Hotel WHERE:new.rh_ha_id = reserva_hotel.rh_ha_id;
 BEGIN
-    OPEN reg_reserva_habitacion;
     IF (:new.rh_status.status <> 'ACT') THEN
         raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion inactivo/invalido');
     END IF;
@@ -59,7 +54,6 @@ BEGIN
             raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion cuando esta esta reservada');
         END IF;
     END LOOP;
-    close reg_reserva_habitacion;
 END;
 /
 CREATE OR REPLACE TRIGGER validacion_habitacion_stats
@@ -78,7 +72,6 @@ FOR EACH ROW
 DECLARE
 CURSOR reg_alquiler_auto IS SELECT * FROM Alquiler_auto WHERE:new.aa_au_id = alquiler_auto.aa_au_id;
 BEGIN
-    OPEN reg_alquiler_auto;
     IF (:new.aa_status.status <> 'ACT') THEN
         raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion inactivo/invalido');
     END IF;
@@ -87,7 +80,6 @@ BEGIN
             raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion cuando esta esta reservada');
         END IF;
     END LOOP;
-    close reg_alquiler_auto;
 END;
 /
 CREATE OR REPLACE TRIGGER validacion_alquiler_auto_stats
@@ -100,7 +92,7 @@ BEGIN
     END IF;
 END;
 /
-/*CREATE OR REPLACE TRIGGER validacion_nodos
+CREATE OR REPLACE TRIGGER validacion_nodos
 BEFORE INSERT ON nodo
 FOR EACH ROW
 DECLARE
@@ -108,7 +100,6 @@ DECLARE
  flag_or number:=1;
  flag_des number:=1;
 BEGIN
-    OPEN nodo_Registrado;
     FOR nodo_reg in nodo_registrado LOOP
         if(nodo_reg.no_modo ='ORI') then
             flag_or := flag_or -1;
@@ -120,7 +111,6 @@ BEGIN
             raise_application_error(-1020, 'Mas de un nodo en una ruta no permitido');
         end if;
     END LOOP;
-    close nodo_Registrado;
 END;
 /
 CREATE OR REPLACE TRIGGER validacion_auto_stats
@@ -141,12 +131,12 @@ BEGIN
     IF (:new.ha_status.status <> :old.ha_status.status) THEN
         :new.ha_status.validar_cambio_status(4, null, :new.ha_id, :new.ha_status.status);
     END IF;
-END;*/
+END;
 
 ----------------------------------------------------------
 ------------------TRIGGERS BLOBS--------------------------
 ----------------------------------------------------------
-
+/
 create or replace trigger tri_vi_asp
 instead of insert on vi_asp
 for each row

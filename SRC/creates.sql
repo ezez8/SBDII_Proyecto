@@ -760,6 +760,7 @@ is
                             -- Tercero se busca una habitacion en otro hotel cercano y se devuelve el dinero si es necesario.
                             -- Cuarto se devuelve el dinero al no conseguir habitacion.
                             dbms_output.put_line('EPALE');
+                            --Se cancela la reservacion
                             OPEN Hotel_reg;
                             FETCH hotel_Reg into busq_hotel;
                             UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq_hotel.precio * 0.8);
