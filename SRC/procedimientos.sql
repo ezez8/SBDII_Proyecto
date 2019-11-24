@@ -28,7 +28,7 @@ IS
 BEGIN
     INSERT INTO vuelo (vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_ee, vu_precio_cp) VALUES (reg_ope(fecha_in, fecha_out), duracion, reg_sta(vu_stat), precio_ej, precio_ee, precio_cp);
     INSERT INTO nodo (no_modo, no_status, no_ap_id, no_vu_id) VALUES ('ORI', reg_sta('ACT'), id_aeropuerto_origen, seq_vu_id.CURRVAL);
-    INSERT INTO nodo (no_modo, no_status, no_ap_id, no_vu_id) VALUES ('DES', reg_sta('ACT'), id_aeropuerto_origen, seq_vu_id.CURRVAL);
+    INSERT INTO nodo (no_modo, no_status, no_ap_id, no_vu_id) VALUES ('DES', reg_sta('ACT'), id_aeropuerto_destino, seq_vu_id.CURRVAL);
 END;
 /
 CREATE OR REPLACE PROCEDURE generar_reserva_vuelo 
