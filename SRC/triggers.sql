@@ -36,7 +36,7 @@ BEGIN
     OPEN vuelo_reg;
     FETCH vuelo_reg INTO vuelo_el;
     IF (:new.vp_status.status <> :old.vp_status.status) THEN
-        :new.vp_status.validar_cambio_status(0, :new.vp_pv_id, :new.vp_status.status);
+        :new.vp_status.validar_cambio_status(0, :new.vp_pv_id, :new.vp_id, :new.vp_status.status);
     END IF;
 END;
 /
@@ -57,13 +57,13 @@ BEGIN
     END LOOP;
 END;
 /
-CREATE OR REPLACE TRIGGER validacion_reserva_habitacion_stats
+CREATE OR REPLACE TRIGGER validacion_habitacion_stats
 BEFORE UPDATE ON Reserva_hotel
 FOR EACH ROW
 DECLARE
 BEGIN
     IF (:new.rh_status.status <> :old.rh_status.status) THEN
-        :new.rh_status.validar_cambio_status(1, :new.rh_pv_id, :new.rh_status.status);
+       :new.rh_status.validar_cambio_status(1, :new.rh_pv_id, :new.rh_id, :new.rh_status.status);
     END IF;
 END;
 /
@@ -90,7 +90,7 @@ FOR EACH ROW
 DECLARE
 BEGIN
     IF (:new.aa_status.status <> :old.aa_status.status) THEN
-        :new.aa_status.validar_cambio_status(2, :new.aa_pv_id, :new.aa_status.status);
+        :new.aa_status.validar_cambio_status(2, :new.aa_pv_id, :new.aa_id, :new.aa_status.status);
     END IF;
 END;
 /
@@ -114,4 +114,5 @@ BEGIN
             raise_application_error(-1020, 'Mas de un nodo en una ruta no permitido');
         end if;
     END LOOP;
+    close nodo_Registrado;
 END;

@@ -69,12 +69,12 @@ BEGIN
     OPEN habitacion_disp;
     FETCH habitacion_disp INTO habitacion_el;
     IF habitacion_disp%FOUND THEN
-        INSERT INTO (rh_fecha,
+        INSERT INTO Reserva_Hotel(rh_fecha,
             rh_precio_total,
             rh_status,
             rh_pv_id,
             rh_ha_id,
-            rh_puntuacion) VALUES (reg_ope(fecha_in, fecha_out), 0, 'ACT', id_plan_viaje, habitacion_el.ha_id, 0);
+            rh_puntuacion) VALUES (reg_ope(fecha_in, fecha_out), 0, reg_sta('ACT'), id_plan_viaje, habitacion_el.ha_id, 0);
     END IF;
 END;
 /

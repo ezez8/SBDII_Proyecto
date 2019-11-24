@@ -697,7 +697,7 @@ BEGIN
     OPEN habitacion_disp;
     FOR habitacion_res IN habitacion_disp LOOP
         IF (reserva_hecha(habitacion_res.ha_id) = 0) THEN
-            UPDATE Reserva_Hotel SET rh_id = reserva_hotel_identificador, rh_ha_id = habitacion_res.ha_id;
+            UPDATE Reserva_Hotel SET rh_ha_id = habitacion_res.ha_id WHERE Reserva_Hotel.rh_id = reserva_hotel_identificador;
             flag := 0;
             EXIT;
         END IF;
@@ -725,9 +725,12 @@ is
             JOIN Plan_Usuario on plan_usuario.pu_u_id = usuario.u_id
             JOIN Plan_Viaje on plan_usuario.pu_pv_id = plan_viaje.pv_id
             WHERE Plan_Viaje.pv_id = identificador;
+        Cursor reservas_hab IS SELECT * FROM Reserva_Hotel WHERE Reserva_Hotel.rh_ha_id = reserva;
+        Cursor reservas_aut IS SELECT * FROM Alquiler_Auto WHERE Alquiler_Auto.aa_au_id = reserva;
         busq_billetera billetera_reg%ROWTYPE;
         busq_hotel hotel_reg%ROWTYPE;
         busq_auto auto_reg%ROWTYPE;
+        reg_fecha reg_ope;
     begin
         --Cuando se realiza el cambio de status debe  realizar las distintas validaciones
         --Recordar comprobar sysdate para el cambio de fechas, etc.
@@ -791,6 +794,45 @@ is
                             OPEN auto_Reg;
                             FETCH auto_Reg into busq_auto;
                             UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq_auto.precio * 0.8);
+                        END IF;
+                END IF;
+            END IF;
+            IF( tipo = 3 )THEN
+            ------------------------AUTO-UNIDAD----------------------------------------
+                --validar el cambio de status y asignacion a un vuelo mas cercano.
+                    IF( status <> 'ACT' ) THEN
+                        IF (status <> self.status) THEN
+                            --Primero se busca un auto en el lugar de encuentro
+                            --Segundo se busca un auto en otro alquiler de autos.
+                            --Tercero se devuelve el dinero al no conseguir habitacion.
+                            dbms_output.put_line('EPALE');
+                            OPEN reservas_hab;
+                            FOR reservaloop in reservas_hab LOOP
+                                reg_fecha := reservaloop.rh_fecha;
+                                if (reservaloop.rh_fecha.validar_fechas(reg_fecha.fecha_in, reg_fecha.fecha_out) = 0) then
+                                    reemplazo_habitacion(reservaloop.rh_id, reserva);
+                                end if;
+                            END LOOP;
+                        END IF;
+                END IF;
+            END IF;
+            IF( tipo = 4 )THEN
+            ------------------------AUTO-UNIDAD----------------------------------------
+                --validar el cambio de status y asignacion a un vuelo mas cercano.
+                    IF( status <> 'ACT' ) THEN
+                        IF (status <> self.status) THEN
+                            --Primero se busca un auto en el lugar de encuentro
+                            --Segundo se busca un auto en otro alquiler de autos.
+                            --Tercero se devuelve el dinero al no conseguir habitacion.
+                            dbms_output.put_line('EPALE');
+                            OPEN reservas_aut;
+                            FOR reservaloop in reservas_aut LOOP
+                                dbms_output.put_line('EPALE');
+                                reg_fecha := reservaloop.aa_fecha;
+                                if (reg_fecha.validar_fechas(reg_fecha.fecha_in, reg_fecha.fecha_out) = 0) then
+                                    reemplazo_auto(reservaloop.aa_id, reserva);
+                                end if;
+                            END LOOP;
                         END IF;
                 END IF;
             END IF;
