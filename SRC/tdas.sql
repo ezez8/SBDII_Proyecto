@@ -7,17 +7,6 @@ create or replace type reg_ope as object(
     member function calcular_precio (fechaIn DATE, fechaOut DATE, precio NUMBER) return number
 );
 /
-create or replace type reg_loc as object(
-    ciudad    varchar(20),
-    pais      varchar(20),
-    direccion varchar(40),
-    latitud   number,
-    longitud  number,
-    
-    member function calculo_distancia (latitud NUMBER, longitud NUMBER, latitud2 NUMBER, longitud2 NUMBER)return number,
-    member function calculo_precio (latitud NUMBER, longitud NUMBER, latitud2 NUMBER, longitud2 NUMBER, precio NUMBER) return number
-);
-/
 create or replace type cartera as object(
     millas number,
     dinero number,
@@ -30,5 +19,16 @@ create or replace type cartera as object(
 create or replace type reg_sta as object(
     status varchar(3), --ACT, INA, MAN
     
-    member procedure validar_cambio_status(tipo number, identificador number, status varchar)
+    member procedure validar_cambio_status(tipo number, identificador number,reserva number, status varchar)
+);
+/
+create or replace type reg_loc as object(
+    ciudad    varchar(20),
+    pais      varchar(20),
+    direccion varchar(40),
+    latitud number,
+    longitud number,
+    
+    member function calculo_distancia (latitud NUMBER, longitud NUMBER, latitud2 NUMBER, longitud2 NUMBER)return number,
+    member function calculo_precio (latitud NUMBER, longitud NUMBER, latitud2 NUMBER, longitud2 NUMBER, precio NUMBER) return number
 );

@@ -55,15 +55,16 @@ end;
 /
 create or replace type reg_sta as object(
     status varchar(3),
-    ubicacion varchar(50),
     
-    member procedure validar_cambio_status(tipo number, identificador number, status varchar)
+    member procedure validar_cambio_status(tipo number, identificador number,reserva number, status varchar)
 );
 /
 create or replace type reg_loc as object(
     ciudad    varchar(20),
     pais      varchar(20),
     direccion varchar(40),
+    latitud number,
+    longitud number,
     
     member function calculo_distancia (latitud NUMBER, longitud NUMBER, latitud2 NUMBER, longitud2 NUMBER)return number,
     member function calculo_precio (latitud NUMBER, longitud NUMBER, latitud2 NUMBER, longitud2 NUMBER, precio NUMBER) return number
@@ -430,8 +431,8 @@ create table nodo(
 /
 create table vuelo_plan(
     vp_id     number,
-    vp_tipo   varchar(3) not null check(vp_tipo in ('ESC','NOR')),
-    vp_modo   varchar(3) not null check(vp_modo in ('IDA','IYV')),
+    vp_tipo   varchar(3) check(vp_tipo in ('ESC','NOR')),
+    vp_modo   varchar(3) check(vp_modo in ('IDA','IYV')),
     vp_status reg_sta    not null,
     vp_pv_id  number,
     vp_asi_id number     not null,
@@ -635,21 +636,53 @@ end;
 /
 create or replace type body reg_sta
 is
-    member procedure validar_cambio_status(tipo number, identificador number, status varchar)
+    member procedure validar_cambio_status(tipo number, identificador number,reserva number, status varchar)
     is
+        Cursor registro IS select vuelo.vu_precio_ej, vuelo.vu_precio_ee, vuelo.vu_precio_cp, asiento.asi_clase
+            FROM vuelo JOIN vuelo_plan on vuelo_plan.vp_vu_id = vuelo.vu_id
+            JOIN asiento on asiento.asi_id = vuelo_plan.vp_asi_id
+            WHERE vuelo_plan.vp_pv_id=identificador;
+        Cursor hotel_reg IS SELECT Reserva_Hotel.rh_precio_total as precio FROM Reserva_Hotel
+            WHERE Reserva_Hotel.rh_pv_id = identificador AND Reserva_Hotel.rh_id = reserva;
+        Cursor auto_reg IS SELECT Alquiler_Auto.aa_precio_total as precio FROM Alquiler_Auto
+            WHERE Alquiler_auto.aa_pv_id = identificador AND Alquiler_Auto.aa_id = reserva;
+         Cursor billetera_reg IS SELECT Usuario.u_billetera.dinero as dinero, Usuario.u_billetera.millas as millas, Usuario.u_id FROM Usuario
+            JOIN Plan_Usuario on plan_usuario.pu_u_id = usuario.u_id
+            JOIN Plan_Viaje on plan_usuario.pu_pv_id = plan_viaje.pv_id
+            WHERE Plan_Viaje.pv_id = identificador;
+        busq_billetera billetera_reg%ROWTYPE;
+        busq_hotel hotel_reg%ROWTYPE;
+        busq_auto auto_reg%ROWTYPE;
     begin
         --Cuando se realiza el cambio de status debe  realizar las distintas validaciones
         --Recordar comprobar sysdate para el cambio de fechas, etc.
+            OPEN billetera_reg;
+            FETCH billetera_reg into busq_billetera;
             IF ( tipo = 0 ) THEN
             ------------------------AVION----------------------------------------
                 --validar el cambio de status y asignacion a un vuelo mas cercano.
                 IF( status <> 'ACT' ) THEN
-                        IF (self.status <> status) THEN
+                        IF (self.status <> status AND self.status <> 'RTR') THEN
                             --Primero se busca otro vuelo en las mismas fechas
                             --Segundo se busca otro vuelo como sustitucion en otra aerolinea.
                             --Tercero se busca otro vuelo en otras fechas.
                             --Cuarto se devuelve el dinero de la rservacion.
-                            dbms_output.put_line('EPALE');
+                            dbms_output.put_line('SE CANCELO RESERVA DE VUELO');
+                            OPEN registro;
+                            FOR busq in registro LOOP
+                                IF (busq.asi_clase = 'EJ') THEN
+                                    UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq.vu_precio_ej * 0.8);
+                                END IF;
+                                IF (busq.asi_clase = 'EE') THEN
+                                    UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq.vu_precio_ee * 0.8);
+                                END IF;
+                                IF (busq.asi_clase = 'CP') THEN
+                                    UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq.vu_precio_cp * 0.8);
+                                END IF;
+                            END LOOP;
+                        END IF;
+                        IF (self.status = 'RTR') THEN
+                            dbms_output.put_line('SE CANCELO RESERVA DE VUELO');
                         END IF;
                 END IF;
             END IF;
@@ -663,6 +696,9 @@ is
                             -- Tercero se busca una habitacion en otro hotel cercano y se devuelve el dinero si es necesario.
                             -- Cuarto se devuelve el dinero al no conseguir habitacion.
                             dbms_output.put_line('EPALE');
+                            OPEN hotel_Reg;
+                            FETCH hotel_Reg into busq_hotel;
+                            UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq_hotel.precio * 0.8);
                         END IF;
                     END IF;
             END IF;
@@ -675,6 +711,9 @@ is
                             --Segundo se busca un auto en otro alquiler de autos.
                             --Tercero se devuelve el dinero al no conseguir habitacion.
                             dbms_output.put_line('EPALE');
+                            OPEN auto_Reg;
+                            FETCH auto_Reg into busq_auto;
+                            UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq_auto.precio * 0.8);
                         END IF;
                 END IF;
             END IF;
