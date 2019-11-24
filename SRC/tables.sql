@@ -69,6 +69,7 @@ create table automovil(
     au_color  varchar(20) not null,
     au_asp_id number      not null,
     au_mau_id number      not null,
+    au_status reg_sta     not null,
 
     constraint pk_au     primary key(au_id),
     constraint fk_au_asp foreign key(au_asp_id) references alquiler_sp(asp_id),
@@ -114,9 +115,10 @@ create table tipo_habitacion(
 );
 /
 create table habitacion(
-    ha_id    number,
-    ha_th_id number      not null,
-    ha_des   varchar(20),
+    ha_id     number,
+    ha_th_id  number      not null,
+    ha_status reg_sta     not null,
+    ha_des    varchar(20),
 
     constraint pk_ha    primary key(ha_id),
     constraint fk_ha_th foreign key(ha_th_id) references tipo_habitacion(th_id)
@@ -172,11 +174,12 @@ create table modelo_avion(
 /
 create table unidad_avion(
     ua_id      number,
-    ua_dist_ej number not null,
-    ua_dist_cp number not null,
-    ua_dist_ee number not null,
-    ua_al_id   number not null,
-    ua_mav_id  number not null,
+    ua_dist_ej number  not null,
+    ua_dist_cp number  not null,
+    ua_dist_ee number  not null,
+    ua_al_id   number  not null,
+    ua_mav_id  number  not null,
+    ua_status  reg_sta not null,
 
     constraint pk_ua     primary key(ua_id),
     constraint fk_ua_al  foreign key(ua_al_id)  references aerolinea(al_id),
