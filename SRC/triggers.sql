@@ -100,7 +100,7 @@ BEGIN
     END IF;
 END;
 /
-CREATE OR REPLACE TRIGGER validacion_nodos
+/*CREATE OR REPLACE TRIGGER validacion_nodos
 BEFORE INSERT ON nodo
 FOR EACH ROW
 DECLARE
@@ -141,7 +141,7 @@ BEGIN
     IF (:new.ha_status.status <> :old.ha_status.status) THEN
         :new.ha_status.validar_cambio_status(4, null, :new.ha_id, :new.ha_status.status);
     END IF;
-END;
+END;*/
 
 ----------------------------------------------------------
 ------------------TRIGGERS BLOBS--------------------------
