@@ -83,3 +83,20 @@ begin
         --COMMIT;
     END;
 end;
+/
+create or replace trigger tri_vi_ase
+instead of insert on vi_ase
+for each row
+begin
+    DECLARE 
+    V_blob BLOB;
+    V_bfile BFILE;
+    BEGIN 
+        INSERT INTO aseguradora(ase_id, ase_nombre, ase_logo) VALUES (:new.ase_id, :new.ase_nombre, empty_blob()) RETURNING ase_logo INTO V_blob;
+        V_bfile := BFILENAME('IMGS_ASE', :new.ase_nombre||'.jpg');
+        DBMS_LOB.OPEN(V_bfile, DBMS_LOB.LOB_READONLY);
+        DBMS_LOB.LOADFROMFILE(V_blob, V_bfile, SYS.DBMS_LOB.GETLENGTH(V_bfile));
+        DBMS_LOB.CLOSE(V_bfile);
+        --COMMIT;
+    END;
+end;

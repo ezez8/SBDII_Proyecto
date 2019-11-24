@@ -277,3 +277,190 @@ insert into vi_mav(mav_id, mav_nombre, mav_vel_max, mav_alc, mav_alt_max, mav_en
 insert into vi_mav(mav_id, mav_nombre, mav_vel_max, mav_alc, mav_alt_max, mav_enverg, mav_anch_cab, mav_alt_cab, mav_av_id) values (28, 'g2'       , 898, 14711, 14291, 64.74, 3.31, 3.75, 13);
 insert into vi_mav(mav_id, mav_nombre, mav_vel_max, mav_alc, mav_alt_max, mav_enverg, mav_anch_cab, mav_alt_cab, mav_av_id) values (29, 'cj3'      , 898, 15297, 13439, 63.53, 3.72, 3.63, 14);
 insert into vi_mav(mav_id, mav_nombre, mav_vel_max, mav_alc, mav_alt_max, mav_enverg, mav_anch_cab, mav_alt_cab, mav_av_id) values (30, 'avanti-ii', 892, 14462, 13126, 73.07, 3.60, 2.52, 15);
+
+---------------------------------------UNIDAD_AVION--------------------------------
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(1 , 60 , 70 , 70 , 1 , 1 );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(2 , 70 , 60 , 70 , 1 , 2 );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(3 , 70 , 70 , 60 , 2 , 3 );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(4 , 40 , 80 , 80 , 2 , 4 );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(5 , 80 , 40 , 80 , 3 , 5 );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(6 , 80 , 80 , 40 , 3 , 6 );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(7 , 50 , 60 , 90 , 4 , 7 );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(8 , 90 , 50 , 60 , 4 , 8 );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(9 , 50 , 100, 100, 5 , 9 );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(10, 100, 50 , 100, 5 , 10);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(11, 100, 100, 50 , 6 , 11);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(12, 60 , 90 , 100, 6 , 12);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(13, 100, 60 , 90 , 7 , 13);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(14, 90 , 100, 60 , 7 , 14);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(15, 70 , 80 , 100, 8 , 15);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(16, 100, 70 , 80 , 8 , 16);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(17, 80 , 100, 70 , 9 , 17);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(18, 100, 100, 100, 9 , 18);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(19, 50 , 100, 150, 10, 19);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(20, 150, 50 , 100, 10, 20);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(21, 100, 150, 50 , 11, 21);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(22, 100, 10 , 90 , 11, 22);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(23, 90 , 100, 10 , 12, 23);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(24, 10 , 90 , 100, 12, 24);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(25, 20 , 80 , 100, 13, 25);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(26, 100, 20 , 80 , 13, 26);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(27, 80 , 100, 20 , 14, 27);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(28, 30 , 70 , 100, 14, 28);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(29, 100, 30 , 70 , 15, 29);
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id) values(30, 70 , 100, 30 , 15, 30);
+
+---------------------------------------UNIDAD_AVION--------------------------------
+create or replace procedure inserts_asientos
+is
+cont number := 0;
+begin
+    declare
+    cursor ua_cur is select ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id from unidad_avion;
+    ua_row unidad_avion%rowtype;
+
+    begin
+        open ua_cur;
+        fetch ua_cur into ua_row;
+
+        while ua_cur%found
+        loop
+            cont := ua_row.ua_dist_ej;
+            while cont > 0
+            loop
+                insert into asiento(asi_id, asi_clase, asi_ua_id) values(seq_asi_id.nextval, 'EJ', ua_row.ua_id);
+                cont := cont - 1;
+            end loop;
+
+            cont := ua_row.ua_dist_cp;
+            while cont > 0
+            loop
+                insert into asiento(asi_id, asi_clase, asi_ua_id) values(seq_asi_id.nextval, 'CP', ua_row.ua_id);
+                cont := cont - 1;
+            end loop;
+
+            cont := ua_row.ua_dist_ee;
+            while cont > 0
+            loop
+                insert into asiento(asi_id, asi_clase, asi_ua_id) values(seq_asi_id.nextval, 'EE', ua_row.ua_id);
+                cont := cont - 1;
+            end loop;
+
+            fetch ua_cur into ua_row;
+        end loop;
+        close ua_cur;
+    end;
+end;
+/
+exec inserts_asientos;
+
+---------------------------------------AEROPUERTO--------------------------------
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(1 , 'Juan Santamaría'      , reg_loc('Alajuela' , 'Costa Rica' , null, 9.997994  , -84.204024), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(2 , 'Sihanoukville'        , reg_loc('Sihanouk' , 'Camboya'    , null, 10.580002 , 103.640086), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(3 , 'Budapest-Ferenc'      , reg_loc('Budapest' , 'Hungria'    , null, 47.438517 , 19.252178 ), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(4 , 'Jorge Chávez'         , reg_loc('Lima'     , 'Peru'       , null, -10.531767, -74.969335), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(5 , 'Viena-Schwechat'      , reg_loc('Schwechat', 'Austria'    , null, 48.270167 , 17.114417 ), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(6 , 'São Paulo-Guarulhos'  , reg_loc('Sao Paulo', 'Brasil'     , null, -23.202579, -46.475660), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(7 , 'Alfredo Rodríguez'    , reg_loc('Colorado' , 'Peru'       , null, -16.234134, -71.541153), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(8 , 'Milán-Malpensa'       , reg_loc('Milan'    , 'Italia'     , null, 45.666118 , 8.731635  ), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(9 , 'Pekín'                , reg_loc('Beijing'  , 'China'      , null, 40.121305 , 116.608757), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(10, 'Roma-Fiumicino'       , reg_loc('Roma'     , 'Italia'     , null, 41.808942 , 12.250396 ), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(11, 'Dublin Airport'       , reg_loc('Dublin'   , 'Irlanda'    , null, 53.432525 , -6.255359 ), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(12, 'Londres-Heathrow'     , reg_loc('Londres'  , 'Reino Unido', null, 51.479207 , -0.447282 ), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(13, 'Sabiha Gökçen'        , reg_loc('Estambul' , 'Turquia'    , null, 40.907831 , 29.317457 ), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(14, 'El Cairo'             , reg_loc('Cairo'    , 'Egipto'     , null, 30.188518 , 31.398822 ), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(15, 'Simón Bolívar'        , reg_loc('Caracas'  , 'Venezuela'  , null, 10.601427 , -67.004426), reg_sta('ACT'));
+---------------------------------------VUELO-----------------------------------
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(1 , reg_ope(to_date('01-01-2020 12:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('01-01-2020 13:00:00','dd-mm-yyyy hh24:mi:ss')), 1 , reg_sta('ACT'), 534.00, 456.00, 310.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(2 , reg_ope(to_date('01-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('01-01-2020 16:00:00','dd-mm-yyyy hh24:mi:ss')), 2 , reg_sta('ACT'), 569.00, 402.00, 320.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(3 , reg_ope(to_date('01-01-2020 17:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('01-01-2020 20:00:00','dd-mm-yyyy hh24:mi:ss')), 3 , reg_sta('ACT'), 533.00, 403.00, 330.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(4 , reg_ope(to_date('02-01-2020 01:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('02-01-2020 05:00:00','dd-mm-yyyy hh24:mi:ss')), 4 , reg_sta('ACT'), 567.00, 444.00, 345.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(5 , reg_ope(to_date('02-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('02-01-2020 11:00:00','dd-mm-yyyy hh24:mi:ss')), 5 , reg_sta('ACT'), 579.00, 456.00, 386.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(6 , reg_ope(to_date('03-01-2020 03:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('03-01-2020 09:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 595.00, 474.00, 394.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(7 , reg_ope(to_date('03-01-2020 10:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('03-01-2020 17:00:00','dd-mm-yyyy hh24:mi:ss')), 7 , reg_sta('ACT'), 532.00, 437.00, 365.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(8 , reg_ope(to_date('03-01-2020 18:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('04-01-2020 02:00:00','dd-mm-yyyy hh24:mi:ss')), 8 , reg_sta('ACT'), 511.00, 442.00, 394.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(9 , reg_ope(to_date('04-01-2020 10:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('04-01-2020 19:00:00','dd-mm-yyyy hh24:mi:ss')), 9 , reg_sta('ACT'), 534.00, 475.00, 365.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(10, reg_ope(to_date('05-01-2020 12:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('05-01-2020 22:00:00','dd-mm-yyyy hh24:mi:ss')), 10, reg_sta('ACT'), 555.00, 460.00, 315.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(11, reg_ope(to_date('06-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('06-01-2020 17:00:00','dd-mm-yyyy hh24:mi:ss')), 11, reg_sta('ACT'), 564.00, 405.00, 353.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(12, reg_ope(to_date('06-01-2020 18:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('07-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss')), 12, reg_sta('ACT'), 572.00, 443.00, 312.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(13, reg_ope(to_date('07-01-2020 01:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('07-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss')), 13, reg_sta('ACT'), 505.00, 442.00, 354.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(14, reg_ope(to_date('07-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('08-01-2020 05:00:00','dd-mm-yyyy hh24:mi:ss')), 14, reg_sta('ACT'), 546.00, 467.00, 304.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(15, reg_ope(to_date('08-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('08-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 15, reg_sta('ACT'), 508.00, 490.00, 335.00);
+---------------------------------------NODO-------------------------------------
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(1 , 'ORI', reg_sta('ACT'), 1, 1 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(2 , 'DES', reg_sta('ACT'), 1, 1 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(3 , 'ORI', reg_sta('ACT'), 1, 2 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(4 , 'DES', reg_sta('ACT'), 1, 2 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(5 , 'ORI', reg_sta('ACT'), 1, 3 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(6 , 'DES', reg_sta('ACT'), 1, 3 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(7 , 'ORI', reg_sta('ACT'), 1, 4 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(8 , 'DES', reg_sta('ACT'), 1, 4 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(9 , 'ORI', reg_sta('ACT'), 1, 5 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(10, 'DES', reg_sta('ACT'), 1, 5 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(11, 'ORI', reg_sta('ACT'), 1, 6 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(12, 'DES', reg_sta('ACT'), 1, 6 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(13, 'ORI', reg_sta('ACT'), 1, 7 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(14, 'DES', reg_sta('ACT'), 1, 7 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(15, 'ORI', reg_sta('ACT'), 1, 8 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(16, 'DES', reg_sta('ACT'), 1, 8 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(17, 'ORI', reg_sta('ACT'), 1, 9 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(18, 'DES', reg_sta('ACT'), 1, 9 );
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(19, 'ORI', reg_sta('ACT'), 1, 10);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(20, 'DES', reg_sta('ACT'), 1, 10);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(21, 'ORI', reg_sta('ACT'), 1, 11);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(22, 'DES', reg_sta('ACT'), 1, 11);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(23, 'ORI', reg_sta('ACT'), 1, 12);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(24, 'DES', reg_sta('ACT'), 1, 12);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(25, 'ORI', reg_sta('ACT'), 1, 13);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(26, 'DES', reg_sta('ACT'), 1, 13);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(27, 'ORI', reg_sta('ACT'), 1, 14);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(28, 'DES', reg_sta('ACT'), 1, 14);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(29, 'ORI', reg_sta('ACT'), 1, 15);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(30, 'DES', reg_sta('ACT'), 1, 15);
+
+----------------------------------------------------------------------------
+---------------------------------------PAGO---------------------------------
+----------------------------------------------------------------------------
+
+---------------------------------------FORMA_PAGO---------------------------
+insert into forma_pago(fp_id, fp_nombre, fp_des) values(1, 'TDC'    , null);
+insert into forma_pago(fp_id, fp_nombre, fp_des) values(2, 'TCC'    , null);
+insert into forma_pago(fp_id, fp_nombre, fp_des) values(3, 'MILLAS' , null);
+insert into forma_pago(fp_id, fp_nombre, fp_des) values(4, 'DIGITAL', null);
+
+----------------------------------------------------------------------------
+---------------------------------------SEGURO-------------------------------
+----------------------------------------------------------------------------
+
+---------------------------------------ASEGURADORA--------------------------
+insert into vi_ase(ase_id, ase_nombre) values(1 , 'alliance'     );
+insert into vi_ase(ase_id, ase_nombre) values(2 , 'allianz'      );
+insert into vi_ase(ase_id, ase_nombre) values(3 , 'assist-365'   );
+insert into vi_ase(ase_id, ase_nombre) values(4 , 'cardinal'     );
+insert into vi_ase(ase_id, ase_nombre) values(5 , 'assist-med'   );
+insert into vi_ase(ase_id, ase_nombre) values(6 , 'axa'          );
+insert into vi_ase(ase_id, ase_nombre) values(7 , 'coris'        );
+insert into vi_ase(ase_id, ase_nombre) values(8 , 'go'           );
+insert into vi_ase(ase_id, ase_nombre) values(9 , 'eua'          );
+insert into vi_ase(ase_id, ase_nombre) values(10, 'europ'        );
+insert into vi_ase(ase_id, ase_nombre) values(11, 'latin'        );
+insert into vi_ase(ase_id, ase_nombre) values(12, 'universal'    );
+insert into vi_ase(ase_id, ase_nombre) values(13, 'travel-ace'   );
+insert into vi_ase(ase_id, ase_nombre) values(14, 'international');
+insert into vi_ase(ase_id, ase_nombre) values(15, 'vumi'         );
+---------------------------------------SEGURO--------------------------
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(1 , 'Vacaciones'         , 8.00  , 1 , 'Viaja a cualquier parte con la seguridad que te proporciona nuestro equipo de expertos en asistencia médica internacional.');
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(2 , 'Viaje de Negocios'  , 6.00  , 2 , 'Para viajes de trabajo nacionales e internacionales hasta 90 días consecutivos.'                                           );
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(3 , 'Anulacion'          , 3.00  , 3 , 'Indemnización económica por la cancelación de tus reservas de viaje hasta 5000€.'                                          );
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(4 , 'Visa Shengen'       , 17.00 , 4 , 'Seguro médico de viaje obligatorio para no residentes en la Zona Schengen'                                                 );
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(5 , 'Trotamundos'        , 123.00, 5 , 'Cobertura de gastos médicos para estancias prolongadas. Duración máxima: 365 días continuados.'                            );
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(6 , 'Viaje de Estudios'  , 10.00 , 6 , 'Seguro médico internacional para estudiantes universitarios y de instituto. Duración máxima:  365 días consecutivos'       );
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(7 , 'Vacaciones Anual'   , 143.00, 7 , 'Una única póliza con cobertura médica y de equipaje para todos tus viajes. Duración máxima por viaje: 90 días.'            );
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(8 , 'Negocios Anual'     , 147.00, 8 , 'Para múltiples viajes profesionales hasta 90 días, con validez de 365 días'                                                );
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(9 , 'Grupos'             , 35.00 , 9 , 'Asistencia médica en viaje internacional para grupos. Hasta 60 consecutivos.'                                              );
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(10, 'Esqui'              , 14.00 , 10, 'Rescate en pista, hospitalización y repatriación sanitaria. España y Europa.'                                              );
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(11, 'Esqui Temporada'    , 184.00, 11, 'Protección de temporada para todos tus viajes de snowboard o esquí.      '                                                 );
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(12, 'Asistencia Primaria', 10.00 , 12, null);
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(13, 'Embarazo y parto'   , 300.00, 13, null);
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(14, 'Hospitalización'    , 100.00, 14, null);
+insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(15, 'Asistencia en Viaje', 30.00 , 15, null);

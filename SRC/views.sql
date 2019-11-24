@@ -12,3 +12,6 @@ create or replace view vi_al as
 
 create or replace view vi_mav as
     select mav_id, mav_nombre, mav_vel_max, mav_alc, mav_alt_max, mav_enverg, mav_anch_cab, mav_alt_cab, mav_av_id from modelo_avion;
+
+create or replace view vi_ase as
+    select ase_id, ase_nombre from aseguradora;

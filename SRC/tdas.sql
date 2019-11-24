@@ -28,8 +28,7 @@ create or replace type cartera as object(
 );
 /
 create or replace type reg_sta as object(
-    status varchar(3),
-    ubicacion varchar(50),
+    status varchar(3), --ACT, INA, MAN
     
     member procedure validar_cambio_status(tipo number, identificador number, status varchar)
 );

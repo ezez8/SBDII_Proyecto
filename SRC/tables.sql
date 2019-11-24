@@ -186,7 +186,6 @@ create table unidad_avion(
 create table asiento(
     asi_id       number,
     asi_clase    varchar(2)  not null check(asi_clase in ('EJ','CP','EE')),
-    asi_a_nombre varchar(20) not null,
     asi_ua_id    number      not null,
 
     constraint pk_asi    primary key(asi_id),
@@ -246,7 +245,7 @@ create table vuelo_plan(
 create table forma_pago(
     fp_id     number,
     fp_nombre varchar(20) not null,
-    fp_des    varchar(20) not null,
+    fp_des    varchar(20),
 
     constraint pk_fp primary key(fp_id)
 );
@@ -269,8 +268,8 @@ create table reporte_pago(
 create table aseguradora(
     ase_id     number,
     ase_nombre varchar(20) not null,
-    ase_des    varchar(20) not null,
     ase_logo   blob        default empty_blob(),
+    ase_des    varchar(20),
 
     constraint pk_ase primary key(ase_id)
 );
@@ -278,9 +277,9 @@ create table aseguradora(
 create table seguro(
     se_id     number,
     se_nombre varchar(20) not null,
-    se_des    varchar(20) not null,
     se_precio number      not null,
     se_ase_id number      not null,
+    se_des    varchar(150),
 
     constraint pk_se primary key(se_id),
     constraint fk_se_ase foreign key(se_ase_id) references aseguradora(ase_id)
