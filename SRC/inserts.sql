@@ -464,3 +464,23 @@ insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(12, 'A
 insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(13, 'Embarazo y parto'   , 300.00, 13, null);
 insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(14, 'Hospitalización'    , 100.00, 14, null);
 insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(15, 'Asistencia en Viaje', 30.00 , 15, null);
+
+----------------------------------------------------------------------------
+---------------------------------------USUARIO------------------------------
+----------------------------------------------------------------------------
+
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (1 , 'Eldon'    , 'Brailsford', '849-884-8928', 'ebrailsford0@mlb.com'      , 'FQqfcBT'     , 'ebrailsford0', cartera(8636, 502.15 ));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (2 , 'Arturo'   , 'Yokley'    , '318-440-4473', 'ayokley1@jalbum.net'       , 'lPHiYZFiMNM' , 'ayokley1'    , cartera(7240, 1260.06));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (3 , 'Rosabella', 'Quilleash' , '873-494-6205', 'rquilleash2@ow.ly'         , 'OgpY4peCb0O' , 'rquilleash2' , cartera(9614, 1193.54));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (4 , 'Amii'     , 'Rodriguez' , '707-334-1471', 'arodriguez3@tinypic.com'   , '1iVQeLAa'    , 'arodriguez3' , cartera(4180, 341.13 ));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (5 , 'Jill'     , 'Mayling'   , '277-193-2609', 'jmayling4@ucoz.ru'         , 'SxX0X8moRX'  , 'jmayling4'   , cartera(8356, 1784.69));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (6 , 'Delmar'   , 'Swiggs'    , '484-758-8232', 'dswiggs5@patch.com'        , 'Zs4peT'      , 'dswiggs5'    , cartera(9937, 1104.15));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (7 , 'Pennie'   , 'Brunker'   , '505-822-9692', 'pbrunker6@github.com'      , 'PTi8XTB2na5T', 'pbrunker6'   , cartera(1637, 575.97 ));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (8 , 'Lisa'     , 'Guidoni'   , '455-715-7599', 'lguidoni7@google.co.jp'    , 'YU9WQd0fO'   , 'lguidoni7'   , cartera(5095, 591.72 ));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (9 , 'Frazer'   , 'Danilowicz', '572-198-0287', 'fdanilowicz8@flickr.com'   , '5ivGpmEX9PPa', 'fdanilowicz8', cartera(4621, 1771.78));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (10, 'Korrie'   , 'Chilles'   , '190-771-6331', 'kchilles9@about.com'       , '7xoVTHlQ'    , 'kchilles9'   , cartera(3540, 8.25   ));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (11, 'Page'     , 'Wildman'   , '924-528-9211', 'pwildmana@msu.edu'         , 'qndDqkNQ'    , 'pwildmana'   , cartera(3186, 941.86 ));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (12, 'Glenine'  , 'MacCahee'  , '135-916-4617', 'gmaccaheeb@dmoz.org'       , 'Le8a6I'      , 'gmaccaheeb'  , cartera(5582, 1346.82));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (13, 'Gaultiero', 'Germain'   , '712-526-0602', 'ggermainc@mysql.com'       , '3o0CxBNnXG'  , 'ggermainc'   , cartera(601,  1843.44));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (14, 'Mandie'   , 'Feldheim'  , '127-608-7943', 'mfeldheimd@free.fr'        , 'QOdM4WeWoZ'  , 'mfeldheimd'  , cartera(3898, 1099.51));
+insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (15, 'Nicoli'   , 'Shimoni'   , '660-858-7871', 'nshimonie@wunderground.com', '1yD76m1'     , 'nshimonie'   , cartera(4848, 1.13   ));

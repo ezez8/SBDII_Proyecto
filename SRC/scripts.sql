@@ -15,3 +15,5 @@
 @/u01/app/oracle/SBDII_Proyecto/SRC/triggers;
 
 @/u01/app/oracle/SBDII_Proyecto/SRC/inserts;
+
+commit;

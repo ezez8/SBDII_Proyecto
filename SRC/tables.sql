@@ -14,7 +14,7 @@ create table usuario(
     u_nombre    varchar(20) not null,
     u_apellido  varchar(20) not null,
     u_telf      varchar(20) not null,
-    u_correo    varchar(20) not null,
+    u_correo    varchar(40) not null,
     u_billetera cartera     not null,
     u_passw     varchar(20) not null,
     u_nick      varchar(20) not null,
