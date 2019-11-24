@@ -12,18 +12,21 @@ BEGIN
     IF (reg_vue_el.vu_status.status <> 'ACT') THEN
             raise_application_error(-1020, 'No se puede realizar la reservacion a un vuelo inactivo/invalido');
     END IF;
+    close reg_vuelo;
     OPEN comp_reservas_ant;
     FOR reg_vue IN comp_reservas_ant LOOP
         IF (reg_vue.vu_fecha.validar_solapamiento(reg_vue.vu_fecha.fecha_in, reg_vue.vu_fecha.fecha_out, reg_vue_el.vu_fecha.fecha_in, reg_vue_el.vu_fecha.fecha_out) = 1) THEN
             raise_application_error(-1020, 'No se puede realizar la reservacion de un vuelo, cuando se tiene una reserva realizada en el mismo lapso de tiempo');
         END IF;
     END LOOP;
+    close comp_reservas_ant;
     OPEN asiento_ocupado;
     FOR asiento_ocu in asiento_ocupado LOOP
         IF (asiento_ocu.contador > 1) THEN
             raise_application_error(-1020, 'Asiento ocupado');
         END IF;
     END LOOP;
+    close asiento_ocupado;
 END;
 /
 CREATE OR REPLACE TRIGGER validacion_reserva_vuelo_stats
@@ -38,6 +41,7 @@ BEGIN
     IF (:new.vp_status.status <> :old.vp_status.status) THEN
         :new.vp_status.validar_cambio_status(0, :new.vp_pv_id, :new.vp_id, :new.vp_status.status);
     END IF;
+    close vuelo_reg;
 END;
 /
 CREATE OR REPLACE TRIGGER validacion_reserva_habitacion
@@ -55,6 +59,7 @@ BEGIN
             raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion cuando esta esta reservada');
         END IF;
     END LOOP;
+    close reg_reserva_habitacion;
 END;
 /
 CREATE OR REPLACE TRIGGER validacion_habitacion_stats
@@ -82,6 +87,7 @@ BEGIN
             raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion cuando esta esta reservada');
         END IF;
     END LOOP;
+    close reg_alquiler_auto;
 END;
 /
 CREATE OR REPLACE TRIGGER validacion_alquiler_auto_stats
@@ -115,4 +121,24 @@ BEGIN
         end if;
     END LOOP;
     close nodo_Registrado;
+END;
+/
+CREATE OR REPLACE TRIGGER validacion_auto_stats
+BEFORE UPDATE ON Automovil
+FOR EACH ROW
+DECLARE
+BEGIN
+    IF (:new.au_status.status <> :old.au_status.status) THEN
+        :new.au_status.validar_cambio_status(3, null, :new.au_id, :new.au_status.status);
+    END IF;
+END;
+/
+CREATE OR REPLACE TRIGGER validacion_habitacion_ud_stats
+BEFORE UPDATE ON Habitacion
+FOR EACH ROW
+DECLARE
+BEGIN
+    IF (:new.ha_status.status <> :old.ha_status.status) THEN
+        :new.ha_status.validar_cambio_status(4, null, :new.ha_id, :new.ha_status.status);
+    END IF;
 END;

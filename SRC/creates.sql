@@ -529,12 +529,14 @@ is
         FOR precios IN Precio_Hotel LOOP
             precio_total:= precio_total + precios.precio;
         END LOOP;
+        close precio_hotel;
         END IF;
         IF ( modo = 0 OR modo = 2) THEN
         OPEN Precio_Auto;
         FOR precios IN Precio_Auto LOOP
             precio_total:= precio_total + precios.precio;
         END LOOP;
+        close precio_auto;
         END IF;
         IF ( modo = 0 OR modo = 3) THEN
         OPEN Precio_Vuelo;
@@ -549,12 +551,14 @@ is
                 precio_total:= precio_total + precios.vu_precio_cp;
             END IF;
         END LOOP;
+        close precio_vuelo;
         END IF;
         IF ( modo = 0 OR modo = 4) THEN
         OPEN Precio_Contrato;
         FOR precios IN Precio_Contrato LOOP
             precio_total:= precio_total + (precios.cantidad * precios.precio);
         END LOOP;
+        close precio_contrato;
         END IF;
         return precio_total;
     end;
@@ -578,18 +582,22 @@ is
                 FOR reporte IN Reportes_Pago_hotel LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
+                close reportes_pago_hotel;
                 OPEN Reportes_Pago_auto;
                 FOR reporte IN Reportes_Pago_auto LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
+                close reportes_pago_auto;
                 OPEN Reportes_Pago_avion;
                 FOR reporte IN Reportes_Pago_avion LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
+                close reportes_pago_avion;
                 OPEN Reportes_Pago_seguro;
                 FOR reporte IN Reportes_Pago_seguro LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
+                close reportes_pago_seguro;
             END IF;
             --Pago de toda la reservacion de hoteles
             IF (modo = 1 )THEN
@@ -598,6 +606,7 @@ is
                 FOR reporte IN Reportes_Pago_Hotel LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
+                close reportes_pago_hotel
             END IF;
             --Pago de toda la reservacion de autos
             IF(modo = 2 )THEN
@@ -606,6 +615,7 @@ is
                 FOR reporte IN Reportes_Pago_auto LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
+                close reportes_pago_auto;
             END IF;
             --Pago de toda la reservacion de vuelos
             IF(modo = 3 )THEN
@@ -614,6 +624,7 @@ is
                 FOR reporte IN Reportes_Pago_avion LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
+                close reportes_pago_avion;
             END IF;
             --Pago de toda la reservacion de seguros
             IF(modo = 4 )THEN
@@ -622,6 +633,7 @@ is
                 FOR reporte IN Reportes_Pago_seguro LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
+                close reportes_pago_seguro;
             END IF;
         --Condiciones de millas y pago incompleto.
         IF (tipo = 3 and modo <> 3) THEN
@@ -671,6 +683,7 @@ BEGIN
         SELECT Plan_Viaje.pv_id INTO plan_v FROM Plan_Viaje JOIN Reserva_Hotel ON reserva.aa_pv_id = Plan_Viaje.pv_id;
         reserva.aa_status.validar_cambio_status(1, plan_v, reserva.aa_id, 'INA');
     END IF;
+    close automovil_disp;
 END;
 /
 create or replace function reserva_hecha(habitacion_identificador number) return number
@@ -707,6 +720,7 @@ BEGIN
         SELECT Plan_Viaje.pv_id INTO plan_v FROM Plan_Viaje JOIN Reserva_Hotel ON reserva.rh_pv_id = Plan_Viaje.pv_id;
         reserva.rh_status.validar_cambio_status(1, plan_v, reserva.rh_id, 'INA');
     END IF;
+    close habitacion_disp;
 END;
 /
 create or replace type body reg_sta
@@ -759,6 +773,7 @@ is
                                 END IF;
                                 UPDATE Vuelo_Plan SET vp_pv_id = null WHERE Vuelo_Plan.vp_id = busq.vp_id;
                             END LOOP;
+                            close registro;
                         END IF;
                         IF (self.status = 'RTR') THEN
                             dbms_output.put_line('SE CANCELO RESERVA DE VUELO');
@@ -779,6 +794,7 @@ is
                             OPEN hotel_Reg;
                             FETCH hotel_Reg into busq_hotel;
                             UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq_hotel.precio * 0.8);
+                            close hotel_reg;
                         END IF;
                     END IF;
             END IF;
@@ -794,11 +810,12 @@ is
                             OPEN auto_Reg;
                             FETCH auto_Reg into busq_auto;
                             UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq_auto.precio * 0.8);
+                            close auto_reg;
                         END IF;
                 END IF;
             END IF;
             IF( tipo = 3 )THEN
-            ------------------------AUTO-UNIDAD----------------------------------------
+            ------------------------HABITACION-UNIDAD----------------------------------------
                 --validar el cambio de status y asignacion a un vuelo mas cercano.
                     IF( status <> 'ACT' ) THEN
                         IF (status <> self.status) THEN
@@ -813,6 +830,7 @@ is
                                     reemplazo_habitacion(reservaloop.rh_id, reserva);
                                 end if;
                             END LOOP;
+                            close reservas_hab;
                         END IF;
                 END IF;
             END IF;
@@ -833,8 +851,10 @@ is
                                     reemplazo_auto(reservaloop.aa_id, reserva);
                                 end if;
                             END LOOP;
+                            close reservas_aut;
                         END IF;
                 END IF;
             END IF;
+            close billetera_reg;
     end;
 end;
