@@ -524,21 +524,16 @@ is
     begin
         DBMS_OUTPUT.PUT_LINE('Calculo de precio total para el plan de viaje');
         IF ( modo = 0 OR modo = 1) THEN
-        OPEN Precio_Hotel;
         FOR precios IN Precio_Hotel LOOP
             precio_total:= precio_total + precios.precio;
         END LOOP;
-        close precio_hotel;
         END IF;
         IF ( modo = 0 OR modo = 2) THEN
-        OPEN Precio_Auto;
         FOR precios IN Precio_Auto LOOP
             precio_total:= precio_total + precios.precio;
         END LOOP;
-        close precio_auto;
         END IF;
         IF ( modo = 0 OR modo = 3) THEN
-        OPEN Precio_Vuelo;
         FOR precios IN Precio_Vuelo LOOP
             IF (Precios.asi_clase = 'EJ') THEN
                 precio_total:= precio_total + precios.vu_precio_ej;
@@ -550,14 +545,11 @@ is
                 precio_total:= precio_total + precios.vu_precio_cp;
             END IF;
         END LOOP;
-        close precio_vuelo;
         END IF;
         IF ( modo = 0 OR modo = 4) THEN
-        OPEN Precio_Contrato;
         FOR precios IN Precio_Contrato LOOP
             precio_total:= precio_total + (precios.cantidad * precios.precio);
         END LOOP;
-        close precio_contrato;
         END IF;
         return precio_total;
     end;
@@ -577,62 +569,46 @@ is
             --Pago de toda la reservacion de todo
             IF (modo = 0) THEN
                 precio_total:= calculo_pago(identificador,0);
-                OPEN Reportes_Pago_hotel;
                 FOR reporte IN Reportes_Pago_hotel LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_hotel;
-                OPEN Reportes_Pago_auto;
                 FOR reporte IN Reportes_Pago_auto LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_auto;
-                OPEN Reportes_Pago_avion;
                 FOR reporte IN Reportes_Pago_avion LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_avion;
-                OPEN Reportes_Pago_seguro;
                 FOR reporte IN Reportes_Pago_seguro LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_seguro;
             END IF;
             --Pago de toda la reservacion de hoteles
             IF (modo = 1 )THEN
                 precio_total:= calculo_pago(identificador,1);
-                OPEN Reportes_Pago_Hotel;
                 FOR reporte IN Reportes_Pago_Hotel LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_hotel;
             END IF;
             --Pago de toda la reservacion de autos
             IF(modo = 2 )THEN
                 precio_total:= calculo_pago(identificador,2);
-                OPEN Reportes_Pago_auto;
                 FOR reporte IN Reportes_Pago_auto LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_auto;
             END IF;
             --Pago de toda la reservacion de vuelos
             IF(modo = 3 )THEN
                 precio_total:= calculo_pago(identificador,3);
-                OPEN Reportes_Pago_avion;
                 FOR reporte IN Reportes_Pago_avion LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_avion;
             END IF;
             --Pago de toda la reservacion de seguros
             IF(modo = 4 )THEN
                 precio_total:= calculo_pago(identificador,4);
-                OPEN Reportes_Pago_seguro;
                 FOR reporte IN Reportes_Pago_seguro LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_seguro;
             END IF;
         --Condiciones de millas y pago incompleto.
         IF (tipo = 3 and modo <> 3) THEN
@@ -669,7 +645,6 @@ IS
     reserva alquiler_auto%ROWTYPE;
     plan_v number;
 BEGIN
-    OPEN automovil_disp;
     FOR automovil_res IN automovil_disp LOOP
         IF (reserva_hecha2(automovil_res.au_id) = 0) THEN
             UPDATE Alquiler_Auto SET aa_id = reserva_auto_identificador, aa_au_id = automovil_res.au_id;
@@ -682,7 +657,6 @@ BEGIN
         SELECT Plan_Viaje.pv_id INTO plan_v FROM Plan_Viaje JOIN Reserva_Hotel ON reserva.aa_pv_id = Plan_Viaje.pv_id;
         reserva.aa_status.validar_cambio_status(1, plan_v, reserva.aa_id, 'INA');
     END IF;
-    close automovil_disp;
 END;
 /
 create or replace function reserva_hecha(habitacion_identificador number) return number
@@ -706,7 +680,6 @@ IS
     reserva reserva_hotel%ROWTYPE;
     plan_v number;
 BEGIN
-    OPEN habitacion_disp;
     FOR habitacion_res IN habitacion_disp LOOP
         IF (reserva_hecha(habitacion_res.ha_id) = 0) THEN
             UPDATE Reserva_Hotel SET rh_ha_id = habitacion_res.ha_id WHERE Reserva_Hotel.rh_id = reserva_hotel_identificador;
@@ -719,7 +692,6 @@ BEGIN
         SELECT Plan_Viaje.pv_id INTO plan_v FROM Plan_Viaje JOIN Reserva_Hotel ON reserva.rh_pv_id = Plan_Viaje.pv_id;
         reserva.rh_status.validar_cambio_status(1, plan_v, reserva.rh_id, 'INA');
     END IF;
-    close habitacion_disp;
 END;
 /
 create or replace type body reg_sta
@@ -747,7 +719,7 @@ is
     begin
         --Cuando se realiza el cambio de status debe  realizar las distintas validaciones
         --Recordar comprobar sysdate para el cambio de fechas, etc.
-            OPEN billetera_reg;
+            OPEN  billetera_reg;
             FETCH billetera_reg into busq_billetera;
             IF ( tipo = 0 ) THEN
             ------------------------AVION----------------------------------------
@@ -759,7 +731,6 @@ is
                             --Tercero se busca otro vuelo en otras fechas.
                             --Cuarto se devuelve el dinero de la rservacion.
                             dbms_output.put_line('SE CANCELO RESERVA DE VUELO');
-                            OPEN registro;
                             FOR busq in registro LOOP
                                 IF (busq.asi_clase = 'EJ') THEN
                                     UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq.vu_precio_ej * 0.8);
@@ -772,7 +743,6 @@ is
                                 END IF;
                                 UPDATE Vuelo_Plan SET vp_pv_id = null WHERE Vuelo_Plan.vp_id = busq.vp_id;
                             END LOOP;
-                            close registro;
                         END IF;
                         IF (self.status = 'RTR') THEN
                             dbms_output.put_line('SE CANCELO RESERVA DE VUELO');
@@ -790,10 +760,10 @@ is
                             -- Tercero se busca una habitacion en otro hotel cercano y se devuelve el dinero si es necesario.
                             -- Cuarto se devuelve el dinero al no conseguir habitacion.
                             dbms_output.put_line('EPALE');
-                            OPEN hotel_Reg;
+                            OPEN Hotel_reg;
                             FETCH hotel_Reg into busq_hotel;
                             UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq_hotel.precio * 0.8);
-                            close hotel_reg;
+                            Close hotel_Reg;
                         END IF;
                     END IF;
             END IF;
@@ -809,7 +779,7 @@ is
                             OPEN auto_Reg;
                             FETCH auto_Reg into busq_auto;
                             UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq_auto.precio * 0.8);
-                            close auto_reg;
+                            CLOSE auto_reg;
                         END IF;
                 END IF;
             END IF;
@@ -822,14 +792,12 @@ is
                             --Segundo se busca un auto en otro alquiler de autos.
                             --Tercero se devuelve el dinero al no conseguir habitacion.
                             dbms_output.put_line('EPALE');
-                            OPEN reservas_hab;
                             FOR reservaloop in reservas_hab LOOP
                                 reg_fecha := reservaloop.rh_fecha;
                                 if (reservaloop.rh_fecha.validar_fechas(reg_fecha.fecha_in, reg_fecha.fecha_out) = 0) then
                                     reemplazo_habitacion(reservaloop.rh_id, reserva);
                                 end if;
                             END LOOP;
-                            close reservas_hab;
                         END IF;
                 END IF;
             END IF;
@@ -842,7 +810,6 @@ is
                             --Segundo se busca un auto en otro alquiler de autos.
                             --Tercero se devuelve el dinero al no conseguir habitacion.
                             dbms_output.put_line('EPALE');
-                            OPEN reservas_aut;
                             FOR reservaloop in reservas_aut LOOP
                                 dbms_output.put_line('EPALE');
                                 reg_fecha := reservaloop.aa_fecha;
@@ -850,7 +817,6 @@ is
                                     reemplazo_auto(reservaloop.aa_id, reserva);
                                 end if;
                             END LOOP;
-                            close reservas_aut;
                         END IF;
                 END IF;
             END IF;
