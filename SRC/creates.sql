@@ -637,11 +637,83 @@ is
     end;
 end;
 /
+create or replace function reserva_hecha2(auto_identificador number) return number
+IS
+    retornable number;
+BEGIN
+    SELECT count(*) into retornable FROM Alquiler_Auto A 
+                    INNER JOIN Alquiler_Auto B ON B.aa_id <> A.aa_id 
+                    AND B.aa_au_id = auto_identificador
+                    AND B.aa_fecha.validar_solapamiento(B.aa_fecha.fecha_in, B.aa_fecha.fecha_out, A.aa_fecha.fecha_in, A.aa_fecha.fecha_out) = 1;
+    return retornable;
+END;
+/
+create or replace procedure reemplazo_auto(reserva_auto_identificador number, identificador_automovil number)
+IS
+  Cursor automovil_disp IS Select * from automovil A WHERE A.au_mau_id =
+    (SELECT B.au_mau_id FROM automovil B WHERE B.au_id = identificador_automovil)
+    AND A.au_id <> identificador_automovil
+    AND A.au_status.status = 'ACT';
+    flag number:=1;
+    reserva alquiler_auto%ROWTYPE;
+    plan_v number;
+BEGIN
+    OPEN automovil_disp;
+    FOR automovil_res IN automovil_disp LOOP
+        IF (reserva_hecha2(automovil_res.au_id) = 0) THEN
+            UPDATE Alquiler_Auto SET aa_id = reserva_auto_identificador, aa_au_id = automovil_res.au_id;
+            flag := 0;
+            EXIT;
+        END IF;
+    END LOOP;
+    IF (flag = 1) THEN
+        SELECT * INTO reserva FROM Alquiler_Auto A WHERE A.aa_id = reserva_auto_identificador;
+        SELECT Plan_Viaje.pv_id INTO plan_v FROM Plan_Viaje JOIN Reserva_Hotel ON reserva.aa_pv_id = Plan_Viaje.pv_id;
+        reserva.aa_status.validar_cambio_status(1, plan_v, reserva.aa_id, 'INA');
+    END IF;
+END;
+/
+create or replace function reserva_hecha(habitacion_identificador number) return number
+IS
+    retornable number;
+BEGIN
+    SELECT count(*) into retornable FROM Reserva_hotel A 
+                    INNER JOIN Reserva_Hotel B ON B.rh_id <> A.rh_id 
+                    AND B.rh_ha_id = habitacion_identificador
+                    AND B.rh_fecha.validar_solapamiento(B.rh_fecha.fecha_in, B.rh_fecha.fecha_out, A.rh_fecha.fecha_in, A.rh_fecha.fecha_out) = 1;
+    return retornable;
+END;
+/
+create or replace procedure reemplazo_habitacion(reserva_hotel_identificador number, identificador_habitacion number)
+IS
+  Cursor habitacion_disp IS Select * from habitacion A WHERE A.ha_th_id =
+    (SELECT B.ha_th_id FROM habitacion B WHERE B.ha_id = identificador_habitacion)
+    AND A.ha_id <> identificador_habitacion
+    AND A.ha_status.status = 'ACT';
+    flag number:=1;
+    reserva reserva_hotel%ROWTYPE;
+    plan_v number;
+BEGIN
+    OPEN habitacion_disp;
+    FOR habitacion_res IN habitacion_disp LOOP
+        IF (reserva_hecha(habitacion_res.ha_id) = 0) THEN
+            UPDATE Reserva_Hotel SET rh_id = reserva_hotel_identificador, rh_ha_id = habitacion_res.ha_id;
+            flag := 0;
+            EXIT;
+        END IF;
+    END LOOP;
+    IF (flag = 1) THEN
+        SELECT * INTO reserva FROM Reserva_Hotel A WHERE A.rh_id = reserva_hotel_identificador;
+        SELECT Plan_Viaje.pv_id INTO plan_v FROM Plan_Viaje JOIN Reserva_Hotel ON reserva.rh_pv_id = Plan_Viaje.pv_id;
+        reserva.rh_status.validar_cambio_status(1, plan_v, reserva.rh_id, 'INA');
+    END IF;
+END;
+/
 create or replace type body reg_sta
 is
     member procedure validar_cambio_status(tipo number, identificador number,reserva number, status varchar)
     is
-        Cursor registro IS select vuelo.vu_precio_ej, vuelo.vu_precio_ee, vuelo.vu_precio_cp, asiento.asi_clase
+        Cursor registro IS select vuelo.vu_precio_ej, vuelo.vu_precio_ee, vuelo.vu_precio_cp, asiento.asi_clase, Vuelo_Plan.vp_id
             FROM vuelo JOIN vuelo_plan on vuelo_plan.vp_vu_id = vuelo.vu_id
             JOIN asiento on asiento.asi_id = vuelo_plan.vp_asi_id
             WHERE vuelo_plan.vp_pv_id=identificador;
@@ -649,7 +721,7 @@ is
             WHERE Reserva_Hotel.rh_pv_id = identificador AND Reserva_Hotel.rh_id = reserva;
         Cursor auto_reg IS SELECT Alquiler_Auto.aa_precio_total as precio FROM Alquiler_Auto
             WHERE Alquiler_auto.aa_pv_id = identificador AND Alquiler_Auto.aa_id = reserva;
-         Cursor billetera_reg IS SELECT Usuario.u_billetera.dinero as dinero, Usuario.u_billetera.millas as millas, Usuario.u_id FROM Usuario
+        Cursor billetera_reg IS SELECT Usuario.u_billetera.dinero as dinero, Usuario.u_billetera.millas as millas, Usuario.u_id FROM Usuario
             JOIN Plan_Usuario on plan_usuario.pu_u_id = usuario.u_id
             JOIN Plan_Viaje on plan_usuario.pu_pv_id = plan_viaje.pv_id
             WHERE Plan_Viaje.pv_id = identificador;
@@ -682,10 +754,12 @@ is
                                 IF (busq.asi_clase = 'CP') THEN
                                     UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq.vu_precio_cp * 0.8);
                                 END IF;
+                                UPDATE Vuelo_Plan SET vp_pv_id = null WHERE Vuelo_Plan.vp_id = busq.vp_id;
                             END LOOP;
                         END IF;
                         IF (self.status = 'RTR') THEN
                             dbms_output.put_line('SE CANCELO RESERVA DE VUELO');
+                            
                         END IF;
                 END IF;
             END IF;
