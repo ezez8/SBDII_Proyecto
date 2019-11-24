@@ -1,8 +1,8 @@
 -----------------------------PLAN_VIAJE-----------------------------------
 create table plan_viaje(
     pv_id           number,
-    pv_fecha        date   not null,
-    pv_precio_total number not null,
+    pv_fecha        reg_ope not null,
+    pv_precio_total number  not null,
 
     constraint pk_pv primary key(pv_id)
 );

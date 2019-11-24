@@ -108,10 +108,10 @@ insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(3 , 'four
 insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(4 , 'belmond'     , 4.9, reg_loc('Cusco'           ,'Peru'       ,'Nazarenas 223'                 ,null,null));
 insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(5 , 'alpin'       , 4.8, reg_loc('Vorderlanersbach','Austria'    ,'6293 Tux'                      ,null,null));
 insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(6 , 'estalagem'   , 4.9, reg_loc('Gramado'         ,'Brasil'     ,'R. da Carrieri, 974 - Planalto',null,null));
-insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(7 , 'tambo'       , 4.8, reg_loc('Urubamba'        ,'Peru'       ,'Sacred Valley, Av. Ferrocarril',null,null));
-insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(8 , 'belvedere'   , 4.7, reg_loc('Riccione'        ,'Italia'     ,'Viale Gramsci, 95'             ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(7 , 'tambo'       , 4.8, reg_loc('Madrid'          ,'España'     ,'Sacred Valley, Av. Ferrocarril',null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(8 , 'belvedere'   , 4.7, reg_loc('Roma'            ,'Italia'     ,'Viale Gramsci, 95'             ,null,null));
 insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(9 , 'mandarin'    , 4.7, reg_loc('Shanghai'        ,'China'      ,'111 Pudong S Rd, Pudong'       ,null,null));
-insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(10, 'gritti'      , 4.7, reg_loc('Venecia'         ,'Italia'     ,'Campo Santa Maria del Giglio'  ,null,null));
+insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(10, 'gritti'      , 4.7, reg_loc('Tokio'           ,'Japon'      ,'Campo Santa Maria del Giglio'  ,null,null));
 insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(11, 'harvey'      , 4.8, reg_loc('Donegal'         ,'Irlanda'    ,'Lough Eske Rd, Tawnyvorgal'    ,null,null));
 insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(12, 'haymarket'   , 4.6, reg_loc('Londres'         ,'Reino Unido','1 Suffolk Pl'                  ,null,null));
 insert into vi_ho(ho_id, ho_nombre, ho_puntuacion, ho_locacion) values(13, 'kayakapi'    , 4.7, reg_loc('Urgup'           ,'Turquia'    ,'Kuşçular Sokak No:43'          ,null,null));
@@ -279,15 +279,15 @@ insert into vi_mav(mav_id, mav_nombre, mav_vel_max, mav_alc, mav_alt_max, mav_en
 insert into vi_mav(mav_id, mav_nombre, mav_vel_max, mav_alc, mav_alt_max, mav_enverg, mav_anch_cab, mav_alt_cab, mav_av_id) values (30, 'avanti-ii', 892, 14462, 13126, 73.07, 3.60, 2.52, 15);
 
 ---------------------------------------UNIDAD_AVION--------------------------------
-insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(1 , 60 , 70 , 70 , 1 , 1,  reg_sta('ACT'));
-insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(2 , 70 , 60 , 70 , 1 , 2,  reg_sta('ACT') );
-insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(3 , 70 , 70 , 60 , 2 , 3,  reg_sta('ACT') );
-insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(4 , 40 , 80 , 80 , 2 , 4,  reg_sta('ACT') );
-insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(5 , 80 , 40 , 80 , 3 , 5,  reg_sta('ACT') );
-insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(6 , 80 , 80 , 40 , 3 , 6,  reg_sta('ACT') );
-insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(7 , 50 , 60 , 90 , 4 , 7,  reg_sta('ACT') );
-insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(8 , 90 , 50 , 60 , 4 , 8,  reg_sta('ACT') );
-insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(9 , 50 , 100, 100, 5 , 9,  reg_sta('ACT') );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(1 , 60 , 70 , 70 , 1 , 1 ,  reg_sta('ACT'));
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(2 , 70 , 60 , 70 , 1 , 2 ,  reg_sta('ACT') );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(3 , 70 , 70 , 60 , 2 , 3 ,  reg_sta('ACT') );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(4 , 40 , 80 , 80 , 2 , 4 ,  reg_sta('ACT') );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(5 , 80 , 40 , 80 , 3 , 5 ,  reg_sta('ACT') );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(6 , 80 , 80 , 40 , 3 , 6 ,  reg_sta('ACT') );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(7 , 50 , 60 , 90 , 4 , 7 ,  reg_sta('ACT') );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(8 , 90 , 50 , 60 , 4 , 8 ,  reg_sta('ACT') );
+insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(9 , 50 , 100, 100, 5 , 9 ,  reg_sta('ACT') );
 insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(10, 100, 50 , 100, 5 , 10,  reg_sta('ACT'));
 insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(11, 100, 100, 50 , 6 , 11,  reg_sta('ACT'));
 insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(12, 60 , 90 , 100, 6 , 12,  reg_sta('ACT'));
@@ -310,7 +310,7 @@ insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua
 insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(29, 100, 30 , 70 , 15, 29,  reg_sta('ACT'));
 insert into unidad_avion(ua_id, ua_dist_ej, ua_dist_cp, ua_dist_ee, ua_al_id, ua_mav_id, ua_status) values(30, 70 , 100, 30 , 15, 30,  reg_sta('ACT'));
 
----------------------------------------UNIDAD_AVION--------------------------------
+---------------------------------------ASIENTOS-----------------------------------
 create or replace procedure inserts_asientos
 is
 cont number := 0;
@@ -361,31 +361,46 @@ insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(3 , 'Bud
 insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(4 , 'Jorge Chávez'         , reg_loc('Lima'     , 'Peru'       , null, -10.531767, -74.969335), reg_sta('ACT'));
 insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(5 , 'Viena-Schwechat'      , reg_loc('Schwechat', 'Austria'    , null, 48.270167 , 17.114417 ), reg_sta('ACT'));
 insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(6 , 'São Paulo-Guarulhos'  , reg_loc('Sao Paulo', 'Brasil'     , null, -23.202579, -46.475660), reg_sta('ACT'));
-insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(7 , 'Alfredo Rodríguez'    , reg_loc('Colorado' , 'Peru'       , null, -16.234134, -71.541153), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(7 , 'Alfredo Rodríguez'    , reg_loc('Colorado' , 'España'     , null, -16.234134, -71.541153), reg_sta('ACT'));
 insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(8 , 'Milán-Malpensa'       , reg_loc('Milan'    , 'Italia'     , null, 45.666118 , 8.731635  ), reg_sta('ACT'));
 insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(9 , 'Pekín'                , reg_loc('Beijing'  , 'China'      , null, 40.121305 , 116.608757), reg_sta('ACT'));
-insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(10, 'Roma-Fiumicino'       , reg_loc('Roma'     , 'Italia'     , null, 41.808942 , 12.250396 ), reg_sta('ACT'));
+insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(10, 'Roma-Fiumicino'       , reg_loc('Roma'     , 'Japon'      , null, 41.808942 , 12.250396 ), reg_sta('ACT'));
 insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(11, 'Dublin Airport'       , reg_loc('Dublin'   , 'Irlanda'    , null, 53.432525 , -6.255359 ), reg_sta('ACT'));
 insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(12, 'Londres-Heathrow'     , reg_loc('Londres'  , 'Reino Unido', null, 51.479207 , -0.447282 ), reg_sta('ACT'));
 insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(13, 'Sabiha Gökçen'        , reg_loc('Estambul' , 'Turquia'    , null, 40.907831 , 29.317457 ), reg_sta('ACT'));
 insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(14, 'El Cairo'             , reg_loc('Cairo'    , 'Egipto'     , null, 30.188518 , 31.398822 ), reg_sta('ACT'));
 insert into aeropuerto(ap_id, ap_nombre, ap_locacion, ap_status) values(15, 'Simón Bolívar'        , reg_loc('Caracas'  , 'Venezuela'  , null, 10.601427 , -67.004426), reg_sta('ACT'));
 ---------------------------------------VUELO-----------------------------------
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(1 , reg_ope(to_date('01-01-2020 12:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('01-01-2020 13:00:00','dd-mm-yyyy hh24:mi:ss')), 1 , reg_sta('ACT'), 534.00, 456.00, 310.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(2 , reg_ope(to_date('01-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('01-01-2020 16:00:00','dd-mm-yyyy hh24:mi:ss')), 2 , reg_sta('ACT'), 569.00, 402.00, 320.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(3 , reg_ope(to_date('01-01-2020 17:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('01-01-2020 20:00:00','dd-mm-yyyy hh24:mi:ss')), 3 , reg_sta('ACT'), 533.00, 403.00, 330.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(4 , reg_ope(to_date('02-01-2020 01:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('02-01-2020 05:00:00','dd-mm-yyyy hh24:mi:ss')), 4 , reg_sta('ACT'), 567.00, 444.00, 345.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(5 , reg_ope(to_date('02-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('02-01-2020 11:00:00','dd-mm-yyyy hh24:mi:ss')), 5 , reg_sta('ACT'), 579.00, 456.00, 386.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(6 , reg_ope(to_date('03-01-2020 03:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('03-01-2020 09:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 595.00, 474.00, 394.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(7 , reg_ope(to_date('03-01-2020 10:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('03-01-2020 17:00:00','dd-mm-yyyy hh24:mi:ss')), 7 , reg_sta('ACT'), 532.00, 437.00, 365.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(8 , reg_ope(to_date('03-01-2020 18:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('04-01-2020 02:00:00','dd-mm-yyyy hh24:mi:ss')), 8 , reg_sta('ACT'), 511.00, 442.00, 394.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(9 , reg_ope(to_date('04-01-2020 10:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('04-01-2020 19:00:00','dd-mm-yyyy hh24:mi:ss')), 9 , reg_sta('ACT'), 534.00, 475.00, 365.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(10, reg_ope(to_date('05-01-2020 12:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('05-01-2020 22:00:00','dd-mm-yyyy hh24:mi:ss')), 10, reg_sta('ACT'), 555.00, 460.00, 315.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(11, reg_ope(to_date('06-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('06-01-2020 17:00:00','dd-mm-yyyy hh24:mi:ss')), 11, reg_sta('ACT'), 564.00, 405.00, 353.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(12, reg_ope(to_date('06-01-2020 18:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('07-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss')), 12, reg_sta('ACT'), 572.00, 443.00, 312.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(13, reg_ope(to_date('07-01-2020 01:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('07-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss')), 13, reg_sta('ACT'), 505.00, 442.00, 354.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(14, reg_ope(to_date('07-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('08-01-2020 05:00:00','dd-mm-yyyy hh24:mi:ss')), 14, reg_sta('ACT'), 546.00, 467.00, 304.00);
-insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(15, reg_ope(to_date('08-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('08-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 15, reg_sta('ACT'), 508.00, 490.00, 335.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(1 , reg_ope(to_date('01-01-2020 12:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('01-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss')), 2 , reg_sta('ACT'), 534.00, 456.00, 310.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(2 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('02-01-2020 16:00:00','dd-mm-yyyy hh24:mi:ss')), 2 , reg_sta('ACT'), 569.00, 402.00, 320.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(3 , reg_ope(to_date('03-01-2020 17:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('03-01-2020 19:00:00','dd-mm-yyyy hh24:mi:ss')), 2 , reg_sta('ACT'), 533.00, 403.00, 330.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(4 , reg_ope(to_date('04-01-2020 01:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('04-01-2020 04:00:00','dd-mm-yyyy hh24:mi:ss')), 3 , reg_sta('ACT'), 567.00, 444.00, 345.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(5 , reg_ope(to_date('05-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('05-01-2020 09:00:00','dd-mm-yyyy hh24:mi:ss')), 3 , reg_sta('ACT'), 579.00, 456.00, 386.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(6 , reg_ope(to_date('06-01-2020 03:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('06-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss')), 3 , reg_sta('ACT'), 595.00, 474.00, 394.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(7 , reg_ope(to_date('07-01-2020 10:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('07-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss')), 4 , reg_sta('ACT'), 532.00, 437.00, 365.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(8 , reg_ope(to_date('08-01-2020 18:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('08-01-2020 22:00:00','dd-mm-yyyy hh24:mi:ss')), 4 , reg_sta('ACT'), 511.00, 442.00, 394.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(9 , reg_ope(to_date('09-01-2020 10:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('09-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss')), 4 , reg_sta('ACT'), 534.00, 475.00, 365.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(10, reg_ope(to_date('10-01-2020 12:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('10-01-2020 17:00:00','dd-mm-yyyy hh24:mi:ss')), 5 , reg_sta('ACT'), 555.00, 460.00, 315.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(11, reg_ope(to_date('11-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('11-01-2020 11:00:00','dd-mm-yyyy hh24:mi:ss')), 5 , reg_sta('ACT'), 564.00, 405.00, 353.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(12, reg_ope(to_date('12-01-2020 18:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('12-01-2020 23:00:00','dd-mm-yyyy hh24:mi:ss')), 5 , reg_sta('ACT'), 572.00, 443.00, 312.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(13, reg_ope(to_date('13-01-2020 01:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('13-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 505.00, 442.00, 354.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(14, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 546.00, 467.00, 304.00);
+
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(15, reg_ope(to_date('16-01-2020 12:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('16-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss')), 2 , reg_sta('ACT'), 534.00, 456.00, 310.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(16, reg_ope(to_date('17-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('17-01-2020 16:00:00','dd-mm-yyyy hh24:mi:ss')), 2 , reg_sta('ACT'), 569.00, 402.00, 320.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(17, reg_ope(to_date('18-01-2020 17:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('18-01-2020 19:00:00','dd-mm-yyyy hh24:mi:ss')), 2 , reg_sta('ACT'), 533.00, 403.00, 330.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(18, reg_ope(to_date('19-01-2020 01:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('19-01-2020 04:00:00','dd-mm-yyyy hh24:mi:ss')), 3 , reg_sta('ACT'), 567.00, 444.00, 345.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(19, reg_ope(to_date('20-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('20-01-2020 09:00:00','dd-mm-yyyy hh24:mi:ss')), 3 , reg_sta('ACT'), 579.00, 456.00, 386.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(20, reg_ope(to_date('21-01-2020 03:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('21-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss')), 3 , reg_sta('ACT'), 595.00, 474.00, 394.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(21, reg_ope(to_date('22-01-2020 10:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('22-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss')), 4 , reg_sta('ACT'), 532.00, 437.00, 365.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(22, reg_ope(to_date('23-01-2020 18:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('23-01-2020 22:00:00','dd-mm-yyyy hh24:mi:ss')), 4 , reg_sta('ACT'), 511.00, 442.00, 394.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(23, reg_ope(to_date('24-01-2020 10:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('24-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss')), 4 , reg_sta('ACT'), 534.00, 475.00, 365.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(24, reg_ope(to_date('25-01-2020 12:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('25-01-2020 17:00:00','dd-mm-yyyy hh24:mi:ss')), 5 , reg_sta('ACT'), 555.00, 460.00, 315.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(25, reg_ope(to_date('26-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('26-01-2020 11:00:00','dd-mm-yyyy hh24:mi:ss')), 5 , reg_sta('ACT'), 564.00, 405.00, 353.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(26, reg_ope(to_date('27-01-2020 18:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('27-01-2020 23:00:00','dd-mm-yyyy hh24:mi:ss')), 5 , reg_sta('ACT'), 572.00, 443.00, 312.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(27, reg_ope(to_date('28-01-2020 01:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 505.00, 442.00, 354.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(28, reg_ope(to_date('29-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('29-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 546.00, 467.00, 304.00);
+
 ---------------------------------------NODO-------------------------------------
 insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(1 , 'ORI', reg_sta('ACT'), 1 , 1 );
 insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(2 , 'DES', reg_sta('ACT'), 2 , 1 );
@@ -415,8 +430,35 @@ insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(25, 'ORI'
 insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(26, 'DES', reg_sta('ACT'), 14, 13);
 insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(27, 'ORI', reg_sta('ACT'), 14, 14);
 insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(28, 'DES', reg_sta('ACT'), 15, 14);
+
 insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(29, 'ORI', reg_sta('ACT'), 15, 15);
-insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(30, 'DES', reg_sta('ACT'), 1 , 15);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(30, 'DES', reg_sta('ACT'), 14, 15);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(31, 'ORI', reg_sta('ACT'), 14, 16);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(32, 'DES', reg_sta('ACT'), 13, 16);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(33, 'ORI', reg_sta('ACT'), 13, 17);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(34, 'DES', reg_sta('ACT'), 12, 17);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(35, 'ORI', reg_sta('ACT'), 12, 18);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(36, 'DES', reg_sta('ACT'), 11, 18);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(37, 'ORI', reg_sta('ACT'), 11, 19);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(38, 'DES', reg_sta('ACT'), 10, 19);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(39, 'ORI', reg_sta('ACT'), 10, 20);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(40, 'DES', reg_sta('ACT'), 9 , 20);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(41, 'ORI', reg_sta('ACT'), 9 , 21);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(42, 'DES', reg_sta('ACT'), 8 , 21);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(43, 'ORI', reg_sta('ACT'), 8 , 22);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(44, 'DES', reg_sta('ACT'), 7 , 22);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(45, 'ORI', reg_sta('ACT'), 7 , 23);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(46, 'DES', reg_sta('ACT'), 6 , 23);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(47, 'ORI', reg_sta('ACT'), 6 , 24);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(48, 'DES', reg_sta('ACT'), 5 , 24);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(49, 'ORI', reg_sta('ACT'), 5 , 25);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(50, 'DES', reg_sta('ACT'), 4 , 25);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(51, 'ORI', reg_sta('ACT'), 4 , 26);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(52, 'DES', reg_sta('ACT'), 3 , 26);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(53, 'ORI', reg_sta('ACT'), 3 , 27);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(54, 'DES', reg_sta('ACT'), 2 , 27);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(55, 'ORI', reg_sta('ACT'), 2 , 28);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(56, 'DES', reg_sta('ACT'), 1 , 28);
 
 ----------------------------------------------------------------------------
 ---------------------------------------PAGO---------------------------------
@@ -474,13 +516,117 @@ insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_ni
 insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (3 , 'Rosabella', 'Quilleash' , '873-494-6205', 'rquilleash2@ow.ly'         , 'OgpY4peCb0O' , 'rquilleash2' , cartera(9614, 1193.54));
 insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (4 , 'Amii'     , 'Rodriguez' , '707-334-1471', 'arodriguez3@tinypic.com'   , '1iVQeLAa'    , 'arodriguez3' , cartera(4180, 341.13 ));
 insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (5 , 'Jill'     , 'Mayling'   , '277-193-2609', 'jmayling4@ucoz.ru'         , 'SxX0X8moRX'  , 'jmayling4'   , cartera(8356, 1784.69));
+
 insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (6 , 'Delmar'   , 'Swiggs'    , '484-758-8232', 'dswiggs5@patch.com'        , 'Zs4peT'      , 'dswiggs5'    , cartera(9937, 1104.15));
 insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (7 , 'Pennie'   , 'Brunker'   , '505-822-9692', 'pbrunker6@github.com'      , 'PTi8XTB2na5T', 'pbrunker6'   , cartera(1637, 575.97 ));
 insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (8 , 'Lisa'     , 'Guidoni'   , '455-715-7599', 'lguidoni7@google.co.jp'    , 'YU9WQd0fO'   , 'lguidoni7'   , cartera(5095, 591.72 ));
 insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (9 , 'Frazer'   , 'Danilowicz', '572-198-0287', 'fdanilowicz8@flickr.com'   , '5ivGpmEX9PPa', 'fdanilowicz8', cartera(4621, 1771.78));
 insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (10, 'Korrie'   , 'Chilles'   , '190-771-6331', 'kchilles9@about.com'       , '7xoVTHlQ'    , 'kchilles9'   , cartera(3540, 8.25   ));
+
 insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (11, 'Page'     , 'Wildman'   , '924-528-9211', 'pwildmana@msu.edu'         , 'qndDqkNQ'    , 'pwildmana'   , cartera(3186, 941.86 ));
 insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (12, 'Glenine'  , 'MacCahee'  , '135-916-4617', 'gmaccaheeb@dmoz.org'       , 'Le8a6I'      , 'gmaccaheeb'  , cartera(5582, 1346.82));
 insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (13, 'Gaultiero', 'Germain'   , '712-526-0602', 'ggermainc@mysql.com'       , '3o0CxBNnXG'  , 'ggermainc'   , cartera(601,  1843.44));
 insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (14, 'Mandie'   , 'Feldheim'  , '127-608-7943', 'mfeldheimd@free.fr'        , 'QOdM4WeWoZ'  , 'mfeldheimd'  , cartera(3898, 1099.51));
 insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (15, 'Nicoli'   , 'Shimoni'   , '660-858-7871', 'nshimonie@wunderground.com', '1yD76m1'     , 'nshimonie'   , cartera(4848, 1.13   ));
+
+----------------------------------------------------------------------------
+---------------------------------------PLAN_VIAJE---------------------------
+----------------------------------------------------------------------------
+
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(1 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(2 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(3 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(4 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(5 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(6 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(7 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(8 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(9 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(10, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(11, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(12, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(13, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(14, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(15, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+
+---------------------------------------PLAN_USUARIO--------------------------
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(1 , 1, 1 , 1 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(2 , 0, 1 , 2 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(3 , 0, 1 , 3 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(4 , 0, 1 , 4 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(5 , 0, 1 , 5 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(6 , 1, 2 , 1 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(7 , 0, 2 , 2 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(8 , 0, 2 , 3 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(9 , 0, 2 , 4 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(10, 0, 2 , 5 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(11, 1, 3 , 1 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(12, 0, 3 , 2 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(13, 0, 3 , 3 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(14, 0, 3 , 4 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(15, 0, 3 , 5 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(16, 1, 4 , 1 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(17, 0, 4 , 2 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(18, 0, 4 , 3 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(19, 0, 4 , 4 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(20, 0, 4 , 5 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(21, 1, 5 , 1 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(22, 0, 5 , 2 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(23, 0, 5 , 3 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(24, 0, 5 , 4 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(25, 0, 5 , 5 );
+
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(26, 1, 6 , 6 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(27, 0, 6 , 7 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(28, 0, 6 , 8 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(29, 0, 6 , 9 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(30, 0, 6 , 10);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(31, 1, 7 , 6 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(32, 0, 7 , 7 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(33, 0, 7 , 8 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(34, 0, 7 , 9 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(35, 0, 7 , 10);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(36, 1, 8 , 6 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(37, 0, 8 , 7 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(38, 0, 8 , 8 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(39, 0, 8 , 9 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(40, 0, 8 , 10);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(41, 1, 9 , 6 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(42, 0, 9 , 7 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(43, 0, 9 , 8 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(44, 0, 9 , 9 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(45, 0, 9 , 10);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(46, 1, 10, 6 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(47, 0, 10, 7 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(48, 0, 10, 8 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(49, 0, 10, 9 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(50, 0, 10, 10);
+
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(51, 1, 11, 11);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(52, 0, 11, 12);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(53, 0, 11, 13);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(54, 0, 11, 14);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(55, 0, 11, 15);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(56, 1, 12, 11);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(57, 0, 12, 12);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(58, 0, 12, 13);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(59, 0, 12, 14);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(60, 0, 12, 15);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(61, 1, 13, 11);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(62, 0, 13, 12);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(63, 0, 13, 13);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(64, 0, 13, 14);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(65, 0, 13, 15);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(66, 1, 14, 11);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(67, 0, 14, 12);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(68, 0, 14, 13);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(69, 0, 14, 14);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(70, 0, 14, 15);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(71, 1, 15, 11);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(72, 0, 15, 12);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(73, 0, 15, 13);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(74, 0, 15, 14);
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(75, 0, 15, 15);
+
