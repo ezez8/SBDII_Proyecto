@@ -1,4 +1,4 @@
------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
 ----------------------------------------TDAS---------------------------------------
 -----------------------------------------------------------------------------------
 
@@ -319,7 +319,7 @@ create table tipo_habitacion(
 /
 create table habitacion(
     ha_id    number,
-    ha_des   varchar(20) not null,
+    ha_des   varchar(20),
     ha_th_id number      not null,
     ha_status reg_sta not null,
 
@@ -392,7 +392,6 @@ create table unidad_avion(
 create table asiento(
     asi_id       number,
     asi_clase    varchar(2)  not null check(asi_clase in ('EJ','CP','EE')),
-    asi_a_nombre varchar(20) not null,
     asi_ua_id    number      not null,
 
     constraint pk_asi    primary key(asi_id),
@@ -452,7 +451,7 @@ create table vuelo_plan(
 create table forma_pago(
     fp_id     number,
     fp_nombre varchar(20) not null,
-    fp_des    varchar(20) not null,
+    fp_des    varchar(20),
 
     constraint pk_fp primary key(fp_id)
 );
@@ -475,7 +474,7 @@ create table reporte_pago(
 create table aseguradora(
     ase_id     number,
     ase_nombre varchar(20) not null,
-    ase_des    varchar(20) not null,
+    ase_des    varchar(200),
     ase_logo   blob        default empty_blob(),
 
     constraint pk_ase primary key(ase_id)
@@ -484,7 +483,7 @@ create table aseguradora(
 create table seguro(
     se_id     number,
     se_nombre varchar(20) not null,
-    se_des    varchar(20) not null,
+    se_des    varchar(200),
     se_precio number      not null,
     se_ase_id number      not null,
 
@@ -606,7 +605,7 @@ is
                 FOR reporte IN Reportes_Pago_Hotel LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_hotel
+                close reportes_pago_hotel;
             END IF;
             --Pago de toda la reservacion de autos
             IF(modo = 2 )THEN
