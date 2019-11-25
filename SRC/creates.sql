@@ -524,21 +524,16 @@ is
     begin
         DBMS_OUTPUT.PUT_LINE('Calculo de precio total para el plan de viaje');
         IF ( modo = 0 OR modo = 1) THEN
-        OPEN Precio_Hotel;
         FOR precios IN Precio_Hotel LOOP
             precio_total:= precio_total + precios.precio;
         END LOOP;
-        close precio_hotel;
         END IF;
         IF ( modo = 0 OR modo = 2) THEN
-        OPEN Precio_Auto;
         FOR precios IN Precio_Auto LOOP
             precio_total:= precio_total + precios.precio;
         END LOOP;
-        close precio_auto;
         END IF;
         IF ( modo = 0 OR modo = 3) THEN
-        OPEN Precio_Vuelo;
         FOR precios IN Precio_Vuelo LOOP
             IF (Precios.asi_clase = 'EJ') THEN
                 precio_total:= precio_total + precios.vu_precio_ej;
@@ -550,14 +545,11 @@ is
                 precio_total:= precio_total + precios.vu_precio_cp;
             END IF;
         END LOOP;
-        close precio_vuelo;
         END IF;
         IF ( modo = 0 OR modo = 4) THEN
-        OPEN Precio_Contrato;
         FOR precios IN Precio_Contrato LOOP
             precio_total:= precio_total + (precios.cantidad * precios.precio);
         END LOOP;
-        close precio_contrato;
         END IF;
         return precio_total;
     end;
@@ -577,62 +569,46 @@ is
             --Pago de toda la reservacion de todo
             IF (modo = 0) THEN
                 precio_total:= calculo_pago(identificador,0);
-                OPEN Reportes_Pago_hotel;
                 FOR reporte IN Reportes_Pago_hotel LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_hotel;
-                OPEN Reportes_Pago_auto;
                 FOR reporte IN Reportes_Pago_auto LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_auto;
-                OPEN Reportes_Pago_avion;
                 FOR reporte IN Reportes_Pago_avion LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_avion;
-                OPEN Reportes_Pago_seguro;
                 FOR reporte IN Reportes_Pago_seguro LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_seguro;
             END IF;
             --Pago de toda la reservacion de hoteles
             IF (modo = 1 )THEN
                 precio_total:= calculo_pago(identificador,1);
-                OPEN Reportes_Pago_Hotel;
                 FOR reporte IN Reportes_Pago_Hotel LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_hotel;
             END IF;
             --Pago de toda la reservacion de autos
             IF(modo = 2 )THEN
                 precio_total:= calculo_pago(identificador,2);
-                OPEN Reportes_Pago_auto;
                 FOR reporte IN Reportes_Pago_auto LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_auto;
             END IF;
             --Pago de toda la reservacion de vuelos
             IF(modo = 3 )THEN
                 precio_total:= calculo_pago(identificador,3);
-                OPEN Reportes_Pago_avion;
                 FOR reporte IN Reportes_Pago_avion LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_avion;
             END IF;
             --Pago de toda la reservacion de seguros
             IF(modo = 4 )THEN
                 precio_total:= calculo_pago(identificador,4);
-                OPEN Reportes_Pago_seguro;
                 FOR reporte IN Reportes_Pago_seguro LOOP
                     precio_total:= precio_total - reporte.rp_monto;
                 END LOOP;
-                close reportes_pago_seguro;
             END IF;
         --Condiciones de millas y pago incompleto.
         IF (tipo = 3 and modo <> 3) THEN
@@ -648,7 +624,7 @@ is
     end;
 end;
 /
-create or replace function reserva_hecha2(auto_identificador number) return number
+create or replace function reserva_hecha_aut(auto_identificador number) return number
 IS
     retornable number;
 BEGIN
@@ -669,9 +645,8 @@ IS
     reserva alquiler_auto%ROWTYPE;
     plan_v number;
 BEGIN
-    OPEN automovil_disp;
     FOR automovil_res IN automovil_disp LOOP
-        IF (reserva_hecha2(automovil_res.au_id) = 0) THEN
+        IF (reserva_hecha_aut(automovil_res.au_id) = 0) THEN
             UPDATE Alquiler_Auto SET aa_id = reserva_auto_identificador, aa_au_id = automovil_res.au_id;
             flag := 0;
             EXIT;
@@ -682,10 +657,35 @@ BEGIN
         SELECT Plan_Viaje.pv_id INTO plan_v FROM Plan_Viaje JOIN Reserva_Hotel ON reserva.aa_pv_id = Plan_Viaje.pv_id;
         reserva.aa_status.validar_cambio_status(1, plan_v, reserva.aa_id, 'INA');
     END IF;
-    close automovil_disp;
 END;
 /
-create or replace function reserva_hecha(habitacion_identificador number) return number
+create or replace procedure reemplazo_avion_vu(vuelo_plan_identificador number, avion_identificador number)
+IS
+    Cursor asientos_m_vuelo IS 
+        SELECT * FROM Vuelo_Plan A
+            JOIN Asiento B ON B.asi_id = A.vp_asi_id
+            JOIN Unidad_Avion C ON C.ua_id = B.asi_ua_id AND C.ua_id <> avion_identificador
+                AND C.ua_al_id = (SELECT Unidad_Avion.ua_al_id FROM Unidad_Avion WHERE Unidad_Avion.ua_id = avion_identificador)
+            WHERE A.vp_vu_id = (SELECT Vuelo.vu_id FROM Vuelo JOIN Vuelo_Plan D ON D.vp_id = vuelo_plan_identificador) AND
+                A.vp_id <> vuelo_plan_identificador;
+    id_plan_viaje number;
+    flag number:=1;
+    plan_vuelo vuelo_plan%ROWTYPE;
+BEGIN
+    SELECT vp_pv_id into id_plan_viaje from Vuelo_Plan F WHERE F.vp_id = vuelo_plan_identificador;
+    FOR asiento_disp IN asientos_m_vuelo LOOP
+        UPDATE Vuelo_Plan SET vp_pv_id = id_plan_viaje WHERE Vuelo_Plan.vp_id = asiento_disp.vp_id;
+        UPDATE Vuelo_Plan SET vp_pv_id = null, vp_status = reg_sta('INA') WHERE Vuelo_Plan.vp_id = vuelo_plan_identificador;
+        flag:=0;
+        EXIT;
+    END LOOP;
+    IF (flag = 1) THEN
+        SELECT * into plan_vuelo FROM Vuelo_Plan WHERE Vuelo_Plan.vp_id = vuelo_plan_identificador;
+        plan_vuelo.vp_status.validar_cambio_status(5, plan_vuelo.vp_pv_id, plan_vuelo.vp_id, 'CAN');
+    END IF;
+END;
+/
+create or replace function reserva_hecha_hab(habitacion_identificador number) return number
 IS
     retornable number;
 BEGIN
@@ -706,9 +706,8 @@ IS
     reserva reserva_hotel%ROWTYPE;
     plan_v number;
 BEGIN
-    OPEN habitacion_disp;
     FOR habitacion_res IN habitacion_disp LOOP
-        IF (reserva_hecha(habitacion_res.ha_id) = 0) THEN
+        IF (reserva_hecha_hab(habitacion_res.ha_id) = 0) THEN
             UPDATE Reserva_Hotel SET rh_ha_id = habitacion_res.ha_id WHERE Reserva_Hotel.rh_id = reserva_hotel_identificador;
             flag := 0;
             EXIT;
@@ -719,141 +718,114 @@ BEGIN
         SELECT Plan_Viaje.pv_id INTO plan_v FROM Plan_Viaje JOIN Reserva_Hotel ON reserva.rh_pv_id = Plan_Viaje.pv_id;
         reserva.rh_status.validar_cambio_status(1, plan_v, reserva.rh_id, 'INA');
     END IF;
-    close habitacion_disp;
 END;
 /
 create or replace type body reg_sta
 is
     member procedure validar_cambio_status(tipo number, identificador number,reserva number, status varchar)
     is
-        Cursor registro IS select vuelo.vu_precio_ej, vuelo.vu_precio_ee, vuelo.vu_precio_cp, asiento.asi_clase, Vuelo_Plan.vp_id
-            FROM vuelo JOIN vuelo_plan on vuelo_plan.vp_vu_id = vuelo.vu_id
-            JOIN asiento on asiento.asi_id = vuelo_plan.vp_asi_id
-            WHERE vuelo_plan.vp_pv_id=identificador;
-        Cursor hotel_reg IS SELECT Reserva_Hotel.rh_precio_total as precio FROM Reserva_Hotel
-            WHERE Reserva_Hotel.rh_pv_id = identificador AND Reserva_Hotel.rh_id = reserva;
-        Cursor auto_reg IS SELECT Alquiler_Auto.aa_precio_total as precio FROM Alquiler_Auto
-            WHERE Alquiler_auto.aa_pv_id = identificador AND Alquiler_Auto.aa_id = reserva;
-        Cursor billetera_reg IS SELECT Usuario.u_billetera.dinero as dinero, Usuario.u_billetera.millas as millas, Usuario.u_id FROM Usuario
-            JOIN Plan_Usuario on plan_usuario.pu_u_id = usuario.u_id
-            JOIN Plan_Viaje on plan_usuario.pu_pv_id = plan_viaje.pv_id
-            WHERE Plan_Viaje.pv_id = identificador;
-        Cursor reservas_hab IS SELECT * FROM Reserva_Hotel WHERE Reserva_Hotel.rh_ha_id = reserva;
-        Cursor reservas_aut IS SELECT * FROM Alquiler_Auto WHERE Alquiler_Auto.aa_au_id = reserva;
-        busq_billetera billetera_reg%ROWTYPE;
-        busq_hotel hotel_reg%ROWTYPE;
-        busq_auto auto_reg%ROWTYPE;
-        reg_fecha reg_ope;
+        Cursor vuelos IS SELECT * FROM Vuelo_Plan 
+            JOIN Vuelo ON Vuelo.vu_id = Vuelo_Plan.vp_vu_id 
+            JOIN Asiento ON Asiento.asi_id = Vuelo_Plan.vp_asi_id
+            WHERE Vuelo_Plan.vp_pv_id = identificador AND Vuelo.vu_fecha.fecha_in > sysdate;
+        Cursor reservas_habitaciones IS SELECT * FROM Reserva_Hotel
+            JOIN Habitacion ON Habitacion.ha_id = reserva
+            WHERE Reserva_Hotel.rh_fecha.fecha_in > sysdate;
+        Cursor reservas_automoviles IS SELECT * FROM Alquiler_Auto
+            JOIN Automovil ON Automovil.au_id = reserva
+            WHERE Alquiler_Auto.aa_fecha.fecha_in > sysdate;
+        Cursor reservas_aviones IS SELECT * FROM Vuelo_Plan
+            JOIN Asiento ON Asiento.asi_id = Vuelo_Plan.vp_asi_id
+            JOIN Vuelo ON Vuelo.vu_id = Vuelo_Plan.vp_vu_id
+            WHERE Vuelo.vu_fecha.fecha_in > Sysdate AND Asiento.asi_ua_id = reserva;
+        billetera_reg cartera;
+        reserva_precio number;
+        id_usuario number;
     begin
+        SELECT Usuario.u_billetera into billetera_reg FROM Usuario 
+            JOIN Plan_Usuario ON Plan_Usuario.pu_u_id = Usuario.u_id
+            WHERE Plan_Usuario.pu_comprador = 1 AND Plan_usuario.pu_pv_id = identificador;
+        SELECT Usuario.u_id into id_usuario FROM Usuario
+            JOIN Plan_Usuario ON Plan_Usuario.pu_u_id = Usuario.u_id
+            WHERE Plan_Usuario.pu_comprador = 1 AND Plan_usuario.pu_pv_id = identificador;
+        IF ( status <> self.status ) THEN
         --Cuando se realiza el cambio de status debe  realizar las distintas validaciones
         --Recordar comprobar sysdate para el cambio de fechas, etc.
-            OPEN billetera_reg;
-            FETCH billetera_reg into busq_billetera;
             IF ( tipo = 0 ) THEN
-            ------------------------AVION----------------------------------------
-                --validar el cambio de status y asignacion a un vuelo mas cercano.
-                IF( status <> 'ACT' ) THEN
-                        IF (self.status <> status AND self.status <> 'RTR') THEN
-                            --Primero se busca otro vuelo en las mismas fechas
-                            --Segundo se busca otro vuelo como sustitucion en otra aerolinea.
-                            --Tercero se busca otro vuelo en otras fechas.
-                            --Cuarto se devuelve el dinero de la rservacion.
-                            dbms_output.put_line('SE CANCELO RESERVA DE VUELO');
-                            OPEN registro;
-                            FOR busq in registro LOOP
-                                IF (busq.asi_clase = 'EJ') THEN
-                                    UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq.vu_precio_ej * 0.8);
+            ------------------------VUELO_PLAN----------------------------------------
+                --validar el cambio de status y devolver un 80% del dinero.
+                IF( status = 'CAN' ) THEN
+                            --Cuarto se devuelve el dinero de la reservacion.
+                            dbms_output.put_line('Se cancelo la reserva de vuelo del usuario');
+                            FOR reserva_vuelo in vuelos LOOP
+                                IF (reserva_vuelo.asi_clase = 'EJ') THEN
+                                    UPDATE Usuario SET Usuario.u_billetera = cartera(billetera_reg.millas, billetera_reg.dinero + reserva_vuelo.vu_precio_ej * 0.8)
+                                        WHERE Usuario.u_id = id_usuario;
                                 END IF;
-                                IF (busq.asi_clase = 'EE') THEN
-                                    UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq.vu_precio_ee * 0.8);
+                                IF (reserva_vuelo.asi_clase = 'EE') THEN
+                                    UPDATE Usuario SET Usuario.u_billetera = cartera(billetera_reg.millas, billetera_reg.dinero + reserva_vuelo.vu_precio_ee * 0.8) 
+                                        WHERE Usuario.u_id = id_usuario;
                                 END IF;
-                                IF (busq.asi_clase = 'CP') THEN
-                                    UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq.vu_precio_cp * 0.8);
+                                IF (reserva_vuelo.asi_clase = 'CP') THEN
+                                    UPDATE Usuario SET Usuario.u_billetera = cartera(billetera_reg.millas, billetera_reg.dinero + reserva_vuelo.vu_precio_cp * 0.8)
+                                        WHERE Usuario.u_id = id_usuario;
                                 END IF;
-                                UPDATE Vuelo_Plan SET vp_pv_id = null WHERE Vuelo_Plan.vp_id = busq.vp_id;
+                                UPDATE Vuelo_Plan SET vp_pv_id = null WHERE Vuelo_Plan.vp_id = reserva;
                             END LOOP;
-                            close registro;
-                        END IF;
-                        IF (self.status = 'RTR') THEN
-                            dbms_output.put_line('SE CANCELO RESERVA DE VUELO');
-                            
-                        END IF;
                 END IF;
             END IF;
             IF( tipo = 1 )THEN
-            ------------------------HOTEL----------------------------------------
-                --validar el cambio de status y asignacion a un vuelo mas cercano.
-                    IF( status <> 'ACT' ) THEN
+            ------------------------RESERVA_HOTEL----------------------------------------
+                --validar el cambio de status para la reserva de un hotel.
+                    IF( status = 'CAN' ) THEN
                         IF (status <> self.status) THEN
-                            -- Primero se busca una habitacion disponible en las fechas especificadas
-                            -- Segundo se busca una habitacion de menor precio y se devuelve el dinero
-                            -- Tercero se busca una habitacion en otro hotel cercano y se devuelve el dinero si es necesario.
-                            -- Cuarto se devuelve el dinero al no conseguir habitacion.
-                            dbms_output.put_line('EPALE');
-                            OPEN hotel_Reg;
-                            FETCH hotel_Reg into busq_hotel;
-                            UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq_hotel.precio * 0.8);
-                            close hotel_reg;
+                            dbms_output.put_line('Se cancelo la reserva en el hotel del usuario');
+                            --Se cancela la reservacion
+                            SELECT Reserva_Hotel.rh_precio_total into reserva_precio FROM Reserva_Hotel WHERE Reserva_Hotel.rh_id = reserva;
+                            UPDATE Usuario SET Usuario.u_billetera = cartera(billetera_reg.millas, billetera_reg.dinero + reserva_precio * 0.8)
+                                WHERE Usuario.u_id = id_usuario;
                         END IF;
                     END IF;
             END IF;
             IF( tipo = 2 )THEN
-            ------------------------AUTO----------------------------------------
+            ------------------------ALQUILER_AUTO----------------------------------------
                 --validar el cambio de status y asignacion a un vuelo mas cercano.
-                    IF( status <> 'ACT' ) THEN
-                        IF (status <> self.status) THEN
-                            --Primero se busca un auto en el lugar de encuentro
-                            --Segundo se busca un auto en otro alquiler de autos.
-                            --Tercero se devuelve el dinero al no conseguir habitacion.
-                            dbms_output.put_line('EPALE');
-                            OPEN auto_Reg;
-                            FETCH auto_Reg into busq_auto;
-                            UPDATE Usuario SET Usuario.u_billetera = cartera(busq_billetera.millas, busq_billetera.dinero + busq_auto.precio * 0.8);
-                            close auto_reg;
-                        END IF;
-                END IF;
+                    IF( status = 'CAN' ) THEN
+                            SELECT Alquiler_Auto.aa_precio_total into reserva_precio FROM Alquiler_Auto WHERE Alquiler_Auto.aa_id = reserva;
+                            UPDATE Usuario SET Usuario.u_billetera = cartera(billetera_reg.millas, billetera_reg.dinero + reserva_precio * 0.8)
+                                WHERE Usuario.u_id = id_usuario;
+                    END IF;
             END IF;
             IF( tipo = 3 )THEN
-            ------------------------HABITACION-UNIDAD----------------------------------------
-                --validar el cambio de status y asignacion a un vuelo mas cercano.
-                    IF( status <> 'ACT' ) THEN
-                        IF (status <> self.status) THEN
-                            --Primero se busca un auto en el lugar de encuentro
-                            --Segundo se busca un auto en otro alquiler de autos.
-                            --Tercero se devuelve el dinero al no conseguir habitacion.
-                            dbms_output.put_line('EPALE');
-                            OPEN reservas_hab;
-                            FOR reservaloop in reservas_hab LOOP
-                                reg_fecha := reservaloop.rh_fecha;
-                                if (reservaloop.rh_fecha.validar_fechas(reg_fecha.fecha_in, reg_fecha.fecha_out) = 0) then
-                                    reemplazo_habitacion(reservaloop.rh_id, reserva);
-                                end if;
+            ------------------------HABITACION_UNIDAD----------------------------------------
+                --validar el cambio de status y asignacion a una habitacion disponible.
+                    IF( status = 'INA' OR status = 'MAN' ) THEN
+                            dbms_output.put_line('Se cambio el status de la habitacion a desuso');
+                            FOR reserva_hab in reservas_habitaciones LOOP
+                                reemplazo_habitacion(reserva_hab.rh_id, reserva);
                             END LOOP;
-                            close reservas_hab;
-                        END IF;
                 END IF;
             END IF;
             IF( tipo = 4 )THEN
             ------------------------AUTO-UNIDAD----------------------------------------
-                --validar el cambio de status y asignacion a un vuelo mas cercano.
-                    IF( status <> 'ACT' ) THEN
-                        IF (status <> self.status) THEN
-                            --Primero se busca un auto en el lugar de encuentro
-                            --Segundo se busca un auto en otro alquiler de autos.
-                            --Tercero se devuelve el dinero al no conseguir habitacion.
-                            dbms_output.put_line('EPALE');
-                            OPEN reservas_aut;
-                            FOR reservaloop in reservas_aut LOOP
-                                dbms_output.put_line('EPALE');
-                                reg_fecha := reservaloop.aa_fecha;
-                                if (reg_fecha.validar_fechas(reg_fecha.fecha_in, reg_fecha.fecha_out) = 0) then
-                                    reemplazo_auto(reservaloop.aa_id, reserva);
-                                end if;
-                            END LOOP;
-                            close reservas_aut;
-                        END IF;
-                END IF;
+                --validar el cambio de status y asignacion a un auto disponible.
+                    IF( status = 'INA' OR status = 'MAN' ) THEN
+                        dbms_output.put_line('Se cambio el status del auto');
+                        FOR reserva_auto in reservas_automoviles LOOP
+                            reemplazo_auto(reserva_auto.aa_id, reserva);
+                        END LOOP;
+                    END IF;
             END IF;
-            close billetera_reg;
+            IF( tipo = 5 )THEN
+            ------------------------AVION-UNIDAD----------------------------------------
+                --validar el cambio de status y asignacion a un avion disponible.
+                    IF( status = 'INA' OR status = 'MAN' ) THEN
+                        dbms_output.put_line('Se cambio el status del auto');
+                        FOR reserva_avion in reservas_aviones LOOP
+                            reemplazo_avion_vu(reserva_avion.vp_id, reserva);
+                        END LOOP;
+                    END IF;
+            END IF;
+        END IF;
     end;
 end;

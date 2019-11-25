@@ -2,31 +2,30 @@ CREATE OR REPLACE TRIGGER validacion_reserva_vuelo
 BEFORE INSERT ON Vuelo_Plan
 FOR EACH ROW
 DECLARE
-CURSOR reg_vuelo IS SELECT * FROM vuelo WHERE vu_id = :new.vp_vu_id;
 CURSOR comp_reservas_ant IS SELECT * FROM vuelo JOIN vuelo_plan ON vuelo.vu_id = vuelo_plan.vp_vu_id WHERE :new.vp_pv_id = vuelo_plan.vp_pv_id;
-CURSOR asiento_ocupado IS SELECT count(*) as contador FROM Vuelo_Plan WHERE :new.vp_asi_id = vuelo_plan.vp_asi_id AND vuelo_plan.vp_vu_id = :new.vp_vu_id;
-reg_vue_el reg_vuelo%ROWTYPE;
+reg_vue_el vuelo%ROWTYPE;
+flag_asiento_ya_reservado number;
+flag_vuelo_no_activo varchar(3);
+flag_avion_no_activo varchar(3);
 BEGIN
-    OPEN reg_vuelo;
-    FETCH reg_vuelo INTO reg_vue_el;
-    IF (reg_vue_el.vu_status.status <> 'ACT') THEN
+    SELECT count(*) into flag_asiento_ya_reservado FROM vuelo_plan WHERE vp_vu_id = :new.vp_vu_id AND vp_id <> :new.vp_id AND :new.vp_asi_id = vuelo_plan.vp_asi_id;
+    IF (flag_asiento_ya_reservado > 0) THEN
+            raise_application_error(-1020, 'Asiento ya reservado');
+    END IF;
+    SELECT A.vu_status.status into flag_vuelo_no_activo FROM Vuelo A WHERE A.vu_id = :new.vp_vu_id;
+    IF (flag_vuelo_no_activo <> 'ACT') THEN
             raise_application_error(-1020, 'No se puede realizar la reservacion a un vuelo inactivo/invalido');
     END IF;
-    close reg_vuelo;
-    OPEN comp_reservas_ant;
-    FOR reg_vue IN comp_reservas_ant LOOP
-        IF (reg_vue.vu_fecha.validar_solapamiento(reg_vue.vu_fecha.fecha_in, reg_vue.vu_fecha.fecha_out, reg_vue_el.vu_fecha.fecha_in, reg_vue_el.vu_fecha.fecha_out) = 1) THEN
-            raise_application_error(-1020, 'No se puede realizar la reservacion de un vuelo, cuando se tiene una reserva realizada en el mismo lapso de tiempo');
-        END IF;
-    END LOOP;
-    close comp_reservas_ant;
-    OPEN asiento_ocupado;
-    FOR asiento_ocu in asiento_ocupado LOOP
-        IF (asiento_ocu.contador > 1) THEN
-            raise_application_error(-1020, 'Asiento ocupado');
-        END IF;
-    END LOOP;
-    close asiento_ocupado;
+    SELECT A.ua_status.status into flag_avion_no_activo FROM Unidad_Avion A 
+        JOIN Asiento B ON B.asi_ua_id = A.ua_id 
+        JOIN Vuelo_plan C ON C.vp_asi_id = B.asi_id AND C.vp_id = :new.vp_id;
+    IF (flag_avion_no_activo <> 'ACT') THEN
+         raise_application_error(-1020, 'No se puede realizar la reservacion a un avion inactivo/invalido');
+    END IF;
+    SELECT * into reg_vue_el FROM Vuelo A WHERE A.vu_id = :new.vp_vu_id;
+    IF (reg_vue_el.vu_fecha.validar_fechas(reg_vue_el.vu_fecha.fecha_in, reg_vue_el.vu_fecha.fecha_out) = 1) THEN
+        raise_application_error(-1020, 'Las fechas establecidas para este vuelo no es valida');
+    END IF;
 END;
 /
 CREATE OR REPLACE TRIGGER validacion_reserva_vuelo_stats
@@ -50,7 +49,6 @@ FOR EACH ROW
 DECLARE
 CURSOR reg_reserva_habitacion IS SELECT * FROM Reserva_Hotel WHERE:new.rh_ha_id = reserva_hotel.rh_ha_id;
 BEGIN
-    OPEN reg_reserva_habitacion;
     IF (:new.rh_status.status <> 'ACT') THEN
         raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion inactivo/invalido');
     END IF;
@@ -59,7 +57,6 @@ BEGIN
             raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion cuando esta esta reservada');
         END IF;
     END LOOP;
-    close reg_reserva_habitacion;
 END;
 /
 CREATE OR REPLACE TRIGGER validacion_habitacion_stats
@@ -78,7 +75,6 @@ FOR EACH ROW
 DECLARE
 CURSOR reg_alquiler_auto IS SELECT * FROM Alquiler_auto WHERE:new.aa_au_id = alquiler_auto.aa_au_id;
 BEGIN
-    OPEN reg_alquiler_auto;
     IF (:new.aa_status.status <> 'ACT') THEN
         raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion inactivo/invalido');
     END IF;
@@ -87,7 +83,6 @@ BEGIN
             raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion cuando esta esta reservada');
         END IF;
     END LOOP;
-    close reg_alquiler_auto;
 END;
 /
 CREATE OR REPLACE TRIGGER validacion_alquiler_auto_stats
@@ -100,7 +95,7 @@ BEGIN
     END IF;
 END;
 /
-/*CREATE OR REPLACE TRIGGER validacion_nodos
+CREATE OR REPLACE TRIGGER validacion_nodos
 BEFORE INSERT ON nodo
 FOR EACH ROW
 DECLARE
@@ -108,7 +103,6 @@ DECLARE
  flag_or number:=1;
  flag_des number:=1;
 BEGIN
-    OPEN nodo_Registrado;
     FOR nodo_reg in nodo_registrado LOOP
         if(nodo_reg.no_modo ='ORI') then
             flag_or := flag_or -1;
@@ -120,7 +114,6 @@ BEGIN
             raise_application_error(-1020, 'Mas de un nodo en una ruta no permitido');
         end if;
     END LOOP;
-    close nodo_Registrado;
 END;
 /
 CREATE OR REPLACE TRIGGER validacion_auto_stats
@@ -141,12 +134,38 @@ BEGIN
     IF (:new.ha_status.status <> :old.ha_status.status) THEN
         :new.ha_status.validar_cambio_status(4, null, :new.ha_id, :new.ha_status.status);
     END IF;
-END;*/
+END;
+/
+CREATE OR REPLACE TRIGGER validacion_reserva_habitacion
+BEFORE INSERT ON Reserva_hotel
+FOR EACH ROW
+DECLARE
+CURSOR reg_reserva_habitacion IS SELECT * FROM Reserva_Hotel WHERE:new.rh_ha_id = reserva_hotel.rh_ha_id;
+BEGIN
+    IF (:new.rh_status.status <> 'ACT') THEN
+        raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion inactivo/invalido');
+    END IF;
+    FOR reserva IN reg_reserva_habitacion LOOP
+        IF (reserva.rh_fecha.validar_solapamiento(reserva.rh_fecha.fecha_in, reserva.rh_fecha.fecha_out, :new.rh_fecha.fecha_in, :new.rh_fecha.fecha_out) = 1) THEN
+            raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion cuando esta esta reservada');
+        END IF;
+    END LOOP;
+END;
+/
+CREATE OR REPLACE TRIGGER validacion_habitacion_stats
+BEFORE UPDATE ON Reserva_hotel
+FOR EACH ROW
+DECLARE
+BEGIN
+    IF (:new.rh_status.status <> :old.rh_status.status) THEN
+       :new.rh_status.validar_cambio_status(1, :new.rh_pv_id, :new.rh_id, :new.rh_status.status);
+    END IF;
+END;
 
 ----------------------------------------------------------
 ------------------TRIGGERS BLOBS--------------------------
 ----------------------------------------------------------
-
+/
 create or replace trigger tri_vi_asp
 instead of insert on vi_asp
 for each row
