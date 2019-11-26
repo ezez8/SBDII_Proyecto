@@ -82,8 +82,8 @@ begin
     (select aep.ap_locacion.pais from aeropuerto aep, nodo no where no.no_modo = 'ORI' and no.no_vu_id = vu_id and no.no_ap_id = aep.ap_id)
     ||'-'|| (select aep.ap_locacion.pais from aeropuerto aep, nodo no where no.no_modo = 'DES' and no.no_vu_id = vu_id and no.no_ap_id = aep.ap_id)
     ||'-'||to_char(vu.vu_fecha.fecha_in, 'dy mon dd yyyy') "Vuelo",
-    to_char(pv.pv_fecha.fecha_in, 'mon dd yyyy') "Fecha de salida",
-    to_char(pv.pv_fecha.fecha_out, 'mon dd yyyy') "Fecha de regreso",
+    to_char(vu.vu_fecha.fecha_in, 'mon dd yyyy') "Fecha de salida",
+    to_char(vu.vu_fecha.fecha_out, 'mon dd yyyy') "Fecha de regreso",
     to_char(vu.vu_fecha.fecha_in, 'hh:mm') "Sale",
     to_char(vu.vu_fecha.fecha_out, 'hh:mm') "Llega",
     vu_duracion||'h 0m' "Duracion",
@@ -91,5 +91,5 @@ begin
     from usuario, plan_usuario, plan_viaje pv, vuelo_plan, asiento, unidad_avion, aerolinea, vuelo vu, nodo, aeropuerto ap 
     where u_id = pu_u_id and pu_pv_id = pv_id and pv_id = vp_pv_id and vp_asi_id = asi_id and asi_ua_id = ua_id
     and ua_al_id = al_id and vp_vu_id = vu_id and vu_id = no_vu_id and no_ap_id = ap_id
-    and u_correo = 'rbootton0@bloomberg.com';
+    and u_correo = 'tpitmana@princeton.edu';
 end;

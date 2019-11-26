@@ -81,8 +81,8 @@ create table automovil(
 /
 create table alquiler_auto(
     aa_id             number,
-    aa_dir_recogida   reg_loc not null,
-    aa_dir_devolucion reg_loc not null,
+    aa_dir_recogida   varchar(40) not null,
+    aa_dir_devolucion varchar(40) not null,
     aa_fecha          reg_ope not null,
     aa_precio_total   number  not null,
     aa_status         reg_sta not null,
@@ -262,7 +262,7 @@ create table reporte_pago(
     rp_pv_id    number not null,
     rp_fp_id    number not null,
     rp_tarj_num varchar(20),
-    rp_ar number not null,
+    rp_ar       number,
 
     constraint pk_rp    primary key(rp_id),
     constraint fk_rp_pv foreign key(rp_pv_id) references plan_viaje(pv_id),
