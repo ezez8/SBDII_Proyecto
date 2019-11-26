@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repo5" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4e99cefd-3cd3-46e4-9e52-a558ccbb9b8f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC Adapter "/>
+	<parameter name="p_u_correo" class="java.lang.String"/>
+	<parameter name="p_fecha_s" class="java.lang.String"/>
+	<parameter name="p_fecha_r" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{call repo5($P{ORACLE_REF_CURSOR}, $P{p_u_correo}, $P{p_fecha_s}, $P{p_fecha_r})}]]>
+	</queryString>
+	<field name="Correo de Usuario" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Correo de Usuario"/>
+	</field>
+	<field name="Vuelo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Vuelo"/>
+	</field>
+	<field name="Fecha de salida" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Fecha de salida"/>
+	</field>
+	<field name="Fecha de regreso" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Fecha de regreso"/>
+	</field>
+	<field name="Sale" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Sale"/>
+	</field>
+	<field name="Llega" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Llega"/>
+	</field>
+	<field name="Duracion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Duracion"/>
+	</field>
+	<field name="Precio pagado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Precio pagado"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="280" y="24" width="200" height="30" uuid="592f879e-4455-4bb8-843a-dbb23e548c83"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte 5]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="81" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="180" height="81" uuid="4e108253-b94e-4b08-8a70-cfeb9368d67d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ca7df3b-2d9a-4903-9f83-b6aff594f5f0"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Correo de Usuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="100" height="81" uuid="c4fed56e-1549-40d5-b7eb-05ed281fba12">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6e948681-4d27-4cc5-bf5e-6c435f08ea14"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vuelo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="100" height="81" uuid="867eba97-7276-4c35-b8a8-d24e800bfa47">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e04d5c45-9cf9-4b73-95d2-50c613b8b398"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de salida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="100" height="81" uuid="10efca7a-8041-49af-8a53-1378ebdfe6c0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b26c8228-6e1d-4560-ac6c-7bb6f914bd76"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de regreso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="100" height="81" uuid="5ba16352-8ddb-4005-8bd4-c4e3b75ac990">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ccfd5e17-1375-4f0f-ad9f-f38fa12be8a1"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sale]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="0" width="100" height="81" uuid="ea48877a-7e9d-4e78-9643-bd652548ab3a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c586a2db-7165-41a0-a479-c4611dad2dee"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Llega]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="680" y="0" width="60" height="81" uuid="a7c3577c-7917-4b9d-b57e-4ef60ad72642">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d59f6302-2dc7-429c-a643-7a5a1b94530d"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Duracion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="740" y="0" width="60" height="81" uuid="a6b657e9-e3c0-4566-900d-01d60dfd7b23">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="27ed14cd-3d5d-4b46-926c-4db858b07790"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio pagado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="85" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="180" height="85" uuid="69550a26-36ff-4828-a5bf-3cd636ff85fe">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ca7df3b-2d9a-4903-9f83-b6aff594f5f0"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Correo de Usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="100" height="85" uuid="7f76bff6-c940-49dd-ae8e-0e8c762405d4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6e948681-4d27-4cc5-bf5e-6c435f08ea14"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Vuelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="100" height="85" uuid="4ed17870-b06e-42e1-a8c9-65c2247009a8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e04d5c45-9cf9-4b73-95d2-50c613b8b398"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha de salida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="100" height="85" uuid="7048f928-0acc-4ceb-b9df-87c61e81f74c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b26c8228-6e1d-4560-ac6c-7bb6f914bd76"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha de regreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="100" height="85" uuid="0dfe20a0-4568-4b54-a850-4844c7dc7b4a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ccfd5e17-1375-4f0f-ad9f-f38fa12be8a1"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Sale}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="580" y="0" width="100" height="85" uuid="98e8f94a-e21f-4af5-a72d-a1036b2decaf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c586a2db-7165-41a0-a479-c4611dad2dee"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Llega}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="680" y="0" width="60" height="85" uuid="b0355082-d5f0-42d0-a56f-8478410da2f3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d59f6302-2dc7-429c-a643-7a5a1b94530d"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Duracion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="740" y="0" width="60" height="85" uuid="0a230361-b90d-4f5e-91ca-e94a4c514582">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="27ed14cd-3d5d-4b46-926c-4db858b07790"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Precio pagado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

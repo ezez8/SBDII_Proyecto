@@ -73,7 +73,7 @@ begin
     from usuario;
 end;
 /
-create or replace procedure repo5_1(cur out sys_refcursor)
+create or replace procedure repo5(cur out sys_refcursor, p_u_correo varchar, p_fecha_s varchar, p_fecha_r varchar)
 is 
 begin
     open cur for
@@ -91,5 +91,5 @@ begin
     from usuario, plan_usuario, plan_viaje pv, vuelo_plan, asiento, unidad_avion, aerolinea, vuelo vu, nodo, aeropuerto ap 
     where u_id = pu_u_id and pu_pv_id = pv_id and pv_id = vp_pv_id and vp_asi_id = asi_id and asi_ua_id = ua_id
     and ua_al_id = al_id and vp_vu_id = vu_id and vu_id = no_vu_id and no_ap_id = ap_id
-    and u_correo = 'tpitmana@princeton.edu';
+    and u_correo = p_u_correo and to_date(p_fecha_s,'dd-mm-yyyy') <= vu.vu_fecha.fecha_in and to_date(p_fecha_r,'dd-mm-yyyy') >= vu.vu_fecha.fecha_out;
 end;
