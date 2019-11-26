@@ -239,3 +239,21 @@ begin
         --COMMIT;
     END;
 end;
+/
+create or replace trigger tri_vi_u
+instead of insert on vi_u
+for each row
+begin
+    DECLARE 
+    V_blob BLOB;
+    V_bfile BFILE;
+    BEGIN 
+        INSERT INTO usuario(u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_billetera, u_passw, u_nick, u_foto) 
+        VALUES (:new.u_id, :new.u_nombre, :new.u_nombre2, :new.u_apellido, :new.u_apellido2, :new.u_genero, :new.u_telf, :new.u_correo, :new.u_billetera, :new.u_passw, :new.u_nick, empty_blob()) RETURNING u_foto INTO V_blob;
+        V_bfile := BFILENAME('IMGS_U', :new.u_genero||'.jpg');
+        DBMS_LOB.OPEN(V_bfile, DBMS_LOB.LOB_READONLY);
+        DBMS_LOB.LOADFROMFILE(V_blob, V_bfile, SYS.DBMS_LOB.GETLENGTH(V_bfile));
+        DBMS_LOB.CLOSE(V_bfile);
+        --COMMIT;
+    END;
+end;

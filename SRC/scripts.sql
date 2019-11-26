@@ -16,4 +16,6 @@
 
 @/u01/app/oracle/SBDII_Proyecto/SRC/inserts;
 
+@/u01/app/oracle/SBDII_Proyecto/SRC/reportes;
+
 commit;

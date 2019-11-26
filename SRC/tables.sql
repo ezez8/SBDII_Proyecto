@@ -12,7 +12,10 @@ create table plan_viaje(
 create table usuario(
     u_id        number,
     u_nombre    varchar(20) not null,
+    u_nombre2   varchar(20) not null,
     u_apellido  varchar(20) not null,
+    u_apellido2 varchar(20) not null,
+    u_genero    varchar(1 ) not null check(u_genero in ('M','F')),
     u_telf      varchar(20) not null,
     u_correo    varchar(40) not null,
     u_billetera cartera     not null,

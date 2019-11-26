@@ -15,3 +15,7 @@ create or replace view vi_mav as
 
 create or replace view vi_ase as
     select ase_id, ase_nombre from aseguradora;
+
+create or replace view vi_u as
+    select u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_billetera, u_passw, u_nick
+    from usuario;

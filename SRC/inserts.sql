@@ -511,45 +511,46 @@ insert into seguro(se_id, se_nombre, se_precio, se_ase_id, se_des) values(15, 'A
 ---------------------------------------USUARIO------------------------------
 ----------------------------------------------------------------------------
 
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (1 , 'Eldon'    , 'Brailsford', '849-884-8928', 'ebrailsford0@mlb.com'      , 'FQqfcBT'     , 'ebrailsford0', cartera(8636, 502.15 ));
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (2 , 'Arturo'   , 'Yokley'    , '318-440-4473', 'ayokley1@jalbum.net'       , 'lPHiYZFiMNM' , 'ayokley1'    , cartera(7240, 1260.06));
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (3 , 'Rosabella', 'Quilleash' , '873-494-6205', 'rquilleash2@ow.ly'         , 'OgpY4peCb0O' , 'rquilleash2' , cartera(9614, 1193.54));
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (4 , 'Amii'     , 'Rodriguez' , '707-334-1471', 'arodriguez3@tinypic.com'   , '1iVQeLAa'    , 'arodriguez3' , cartera(4180, 341.13 ));
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (5 , 'Jill'     , 'Mayling'   , '277-193-2609', 'jmayling4@ucoz.ru'         , 'SxX0X8moRX'  , 'jmayling4'   , cartera(8356, 1784.69));
 
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (6 , 'Delmar'   , 'Swiggs'    , '484-758-8232', 'dswiggs5@patch.com'        , 'Zs4peT'      , 'dswiggs5'    , cartera(9937, 1104.15));
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (7 , 'Pennie'   , 'Brunker'   , '505-822-9692', 'pbrunker6@github.com'      , 'PTi8XTB2na5T', 'pbrunker6'   , cartera(1637, 575.97 ));
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (8 , 'Lisa'     , 'Guidoni'   , '455-715-7599', 'lguidoni7@google.co.jp'    , 'YU9WQd0fO'   , 'lguidoni7'   , cartera(5095, 591.72 ));
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (9 , 'Frazer'   , 'Danilowicz', '572-198-0287', 'fdanilowicz8@flickr.com'   , '5ivGpmEX9PPa', 'fdanilowicz8', cartera(4621, 1771.78));
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (10, 'Korrie'   , 'Chilles'   , '190-771-6331', 'kchilles9@about.com'       , '7xoVTHlQ'    , 'kchilles9'   , cartera(3540, 8.25   ));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (1 , 'Ellen'   , 'Roy'      , 'Cordelette', 'Bootton'     , 'M', '+58 957 492 0851', 'rbootton0@bloomberg.com'   , 'hkhkLzQ3Yv'  , 'rbootton0'     , cartera(5086, 2882.82));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (2 , 'Raychel' , 'Jeanna'   , 'Theyer'    , 'Bolden'      , 'F', '+58 909 501 5512', 'jbolden1@weibo.com'        , '8baILbsU'    , 'jbolden1'      , cartera(9924, 2772.39));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (3 , 'Darb'    , 'Brew'     , 'Davenhill' , 'Warlow'      , 'M', '+58 205 569 2575', 'bwarlow2@bravesites.com'   , 'HLmal6mI5ZRG', 'bwarlow2'      , cartera(8324, 2739.92));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (4 , 'Renell'  , 'Faythe'   , 'Zannelli'  , 'Ramalho'     , 'F', '+58 942 863 6819', 'framalho3@a8.net'          , 'wuSFCM7N'    , 'framalho3'     , cartera(4542, 2610.4 ));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (5 , 'Giraldo' , 'Ban'      , 'Wilkes'    , 'Dunmuir'     , 'M', '+58 313 171 0319', 'bdunmuir4@businessweek.com', '4K695XNrWmM' , 'bdunmuir4'     , cartera(7936, 1813.92));
 
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (11, 'Page'     , 'Wildman'   , '924-528-9211', 'pwildmana@msu.edu'         , 'qndDqkNQ'    , 'pwildmana'   , cartera(3186, 941.86 ));
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (12, 'Glenine'  , 'MacCahee'  , '135-916-4617', 'gmaccaheeb@dmoz.org'       , 'Le8a6I'      , 'gmaccaheeb'  , cartera(5582, 1346.82));
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (13, 'Gaultiero', 'Germain'   , '712-526-0602', 'ggermainc@mysql.com'       , '3o0CxBNnXG'  , 'ggermainc'   , cartera(601,  1843.44));
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (14, 'Mandie'   , 'Feldheim'  , '127-608-7943', 'mfeldheimd@free.fr'        , 'QOdM4WeWoZ'  , 'mfeldheimd'  , cartera(3898, 1099.51));
-insert into usuario (u_id, u_nombre, u_apellido, u_telf, u_correo, u_passw, u_nick, u_billetera) values (15, 'Nicoli'   , 'Shimoni'   , '660-858-7871', 'nshimonie@wunderground.com', '1yD76m1'     , 'nshimonie'   , cartera(4848, 1.13   ));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (6 , 'Thaddeus', 'Stafford' , 'Godin'     , 'Bifield'     , 'M', '+58 975 383 6884', 'sbifield5@ft.com'          , 'SdGkHy7nRK'  , 'sbifield5'     , cartera(9727, 2126.07));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (7 , 'Krispin' , 'Octavius' , 'Baroc'     , 'Lazar'       , 'M', '+58 773 995 1057', 'olazar6@hugedomains.com'   , 'xv0YdKP'     , 'olazar6'       , cartera(2272, 4919.74));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (8 , 'Sven'    , 'Ad'       , 'Doggart'   , 'Hearmon'     , 'M', '+58 288 135 7711', 'ahearmon7@github.com'      , 'aSfrha'      , 'ahearmon7'     , cartera(9477, 3111.15));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (9 , 'Manuel'  , 'Clayborne', 'McGahy'    , 'Greenier'    , 'M', '+58 202 837 6291', 'cgreenier8@live.com'       , 'kTIzSZZPpSs' , 'cgreenier8'    , cartera(3957, 3165.27));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (10, 'Cary'    , 'Doug'     , 'Vowdon'    , 'Pury'        , 'M', '+58 257 940 1597', 'dpury9@trellian.com'       , 'Khzh3KrwLJ3' , 'dpury9'        , cartera(8824, 1911.81));
+
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (11, 'Anni'    , 'Timothea' , 'Driver'    , 'Pitman'      , 'F', '+58 543 807 6851', 'tpitmana@princeton.edu'    , 'lkImnjma'    , 'tpitmana'      , cartera(8298, 1507.66));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (12, 'Ivy'     , 'Delphine' , 'Highwood'  , 'MacCallister', 'F', '+58 555 422 0167', 'dmaccallisterb@wikia.com'  , 'sj7TzyiecVXN', 'dmaccallisterb', cartera(9975, 2857.03));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (13, 'Korney'  , 'Eugine'   , 'Bugdell'   , 'Fittes'      , 'F', '+58 682 343 2835', 'efittesc@dailymotion.com'  , 'xrRRysJ8IfK' , 'efittesc'      , cartera(3595, 4360.99));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (14, 'Gian'    , 'Maurise'  , 'Flipsen'   , 'Tiery'       , 'M', '+58 874 591 3778', 'mtieryd@1688.com'          , 'ZlNQRAC7s'   , 'mtieryd'       , cartera(7536, 1924.92));
+insert into vi_u (u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_passw, u_nick, u_billetera) values (15, 'Salomone', 'Cullan'   , 'Fosserd'   , 'Niese'       , 'M', '+58 368 407 7231', 'cniesee@yahoo.com'         , 'Qvg43B'      , 'cniesee'       , cartera(4811, 4770.97));
 
 ----------------------------------------------------------------------------
 ---------------------------------------PLAN_VIAJE---------------------------
 ----------------------------------------------------------------------------
 
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(1 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(2 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(3 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(4 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(5 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(1 , reg_ope(to_date('01-01-2020 12:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('29-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(2 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(3 , reg_ope(to_date('03-01-2020 17:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('27-01-2020 23:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(4 , reg_ope(to_date('04-01-2020 01:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('26-01-2020 11:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(5 , reg_ope(to_date('05-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('25-01-2020 17:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
 
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(6 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(7 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(8 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(9 , reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(10, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(6 , reg_ope(to_date('06-01-2020 03:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('24-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(7 , reg_ope(to_date('07-01-2020 10:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('23-01-2020 22:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(8 , reg_ope(to_date('08-01-2020 18:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('22-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(9 , reg_ope(to_date('09-01-2020 10:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('21-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(10, reg_ope(to_date('10-01-2020 12:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('20-01-2020 09:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
 
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(11, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(12, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(13, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(14, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
-insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(15, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('14-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(11, reg_ope(to_date('11-01-2020 06:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('19-01-2020 04:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(12, reg_ope(to_date('12-01-2020 18:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('18-01-2020 19:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(13, reg_ope(to_date('13-01-2020 01:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('17-01-2020 16:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(14, reg_ope(to_date('14-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('16-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
+insert into plan_viaje(pv_id, pv_fecha, pv_precio_total) values(15, reg_ope(to_date('01-01-2020 12:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('29-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 1000);
 
 ---------------------------------------PLAN_USUARIO--------------------------
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(1 , 1, 1 , 1 );
@@ -557,11 +558,7 @@ insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(2 , 0, 1
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(3 , 0, 1 , 3 );
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(4 , 0, 1 , 4 );
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(5 , 0, 1 , 5 );
-insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(6 , 1, 2 , 1 );
-insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(7 , 0, 2 , 2 );
-insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(8 , 0, 2 , 3 );
-insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(9 , 0, 2 , 4 );
-insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(10, 0, 2 , 5 );
+
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(11, 1, 3 , 1 );
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(12, 0, 3 , 2 );
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(13, 0, 3 , 3 );
@@ -630,3 +627,20 @@ insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(73, 0, 1
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(74, 0, 15, 14);
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(75, 0, 15, 15);
 
+---------------------------------------VUELO_PLAN--------------------------
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(1 , 'NOR', 'IYV', reg_sta('ACT'), 1 , 1 , 1 );
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(2 , 'NOR', 'IYV', reg_sta('ACT'), 1 , 1 , 28);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(3 , 'NOR', 'IYV', reg_sta('ACT'), 1 , 2 , 1 );
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(4 , 'NOR', 'IYV', reg_sta('ACT'), 1 , 2 , 28);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(5 , 'NOR', 'IYV', reg_sta('ACT'), 1 , 3 , 1 );
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(6 , 'NOR', 'IYV', reg_sta('ACT'), 1 , 3 , 28);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(7 , 'NOR', 'IYV', reg_sta('ACT'), 1 , 4 , 1 );
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(8 , 'NOR', 'IYV', reg_sta('ACT'), 1 , 4 , 28);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(9 , 'NOR', 'IYV', reg_sta('ACT'), 1 , 5 , 1 );
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(10, 'NOR', 'IYV', reg_sta('ACT'), 1 , 5 , 28);
+
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(11, 'NOR', 'IYV', reg_sta('ACT'), 2 , 6 , 1 );
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(12, 'NOR', 'IYV', reg_sta('ACT'), 2 , 6 , 28);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(13, 'NOR', 'IYV', reg_sta('ACT'), 2 , 7 , 1 );
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(14, 'NOR', 'IYV', reg_sta('ACT'), 2 , 7 , 28);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(15, 'NOR', 'IYV', reg_sta('ACT'), 2 , 8 , 1 );
