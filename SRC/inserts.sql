@@ -559,6 +559,12 @@ insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(3 , 0, 1
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(4 , 0, 1 , 4 );
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(5 , 0, 1 , 5 );
 
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(6 , 1, 2 , 1 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(7 , 0, 2 , 2 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(8 , 0, 2 , 3 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(9 , 0, 2 , 4 );
+insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(10, 0, 2 , 5 );
+
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(11, 1, 3 , 1 );
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(12, 0, 3 , 2 );
 insert into plan_usuario(pu_id, pu_comprador, pu_pv_id, pu_u_id) values(13, 0, 3 , 3 );
@@ -644,3 +650,7 @@ insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, 
 insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(13, 'NOR', 'IYV', reg_sta('ACT'), 2 , 7 , 1 );
 insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(14, 'NOR', 'IYV', reg_sta('ACT'), 2 , 7 , 28);
 insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(15, 'NOR', 'IYV', reg_sta('ACT'), 2 , 8 , 1 );
+
+---------------------------------------ALQUILER_AUTO------------------------
+/*insert into alquiler_auto(aa_id, aa_dir_recogida, aa_dir_devolucion, aa_fecha, aa_precio_total, aa_status, aa_pv_id, aa_au_id) 
+values(1, 'dir_recogida', 'dir_devolucion', reg_ope());*/

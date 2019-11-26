@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repo2" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db76f793-24d0-473e-9199-99259cdadcd9">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC Adapter "/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="p_al_nombre" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{call repo2($P{ORACLE_REF_CURSOR}, $P{p_al_nombre})}]]>
+	</queryString>
+	<field name="Logo de Aerolínea" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="Logo de Aerolínea"/>
+	</field>
+	<field name="Avión" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Avión"/>
+	</field>
+	<field name="Foto avión" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="Foto avión"/>
+	</field>
+	<field name="Modelo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Modelo"/>
+	</field>
+	<field name="Cantidad de aviones que posee" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Cantidad de aviones que posee"/>
+	</field>
+	<field name="Asientos disponibles por clase" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Asientos disponibles por clase"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="280" y="24" width="200" height="30" uuid="81768eee-e6b3-4b3b-99a3-ba66fe2279d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte 2]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="100" height="30" uuid="02554094-55bd-417e-8b97-1fb6682cbe00">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2e5da2f8-8bc6-4ef6-857e-1c57c74523ec"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Avión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="40" uuid="e62b49c8-8bff-44db-aa66-bd3c56be47e4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2e5da2f8-8bc6-4ef6-857e-1c57c74523ec"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Logo de
+Aerolinea]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="100" height="30" uuid="eb01167c-7e1c-494c-9ab3-4b0df397cad1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2e5da2f8-8bc6-4ef6-857e-1c57c74523ec"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Foto avion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="100" height="30" uuid="8437870c-6b81-4b0c-acd9-d840ffd6f423">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="727db6aa-d75f-4935-844d-afebacef4bff"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modelo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="100" height="40" uuid="78926dff-0e8e-42d3-b35a-5c3d59c6d6e3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="79beffa8-2ebc-4162-aedf-20438fbda2ee"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de aviones que posee]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="320" height="30" uuid="b2b18714-2aff-487c-9313-324af4848c6f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="583c6485-f271-4d77-bce0-013f96d9344a"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Asientos disponibles por clase]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="74" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="80" height="50" uuid="8a875f69-f84b-4a22-bb3d-72637ee9ffc1"/>
+				<imageExpression><![CDATA[$F{Logo de Aerolínea}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="80" y="0" width="100" height="50" uuid="6ea5ddc9-3b42-4a94-9f45-01a9e38744b7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2e5da2f8-8bc6-4ef6-857e-1c57c74523ec"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Avión}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement x="180" y="0" width="100" height="50" uuid="29854c9c-28cd-4b4f-87c9-b7a15250c1de"/>
+				<imageExpression><![CDATA[$F{Foto avión}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="280" y="0" width="100" height="30" uuid="552b9b9f-ee48-4ee8-8233-16f101d09df8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="727db6aa-d75f-4935-844d-afebacef4bff"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="100" height="30" uuid="223217c2-96ec-458d-bb63-baaf6a533141">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="79beffa8-2ebc-4162-aedf-20438fbda2ee"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cantidad de aviones que posee}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="320" height="50" uuid="a00dfd86-0483-460f-8a0e-aa4125b013b1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="583c6485-f271-4d77-bce0-013f96d9344a"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Asientos disponibles por clase}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

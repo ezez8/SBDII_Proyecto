@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repo3" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="89208e56-8479-4c6a-b204-31ccdd739a0d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC Adapter "/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="var_av_nombre" class="java.lang.String"/>
+	<parameter name="var_mav_nombre" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{call repo3($P{ORACLE_REF_CURSOR}, $P{var_av_nombre}, $P{var_mav_nombre})}]]>
+	</queryString>
+	<field name="Logo de Aerolinea" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="Logo de Aerolinea"/>
+	</field>
+	<field name="Avion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Avion"/>
+	</field>
+	<field name="Foto Avion" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="Foto Avion"/>
+	</field>
+	<field name="Modelo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Modelo"/>
+	</field>
+	<field name="Velocidad Máxima Mach" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Velocidad Máxima Mach"/>
+	</field>
+	<field name="Alcance" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Alcance"/>
+	</field>
+	<field name="Altitud maxima de vuelo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Altitud maxima de vuelo"/>
+	</field>
+	<field name="Envergadura" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Envergadura"/>
+	</field>
+	<field name="MAV_ANCH_CAB||&apos;M&apos;" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label">
+			<![CDATA[MAV_ANCH_CAB||'M']]>
+		</property>
+	</field>
+	<field name="MAV_ALT_CAB||&apos;M&apos;" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label">
+			<![CDATA[MAV_ALT_CAB||'M']]>
+		</property>
+	</field>
+	<background>
+		<band height="15" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="280" y="24" width="200" height="30" uuid="d643be15-1402-446f-90ad-54bb0f7ad3ee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte 3]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="87" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="87" uuid="be8d09ac-c0e6-42d4-a3e6-cec77a366df6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2e5da2f8-8bc6-4ef6-857e-1c57c74523ec"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Logo de
+Aerolinea]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="1" width="100" height="86" uuid="2e020b52-f9bc-4686-aa30-58e123a92fea">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2e5da2f8-8bc6-4ef6-857e-1c57c74523ec"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Avión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="100" height="87" uuid="287deb26-55c0-48e2-a05b-62c289b145b6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2e5da2f8-8bc6-4ef6-857e-1c57c74523ec"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Foto avion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="80" height="87" uuid="495cfff3-4e05-46bf-99ed-f97cf5ccc7f1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="727db6aa-d75f-4935-844d-afebacef4bff"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modelo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="70" height="87" uuid="1bd16af3-e122-4af8-b161-51905e27ec38">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e2d1889c-5341-4198-8cc8-7121ef52f5f6"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Velocidad Máxima Mach]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="0" width="90" height="87" uuid="4188078f-0d5e-4691-a9f2-541127457d5c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="368e7e0c-286e-4d66-b708-4171fe96425b"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alcance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="1" width="80" height="86" uuid="22bd6dd2-f367-417d-babf-6c5973e933bb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5dd75033-f32d-4c18-bce2-842dee424de5"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Altitud maxima de vuelo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="0" width="80" height="87" uuid="6432373f-1433-4f63-a31f-93e4a3ce8378">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="11e4412c-bb12-4951-9ffa-1c7a25321103"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Envergadura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="680" y="1" width="60" height="86" uuid="e923d41a-e411-4b3a-a9f6-9cecf97e2d6a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="341e5fa8-0245-4f55-8e53-914fdc87c8f1"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ancho del interior de la cabina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="740" y="0" width="60" height="87" uuid="c4704242-5a74-4fee-91dc-9fd206edf128">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87355f41-5203-40f5-a0f5-281b736c8904"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Altura del interior de la cabina]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="80" height="50" uuid="a60326b4-763c-4312-8c5a-7aa2075f498f"/>
+				<imageExpression><![CDATA[$F{Logo de Aerolinea}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="80" y="0" width="100" height="125" uuid="baf36731-4306-4664-8c23-6db700fd5bf3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2e5da2f8-8bc6-4ef6-857e-1c57c74523ec"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Avion}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement x="180" y="0" width="100" height="50" uuid="3e8b54d6-88c6-409d-b653-66aac7810eb9"/>
+				<imageExpression><![CDATA[$F{Foto Avion}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="280" y="0" width="80" height="125" uuid="0c1bee05-9042-4c7a-acb4-e88f83ecd9b5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="727db6aa-d75f-4935-844d-afebacef4bff"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="70" height="125" uuid="d515a909-45eb-4fec-b698-7cb0093d3d30">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e2d1889c-5341-4198-8cc8-7121ef52f5f6"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Velocidad Máxima Mach}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="0" width="90" height="125" uuid="9c33db21-238f-4259-8265-ef49180ed38e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="368e7e0c-286e-4d66-b708-4171fe96425b"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Alcance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="520" y="0" width="80" height="125" uuid="e5a8171c-43ff-496c-bd4a-0cf60723d76a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5dd75033-f32d-4c18-bce2-842dee424de5"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Altitud maxima de vuelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="0" width="80" height="125" uuid="58898ffe-d78c-41fa-be8f-aad1a8401de8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="11e4412c-bb12-4951-9ffa-1c7a25321103"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Envergadura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="680" y="0" width="60" height="125" uuid="d881dbd6-4978-46c7-bbf9-5ffc01558d0d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="341e5fa8-0245-4f55-8e53-914fdc87c8f1"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MAV_ANCH_CAB||'M'}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="740" y="0" width="60" height="125" uuid="2606d51d-1828-4d69-b0be-5aab44ed8df0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87355f41-5203-40f5-a0f5-281b736c8904"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MAV_ALT_CAB||'M'}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
