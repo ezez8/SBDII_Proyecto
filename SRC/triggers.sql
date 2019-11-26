@@ -2,27 +2,43 @@ CREATE OR REPLACE TRIGGER validacion_reserva_vuelo
 BEFORE INSERT ON Vuelo_Plan
 FOR EACH ROW
 DECLARE
-CURSOR reg_vuelo IS SELECT * FROM vuelo WHERE vu_id = :new.vp_vu_id;
-CURSOR comp_reservas_ant IS SELECT * FROM vuelo JOIN vuelo_plan ON vuelo.vu_id = vuelo_plan.vp_vu_id WHERE :new.vp_pv_id = vuelo_plan.vp_pv_id;
-CURSOR asiento_ocupado IS SELECT count(*) as contador FROM Vuelo_Plan WHERE :new.vp_asi_id = vuelo_plan.vp_asi_id AND vuelo_plan.vp_vu_id = :new.vp_vu_id;
-reg_vue_el reg_vuelo%ROWTYPE;
+--CURSOR comp_reservas_ant IS SELECT * FROM vuelo JOIN vuelo_plan ON vuelo.vu_id = vuelo_plan.vp_vu_id WHERE :new.vp_pv_id = vuelo_plan.vp_pv_id;
+reg_vue_sel vuelo%ROWTYPE;
+reg_vue_el vuelo%ROWTYPE;
+flag_asiento_ya_reservado number;
+flag_vuelo_no_activo varchar(3);
+flag_avion_no_activo varchar(3);
+flag_cantidad_vuelo number;
 BEGIN
-    OPEN reg_vuelo;
-    FETCH reg_vuelo INTO reg_vue_el;
-    IF (reg_vue_el.vu_status.status <> 'ACT') THEN
-            raise_application_error(-1020, 'No se puede realizar la reservacion a un vuelo inactivo/invalido');
+    SELECT * INTO reg_vue_sel FROM Vuelo WHERE Vuelo.vu_id = :new.vp_vu_id;
+    SELECT count(*) into flag_cantidad_vuelo FROM Vuelo_Plan A 
+        JOIN Vuelo B ON B.vu_id = A.vp_vu_id AND B.vu_id <> :new.vp_vu_id 
+        JOIN Asiento C ON A.vp_asi_id = C.asi_id 
+        JOIN Unidad_Avion D ON D.ua_id = C.asi_ua_id
+        WHERE B.vu_fecha.fecha_in = reg_vue_sel.vu_fecha.fecha_in
+            AND B.vu_fecha.fecha_out = reg_vue_sel.vu_fecha.fecha_out;
+    SELECT count(*) into flag_asiento_ya_reservado FROM vuelo_plan WHERE vp_vu_id = :new.vp_vu_id AND vp_id <> :new.vp_id AND :new.vp_asi_id = vuelo_plan.vp_asi_id;
+    IF (flag_asiento_ya_reservado > 0) THEN
+            raise_application_error(-20020, 'Asiento ya reservado');
     END IF;
-    close reg_vuelo;
-    FOR reg_vue IN comp_reservas_ant LOOP
-        IF (reg_vue.vu_fecha.validar_solapamiento(reg_vue.vu_fecha.fecha_in, reg_vue.vu_fecha.fecha_out, reg_vue_el.vu_fecha.fecha_in, reg_vue_el.vu_fecha.fecha_out) = 1) THEN
-            raise_application_error(-1020, 'No se puede realizar la reservacion de un vuelo, cuando se tiene una reserva realizada en el mismo lapso de tiempo');
-        END IF;
-    END LOOP;
-    FOR asiento_ocu in asiento_ocupado LOOP
-        IF (asiento_ocu.contador > 1) THEN
-            raise_application_error(-1020, 'Asiento ocupado');
-        END IF;
-    END LOOP;
+    SELECT A.vu_status.status into flag_vuelo_no_activo FROM Vuelo A WHERE A.vu_id = :new.vp_vu_id;
+    IF (flag_vuelo_no_activo <> 'ACT') THEN
+            raise_application_error(-20020, 'No se puede realizar la reservacion a un vuelo inactivo/invalido');
+    END IF;
+    SELECT A.ua_status.status into flag_avion_no_activo FROM Unidad_Avion A 
+        JOIN Asiento B ON B.asi_ua_id = A.ua_id 
+        JOIN Vuelo_plan C ON C.vp_asi_id = B.asi_id AND C.vp_id = :new.vp_id;
+    IF (flag_avion_no_activo <> 'ACT') THEN
+         raise_application_error(-20020, 'No se puede realizar la reservacion a un avion inactivo/invalido');
+    END IF;
+    SELECT * into reg_vue_el FROM vuelo WHERE :new.vp_vu_id = Vuelo.vu_id;
+    IF (reg_vue_el.vu_fecha.validar_fechas(reg_vue_el.vu_fecha.fecha_in, reg_vue_el.vu_fecha.fecha_out) = 1) THEN
+        raise_application_error(-20020, 'Las fechas establecidas para este vuelo no es valida');
+    END IF;
+    IF ( flag_cantidad_vuelo <> 0 ) THEN
+        raise_application_error(-20020, 'No se puede reservar un avion para dos vuelos en la misma fecha.');
+    END IF;
+    --Validar que se pueda realizar el recorrido
 END;
 /
 CREATE OR REPLACE TRIGGER validacion_reserva_vuelo_stats
@@ -39,6 +55,7 @@ BEGIN
     END IF;
     close vuelo_reg;
 END;
+
 /
 CREATE OR REPLACE TRIGGER validacion_reserva_habitacion
 BEFORE INSERT ON Reserva_hotel
@@ -47,11 +64,11 @@ DECLARE
 CURSOR reg_reserva_habitacion IS SELECT * FROM Reserva_Hotel WHERE:new.rh_ha_id = reserva_hotel.rh_ha_id;
 BEGIN
     IF (:new.rh_status.status <> 'ACT') THEN
-        raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion inactivo/invalido');
+        raise_application_error(-20020, 'No se puede realizar la reservacion a una habitacion inactivo/invalido');
     END IF;
     FOR reserva IN reg_reserva_habitacion LOOP
         IF (reserva.rh_fecha.validar_solapamiento(reserva.rh_fecha.fecha_in, reserva.rh_fecha.fecha_out, :new.rh_fecha.fecha_in, :new.rh_fecha.fecha_out) = 1) THEN
-            raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion cuando esta esta reservada');
+            raise_application_error(-20020, 'No se puede realizar la reservacion a una habitacion cuando esta esta reservada');
         END IF;
     END LOOP;
 END;
@@ -73,11 +90,11 @@ DECLARE
 CURSOR reg_alquiler_auto IS SELECT * FROM Alquiler_auto WHERE:new.aa_au_id = alquiler_auto.aa_au_id;
 BEGIN
     IF (:new.aa_status.status <> 'ACT') THEN
-        raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion inactivo/invalido');
+        raise_application_error(-20020, 'No se puede realizar la reservacion a una habitacion inactivo/invalido');
     END IF;
     FOR alquiler IN reg_alquiler_auto LOOP
         IF (alquiler.aa_fecha.validar_solapamiento(alquiler.aa_fecha.fecha_in, alquiler.aa_fecha.fecha_out, :new.aa_fecha.fecha_in, :new.aa_fecha.fecha_out) = 1) THEN
-            raise_application_error(-1020, 'No se puede realizar la reservacion a una habitacion cuando esta esta reservada');
+            raise_application_error(-20020, 'No se puede realizar la reservacion a una habitacion cuando esta esta reservada');
         END IF;
     END LOOP;
 END;
@@ -99,16 +116,23 @@ DECLARE
  Cursor nodo_registrado IS SELECT * FROM nodo where :new.no_vu_id = nodo.no_vu_id;
  flag_or number:=1;
  flag_des number:=1;
+ flag_or_c reg_loc;
+ flag_des_c reg_loc;
 BEGIN
     FOR nodo_reg in nodo_registrado LOOP
         if(nodo_reg.no_modo ='ORI') then
             flag_or := flag_or -1;
+            SELECT aeropuerto.ap_locacion into flag_or_c FROM aeropuerto WHERE aeropuerto.ap_id = nodo_reg.no_ap_id;
         end if;
         if(nodo_reg.no_modo ='DES') then
             flag_des := flag_des -1;
+            SELECT aeropuerto.ap_locacion into flag_des_c FROM aeropuerto WHERE aeropuerto.ap_id = nodo_reg.no_ap_id;
         end if;
         if (flag_or < 0 or flag_des < 0) then
-            raise_application_error(-1020, 'Mas de un nodo en una ruta no permitido');
+            raise_application_error(-20020, 'Mas de un nodo en una ruta no permitido');
+        end if;
+        if (flag_or_c.pais = flag_des_c.pais) then
+            raise_application_error(-20020, 'Ruta invalida, el destino es el mismo que el origen');
         end if;
     END LOOP;
 END;
@@ -132,6 +156,42 @@ BEGIN
         :new.ha_status.validar_cambio_status(4, null, :new.ha_id, :new.ha_status.status);
     END IF;
 END;
+/
+CREATE OR REPLACE TRIGGER validacion_reserva_habitacion
+BEFORE INSERT ON Reserva_hotel
+FOR EACH ROW
+DECLARE
+CURSOR reg_reserva_habitacion IS SELECT * FROM Reserva_Hotel WHERE:new.rh_ha_id = reserva_hotel.rh_ha_id;
+BEGIN
+    IF (:new.rh_status.status <> 'ACT') THEN
+        raise_application_error(-20020, 'No se puede realizar la reservacion a una habitacion inactivo/invalido');
+    END IF;
+    FOR reserva IN reg_reserva_habitacion LOOP
+        IF (reserva.rh_fecha.validar_solapamiento(reserva.rh_fecha.fecha_in, reserva.rh_fecha.fecha_out, :new.rh_fecha.fecha_in, :new.rh_fecha.fecha_out) = 1) THEN
+            raise_application_error(-20020, 'No se puede realizar la reservacion a una habitacion cuando esta esta reservada');
+        END IF;
+    END LOOP;
+END;
+/
+CREATE OR REPLACE TRIGGER validacion_habitacion_stats
+BEFORE UPDATE ON Reserva_hotel
+FOR EACH ROW
+DECLARE
+BEGIN
+    IF (:new.rh_status.status <> :old.rh_status.status) THEN
+       :new.rh_status.validar_cambio_status(1, :new.rh_pv_id, :new.rh_id, :new.rh_status.status);
+    END IF;
+END;
+/
+/*CREATE OR REPLACE TRIGGER validacion_vuelo_v
+BEFORE INSERT ON Vuelo
+FOR EACH ROW
+DECLARE
+BEGIN
+    IF (:new.vu_fecha.validar_fechas(:new.vu_fecha.fecha_in, :new.vu_fecha.fecha_out) = 1) THEN
+        raise_application_error(-20020, 'Fechas invalidas en el vuelo.' || to_char(:new.vu_fecha.fecha_in) || ' - ' || to_char(:new.vu_fecha.fecha_out));
+    END IF;
+END;*/
 
 ----------------------------------------------------------
 ------------------TRIGGERS BLOBS--------------------------
@@ -233,24 +293,6 @@ begin
     BEGIN 
         INSERT INTO aseguradora(ase_id, ase_nombre, ase_logo) VALUES (:new.ase_id, :new.ase_nombre, empty_blob()) RETURNING ase_logo INTO V_blob;
         V_bfile := BFILENAME('IMGS_ASE', :new.ase_nombre||'.jpg');
-        DBMS_LOB.OPEN(V_bfile, DBMS_LOB.LOB_READONLY);
-        DBMS_LOB.LOADFROMFILE(V_blob, V_bfile, SYS.DBMS_LOB.GETLENGTH(V_bfile));
-        DBMS_LOB.CLOSE(V_bfile);
-        --COMMIT;
-    END;
-end;
-/
-create or replace trigger tri_vi_u
-instead of insert on vi_u
-for each row
-begin
-    DECLARE 
-    V_blob BLOB;
-    V_bfile BFILE;
-    BEGIN 
-        INSERT INTO usuario(u_id, u_nombre, u_nombre2, u_apellido, u_apellido2, u_genero, u_telf, u_correo, u_billetera, u_passw, u_nick, u_foto) 
-        VALUES (:new.u_id, :new.u_nombre, :new.u_nombre2, :new.u_apellido, :new.u_apellido2, :new.u_genero, :new.u_telf, :new.u_correo, :new.u_billetera, :new.u_passw, :new.u_nick, empty_blob()) RETURNING u_foto INTO V_blob;
-        V_bfile := BFILENAME('IMGS_U', :new.u_genero||'.jpg');
         DBMS_LOB.OPEN(V_bfile, DBMS_LOB.LOB_READONLY);
         DBMS_LOB.LOADFROMFILE(V_blob, V_bfile, SYS.DBMS_LOB.GETLENGTH(V_bfile));
         DBMS_LOB.CLOSE(V_bfile);
