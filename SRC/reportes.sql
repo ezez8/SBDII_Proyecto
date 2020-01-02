@@ -143,34 +143,28 @@ begin
     where rownum <= 5
     ORDER BY "Cantidad de servicios" DESC;
 end;
-
-/*
-    select AL.al_logo, BASE.* FROM
-    (select distinct A.al_id "id aero", '01-01-2020' || ' - ' || '29-01-2020' "fecha", H.ap_locacion.pais "Lugar de origen", I.ap_locacion.pais "Lugar de destino",
-        (select count(*) from (select distinct vu.vu_id from vuelo vu
-            join vuelo_plan vp on vp.vp_vu_id = vu.vu_id
-            join asiento asi on asi.asi_id = vp_asi_id
-            join unidad_avion ua on ua.ua_id = asi.asi_ua_id
-            join nodo noF on noF.no_vu_id = vu.vu_id and noF.no_modo = 'ORI'
-            join nodo noG on noG.no_vu_id = vu.vu_id and noG.no_modo = 'DES'
-            join aeropuerto aeH on aeH.ap_id = noF.no_ap_id
-            join aeropuerto aeI on aeI.ap_id = noG.no_ap_id
-            where ua.ua_al_id = 1 and 
-            vu.vu_fecha.fecha_in >= to_date('01-01-2020','dd-mm-yyyy') and vu.vu_fecha.fecha_in <= to_date('29-01-2020', 'dd-mm-yyyy') and
-            aeH.ap_locacion.pais = 'Camboya' and aeI.ap_locacion.pais = 'Hungria'
-        ) src) "Cantidad de servicios"
-    from aerolinea A
-    join unidad_avion B on B.ua_al_id = A.al_id
-    join asiento C on C.asi_ua_id = B.ua_id
-    join vuelo_plan D on D.vp_asi_id = C.asi_id
-    join vuelo E on E.vu_id = D.vp_vu_id
-    join nodo F on F.no_vu_id = E.vu_id and F.no_modo = 'ORI'
-    join nodo G on G.no_vu_id = E.vu_id and G.no_modo = 'DES'
-    join aeropuerto H on H.ap_id = F.no_ap_id
-    join aeropuerto I on I.ap_id = G.no_ap_id
-    where E.vu_fecha.fecha_in >= to_date('01-01-2020','dd-mm-yyyy') and E.vu_fecha.fecha_in <= to_date('29-01-2020', 'dd-mm-yyyy') and
-    H.ap_locacion.pais = 'Camboya' and I.ap_locacion.pais = 'Hungria') BASE
-    join Aerolinea AL on AL.al_id = "id aero"
-    where rownum <= 5
-    ORDER BY "Cantidad de servicios" DESC;
-*/
+/
+create or replace procedure repo10(cur out sys_refcursor, lugar varchar, p_fecha_s varchar, p_fecha_r varchar)
+is 
+begin
+    open cur for
+    select ho.ho_foto "Foto del lugar", BASE.* FROM
+    (
+        select DISTINCT A.ho_id "id hotel", A.ho_locacion.ciudad "Nombre del lugar", p_fecha_s "Fecha de inicio", p_fecha_r "Fecha de fin", 
+            (
+                select count(rh.rh_id) "Cantidad de reservas" from reserva_hotel rh
+                where rh.rh_ha_id = C.ha_id and C.ha_th_id = B.th_id and A.ho_id = B.th_ho_id 
+                and rh.rh_fecha.fecha_in >= p_fecha_s and rh.rh_fecha.fecha_in <= p_fecha_r 
+            ) "Cantidad de reservas",
+            (
+                select avg(rh.puntuacion) "Puntuacion promedio" from reserva_hotel rh
+                where rh.rh_ha_id = C.ha_id and C.ha_th_id = B.th_id and A.ho_id = B.th_ho_id 
+                and rh.rh_fecha.fecha_in >= p_fecha_s and rh.rh_fecha.fecha_in <= p_fecha_r 
+            ) "Puntuacion promedio"
+        from hotel A
+        join tipo_habitacion B on B.th_ho_id = A.ho_id
+        join habitacion C on C.ha_th_id = B.th_id
+        where A.ho_nombre = lugar
+    ) BASE
+    join Hotel ho on ho.ho_id = "id hotel";
+end;
