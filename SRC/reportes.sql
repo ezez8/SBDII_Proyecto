@@ -93,3 +93,19 @@ begin
     and ua_al_id = al_id and vp_vu_id = vu_id and vu_id = no_vu_id and no_ap_id = ap_id
     and u_correo = p_u_correo and to_date(p_fecha_s,'dd-mm-yyyy') <= vu.vu_fecha.fecha_in and to_date(p_fecha_r,'dd-mm-yyyy') >= vu.vu_fecha.fecha_out;
 end;
+/
+create or replace procedure repo7(cur out sys_refcursor, p_fecha_s varchar, p_fecha_r varchar)
+is 
+begin
+    open cur for
+    select  p_fecha_s || ' - ' || p_fecha_r, D.ap_locacion.pais, E.ap_locacion.pais,
+    --Se selecciona el count de los vuelos
+        (select count(*) from vuelo_plan Z where Z.vp_vu_id = A.vu_id) as cantidad
+    from vuelo A 
+    join nodo B on B.no_vu_id = A.vu_id and B.no_modo = 'ORI'
+    join nodo C on C.no_vu_id = A.vu_id and C.no_modo = 'DES'
+    join aeropuerto D on D.ap_id = B.no_ap_id
+    join aeropuerto E on E.ap_id = C.no_ap_id
+    where A.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and A.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy')
+    order by cantidad desc;
+end;
