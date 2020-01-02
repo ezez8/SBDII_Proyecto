@@ -98,14 +98,14 @@ create or replace procedure repo7(cur out sys_refcursor, p_fecha_s varchar, p_fe
 is 
 begin
     open cur for
-    select  p_fecha_s || ' - ' || p_fecha_r, D.ap_locacion.pais, E.ap_locacion.pais,
+    select  p_fecha_s || ' - ' || p_fecha_r "fecha", D.ap_locacion.pais "Lugar de origen", E.ap_locacion.pais "Lugar de destino",
     --Se selecciona el count de los vuelos
-        (select count(*) from vuelo_plan Z where Z.vp_vu_id = A.vu_id) as cantidad
+        (select count(*) from vuelo_plan Z where Z.vp_vu_id = A.vu_id) "Cantidad de reservaciones"
     from vuelo A 
     join nodo B on B.no_vu_id = A.vu_id and B.no_modo = 'ORI'
     join nodo C on C.no_vu_id = A.vu_id and C.no_modo = 'DES'
     join aeropuerto D on D.ap_id = B.no_ap_id
     join aeropuerto E on E.ap_id = C.no_ap_id
     where A.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and A.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy')
-    order by cantidad desc;
+    order by "Cantidad de reservaciones" desc;
 end;
