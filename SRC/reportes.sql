@@ -169,3 +169,19 @@ begin
     ) BASE
     join Hotel ho on ho.ho_id = "id hotel";
 end;
+/
+create or replace procedure repo10(cur out sys_refcursor, p_fecha_s varchar, p_fecha_r varchar)
+is 
+begin
+    open cur for
+    (
+    select  A.vu_fecha.fecha_in "Fecha y hora de vuelo", D.ap_locacion.pais "Lugar de origen", E.ap_locacion.pais "Lugar de destino",
+        A.vu_fecha.fecha_in + 1/24 * A.vu_duracion "Hora estimada de llegada"
+    from vuelo A 
+    join nodo B on B.no_vu_id = A.vu_id and B.no_modo = 'ORI'
+    join nodo C on C.no_vu_id = A.vu_id and C.no_modo = 'DES'
+    join aeropuerto D on D.ap_id = B.no_ap_id
+    join aeropuerto E on E.ap_id = C.no_ap_id
+    where A.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and A.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy')
+    ) BASE;
+end;
