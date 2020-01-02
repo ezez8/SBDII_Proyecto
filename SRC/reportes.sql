@@ -109,3 +109,68 @@ begin
     where A.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and A.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy')
     order by "Cantidad de reservaciones" desc;
 end;
+/
+create or replace procedure repo8(cur out sys_refcursor, origen varchar, destino varchar, p_fecha_s varchar, p_fecha_r varchar)
+is 
+begin
+    open cur for
+    select AL.al_logo "Logo de aerolinea", BASE.* FROM
+    (select distinct A.al_id "id aero", p_fecha_s || ' - ' || p_fecha_r "fecha", H.ap_locacion.pais "Lugar de origen", I.ap_locacion.pais "Lugar de destino",
+        (select count(*) from (select distinct vu.vu_id from vuelo vu
+            join vuelo_plan vp on vp.vp_vu_id = vu.vu_id
+            join asiento asi on asi.asi_id = vp_asi_id
+            join unidad_avion ua on ua.ua_id = asi.asi_ua_id
+            join nodo noF on noF.no_vu_id = vu.vu_id and noF.no_modo = 'ORI'
+            join nodo noG on noG.no_vu_id = vu.vu_id and noG.no_modo = 'DES'
+            join aeropuerto aeH on aeH.ap_id = noF.no_ap_id
+            join aeropuerto aeI on aeI.ap_id = noG.no_ap_id
+            where ua.ua_al_id = 1 and 
+            vu.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and vu.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy') and
+            aeH.ap_locacion.pais = origen and aeI.ap_locacion.pais = destino
+        ) src) "Cantidad de servicios"
+    from aerolinea A
+    join unidad_avion B on B.ua_al_id = A.al_id
+    join asiento C on C.asi_ua_id = B.ua_id
+    join vuelo_plan D on D.vp_asi_id = C.asi_id
+    join vuelo E on E.vu_id = D.vp_vu_id
+    join nodo F on F.no_vu_id = E.vu_id and F.no_modo = 'ORI'
+    join nodo G on G.no_vu_id = E.vu_id and G.no_modo = 'DES'
+    join aeropuerto H on H.ap_id = F.no_ap_id
+    join aeropuerto I on I.ap_id = G.no_ap_id
+    where E.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and E.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy') and
+    H.ap_locacion.pais = origen and I.ap_locacion.pais = destino) BASE
+    join Aerolinea AL on AL.al_id = "id aero"
+    where rownum <= 5
+    ORDER BY "Cantidad de servicios" DESC;
+end;
+
+/*
+    select AL.al_logo, BASE.* FROM
+    (select distinct A.al_id "id aero", '01-01-2020' || ' - ' || '29-01-2020' "fecha", H.ap_locacion.pais "Lugar de origen", I.ap_locacion.pais "Lugar de destino",
+        (select count(*) from (select distinct vu.vu_id from vuelo vu
+            join vuelo_plan vp on vp.vp_vu_id = vu.vu_id
+            join asiento asi on asi.asi_id = vp_asi_id
+            join unidad_avion ua on ua.ua_id = asi.asi_ua_id
+            join nodo noF on noF.no_vu_id = vu.vu_id and noF.no_modo = 'ORI'
+            join nodo noG on noG.no_vu_id = vu.vu_id and noG.no_modo = 'DES'
+            join aeropuerto aeH on aeH.ap_id = noF.no_ap_id
+            join aeropuerto aeI on aeI.ap_id = noG.no_ap_id
+            where ua.ua_al_id = 1 and 
+            vu.vu_fecha.fecha_in >= to_date('01-01-2020','dd-mm-yyyy') and vu.vu_fecha.fecha_in <= to_date('29-01-2020', 'dd-mm-yyyy') and
+            aeH.ap_locacion.pais = 'Camboya' and aeI.ap_locacion.pais = 'Hungria'
+        ) src) "Cantidad de servicios"
+    from aerolinea A
+    join unidad_avion B on B.ua_al_id = A.al_id
+    join asiento C on C.asi_ua_id = B.ua_id
+    join vuelo_plan D on D.vp_asi_id = C.asi_id
+    join vuelo E on E.vu_id = D.vp_vu_id
+    join nodo F on F.no_vu_id = E.vu_id and F.no_modo = 'ORI'
+    join nodo G on G.no_vu_id = E.vu_id and G.no_modo = 'DES'
+    join aeropuerto H on H.ap_id = F.no_ap_id
+    join aeropuerto I on I.ap_id = G.no_ap_id
+    where E.vu_fecha.fecha_in >= to_date('01-01-2020','dd-mm-yyyy') and E.vu_fecha.fecha_in <= to_date('29-01-2020', 'dd-mm-yyyy') and
+    H.ap_locacion.pais = 'Camboya' and I.ap_locacion.pais = 'Hungria') BASE
+    join Aerolinea AL on AL.al_id = "id aero"
+    where rownum <= 5
+    ORDER BY "Cantidad de servicios" DESC;
+*/
