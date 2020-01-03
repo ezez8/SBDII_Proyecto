@@ -158,9 +158,9 @@ begin
                 and rh.rh_fecha.fecha_in >= p_fecha_s and rh.rh_fecha.fecha_in <= p_fecha_r 
             ) "Cantidad de reservas",
             (
-                select avg(rh.puntuacion) "Puntuacion promedio" from reserva_hotel rh
+                select coalesce(avg(rh.rh_puntuacion), 0) "Puntuacion promedio" from reserva_hotel rh
                 where rh.rh_ha_id = C.ha_id and C.ha_th_id = B.th_id and A.ho_id = B.th_ho_id 
-                and rh.rh_fecha.fecha_in >= p_fecha_s and rh.rh_fecha.fecha_in <= p_fecha_r 
+                and rh.rh_fecha.fecha_in >= p_fecha_s and rh.rh_fecha.fecha_in <= p_fecha_r and rh.rh_puntuacion is not null
             ) "Puntuacion promedio"
         from hotel A
         join tipo_habitacion B on B.th_ho_id = A.ho_id
