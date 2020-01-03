@@ -401,6 +401,15 @@ insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_prec
 insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(27, reg_ope(to_date('28-01-2020 01:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 505.00, 442.00, 354.00);
 insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(28, reg_ope(to_date('29-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('29-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 546.00, 467.00, 304.00);
 
+----
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(29, reg_ope(to_date('29-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('29-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 546.00, 467.00, 304.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(30, reg_ope(to_date('29-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('29-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 546.00, 467.00, 304.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(31, reg_ope(to_date('29-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('29-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 546.00, 467.00, 304.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(32, reg_ope(to_date('29-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('29-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 546.00, 467.00, 304.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(33, reg_ope(to_date('29-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('29-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 546.00, 467.00, 304.00);
+insert into vuelo(vu_id, vu_fecha, vu_duracion, vu_status, vu_precio_ej, vu_precio_cp, vu_precio_ee) values(34, reg_ope(to_date('29-01-2020 15:00:00','dd-mm-yyyy hh24:mi:ss'), to_date('29-01-2020 21:00:00','dd-mm-yyyy hh24:mi:ss')), 6 , reg_sta('ACT'), 546.00, 467.00, 304.00);
+
+
 ---------------------------------------NODO-------------------------------------
 insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(1 , 'ORI', reg_sta('ACT'), 1 , 1 );
 insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(2 , 'DES', reg_sta('ACT'), 2 , 1 );
@@ -459,6 +468,21 @@ insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(53, 'ORI'
 insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(54, 'DES', reg_sta('ACT'), 2 , 27);
 insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(55, 'ORI', reg_sta('ACT'), 2 , 28);
 insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(56, 'DES', reg_sta('ACT'), 1 , 28);
+
+---
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(57, 'ORI', reg_sta('ACT'), 2 , 29);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(58, 'DES', reg_sta('ACT'), 3 , 29);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(59, 'ORI', reg_sta('ACT'), 2 , 30);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(60, 'DES', reg_sta('ACT'), 3 , 30);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(61, 'ORI', reg_sta('ACT'), 2 , 31);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(62, 'DES', reg_sta('ACT'), 3 , 31);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(63, 'ORI', reg_sta('ACT'), 2 , 32);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(64, 'DES', reg_sta('ACT'), 3 , 32);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(65, 'ORI', reg_sta('ACT'), 2 , 33);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(66, 'DES', reg_sta('ACT'), 3 , 33);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(67, 'ORI', reg_sta('ACT'), 2 , 34);
+insert into nodo(no_id, no_modo, no_status, no_ap_id, no_vu_id) values(68, 'DES', reg_sta('ACT'), 3 , 34);
+
 
 ----------------------------------------------------------------------------
 ---------------------------------------PAGO---------------------------------
@@ -616,6 +640,13 @@ insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, 
 insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(38, 'NOR', 'IYV', reg_sta('ACT'), 3 , 6059 , 27);
 insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(39, 'NOR', 'IYV', reg_sta('ACT'), 3 , 210  , 2 );
 insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(40, 'NOR', 'IYV', reg_sta('ACT'), 3 , 6060 , 27);
+--
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(41, 'NOR', 'IYV', reg_sta('ACT'), 3 , 11 , 29);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(42, 'NOR', 'IYV', reg_sta('ACT'), 3 , 6061 , 30);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(43, 'NOR', 'IYV', reg_sta('ACT'), 3 , 261 , 31);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(44, 'NOR', 'IYV', reg_sta('ACT'), 3 , 4061 , 32);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(45, 'NOR', 'IYV', reg_sta('ACT'), 3 , 3061 , 33);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(46, 'NOR', 'IYV', reg_sta('ACT'), 3 , 1061 , 34);
 
 ---------------------------------------ALQUILER_AUTO------------------------
 insert into alquiler_auto(aa_id, aa_dir_recogida, aa_dir_devolucion, aa_fecha, aa_precio_total, aa_status, aa_pv_id, aa_au_id) values(1 , 'dir_recogida', 'dir_devolucion', reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 200, reg_sta('ACT'), 1 , 1 );
@@ -637,23 +668,23 @@ insert into alquiler_auto(aa_id, aa_dir_recogida, aa_dir_devolucion, aa_fecha, a
 insert into alquiler_auto(aa_id, aa_dir_recogida, aa_dir_devolucion, aa_fecha, aa_precio_total, aa_status, aa_pv_id, aa_au_id) values(15, 'dir_recogida', 'dir_devolucion', reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 200, reg_sta('ACT'), 3 , 15);
 
 ---------------------------------------RESERVA_HOTEL------------------------
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(1 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 1, 1 );
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(2 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 1, 2 );
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(3 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 1, 3 );
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(4 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 1, 4 );
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(5 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 1, 5 );
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(1 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 1, 1 ,1 );
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(2 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 1, 2 ,5 );
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(3 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 1, 3 ,6 );
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(4 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 1, 4 ,7 );
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(5 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 1, 5 ,2 );
 
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(6 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 2, 6 );
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(7 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 2, 7 );
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(8 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 2, 8 );
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(9 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 2, 9 );
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(10, reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 2, 10);
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(6 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 2, 6 ,10);
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(7 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 2, 7 ,9 );
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(8 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 2, 8 ,8 );
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(9 , reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 2, 9 ,6 );
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(10, reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 2, 10,5 );
 
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(11, reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 3, 11);
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(12, reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 3, 12);
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(13, reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 3, 13);
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(14, reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 3, 14);
-insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id) values(15, reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 3, 15);
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(11, reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 3, 11,6 );
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(12, reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 3, 12,7 );
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(13, reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 3, 13,8 );
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(14, reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 3, 14,2 );
+insert into reserva_hotel(rh_id, rh_fecha, rh_precio_total, rh_status, rh_pv_id, rh_ha_id, rh_puntuacion) values(15, reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 300, reg_sta('ACT'), 3, 15,1 );
 
 ---------------------------------------REPORTE_PAGO------------------------
 insert into reporte_pago(rp_id, rp_monto, rp_pv_id, rp_fp_id, rp_tarj_num) values(1 , 1000, 1 , 1, '1020');

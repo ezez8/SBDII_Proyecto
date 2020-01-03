@@ -151,16 +151,16 @@ begin
     open cur for
     select ho.ho_foto "Foto del lugar", BASE.* FROM
     (
-        select DISTINCT A.ho_id "id hotel", A.ho_locacion.ciudad "Nombre del lugar", p_fecha_s "Fecha de inicio", p_fecha_r "Fecha de fin", 
+        select DISTINCT A.ho_id "id hotel", A.ho_locacion.ciudad "Nombre del lugar", to_date(p_fecha_s,'dd-mm-yyyy') "Fecha de inicio", to_date(p_fecha_r,'dd-mm-yyyy') "Fecha de fin", 
             (
                 select count(rh.rh_id) "Cantidad de reservas" from reserva_hotel rh
                 where rh.rh_ha_id = C.ha_id and C.ha_th_id = B.th_id and A.ho_id = B.th_ho_id 
-                and rh.rh_fecha.fecha_in >= p_fecha_s and rh.rh_fecha.fecha_in <= p_fecha_r 
+                and rh.rh_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and rh.rh_fecha.fecha_in <= to_date(p_fecha_r,'dd-mm-yyyy') 
             ) "Cantidad de reservas",
             (
-                select avg(rh.puntuacion) "Puntuacion promedio" from reserva_hotel rh
+                select avg(rh.rh_puntuacion) "Puntuacion promedio" from reserva_hotel rh
                 where rh.rh_ha_id = C.ha_id and C.ha_th_id = B.th_id and A.ho_id = B.th_ho_id 
-                and rh.rh_fecha.fecha_in >= p_fecha_s and rh.rh_fecha.fecha_in <= p_fecha_r 
+                and rh.rh_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and rh.rh_fecha.fecha_in <= to_date(p_fecha_r,'dd-mm-yyyy') 
             ) "Puntuacion promedio"
         from hotel A
         join tipo_habitacion B on B.th_ho_id = A.ho_id
