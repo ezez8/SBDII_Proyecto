@@ -154,17 +154,19 @@ begin
         select DISTINCT A.ho_id "id hotel", A.ho_locacion.ciudad "Nombre del lugar", to_date(p_fecha_s,'dd-mm-yyyy') "Fecha de inicio", to_date(p_fecha_r,'dd-mm-yyyy') "Fecha de fin", 
             (
                 select count(rh.rh_id) "Cantidad de reservas" from reserva_hotel rh
+                join tipo_habitacion B on B.th_ho_id = A.ho_id
+                join habitacion C on C.ha_th_id = B.th_id
                 where rh.rh_ha_id = C.ha_id and C.ha_th_id = B.th_id and A.ho_id = B.th_ho_id 
                 and rh.rh_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and rh.rh_fecha.fecha_in <= to_date(p_fecha_r,'dd-mm-yyyy') 
             ) "Cantidad de reservas",
             (
                 select coalesce(avg(rh.rh_puntuacion), 0) "Puntuacion promedio" from reserva_hotel rh
+                join tipo_habitacion B on B.th_ho_id = A.ho_id
+                join habitacion C on C.ha_th_id = B.th_id
                 where rh.rh_ha_id = C.ha_id and C.ha_th_id = B.th_id and A.ho_id = B.th_ho_id 
                 and rh.rh_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and rh.rh_fecha.fecha_in <= to_date(p_fecha_r,'dd-mm-yyyy') and rh.rh_puntuacion is not null
             ) "Puntuacion promedio"
         from hotel A
-        join tipo_habitacion B on B.th_ho_id = A.ho_id
-        join habitacion C on C.ha_th_id = B.th_id
         where A.ho_nombre = lugar
     ) BASE
     join Hotel ho on ho.ho_id = "id hotel";
