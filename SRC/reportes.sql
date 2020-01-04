@@ -172,6 +172,13 @@ begin
     join Hotel ho on ho.ho_id = "id hotel";
 end;
 /
+create or replace procedure repo11(cur out sys_refcursor, p_fecha_s varchar, p_fecha_r varchar)
+is 
+begin
+    open cur for
+    
+end;
+/
 create or replace procedure repo12(cur out sys_refcursor, p_fecha_s varchar, p_fecha_r varchar)
 is 
 begin
@@ -192,3 +199,57 @@ begin
     join unidad_avion ua on ua.ua_id = asi.asi_ua_id
     join aerolinea AL on Al.al_id = ua.ua_al_id;
 end;
+/
+create or replace procedure repo13(cur out sys_refcursor, p_fecha_s varchar, p_fecha_r varchar)
+is 
+begin
+    open cur for
+    select ase.ase_logo, BASE.* FROM
+    (
+        select distinct A.ase_id "id aseguradora", p_fecha_s || ' - ' || p_fecha_r "Fecha (dese - hasta)",
+        I.ap_locacion.pais "Lugar de destino",
+        J.ap_locacion.pais "Lugar de origen",
+        (
+            select count(co.co_id) from contrato co
+            where co.co_pv_id = C.pv_id
+        ) "Cantidad de servicios"
+        from aseguradora A
+        join seguro D on D.se_ase_id = A.ase_id
+        join Contrato B on B.co_se_id = D.se_id
+        join Plan_Viaje C on C.pv_id = B.co_pv_id
+        join vuelo_plan E on E.vp_pv_id = C.pv_id
+        join vuelo F on F.vu_id = E.vp_vu_id
+        join nodo G on G.no_vu_id = F.vu_id and G.no_modo = 'ORI'
+        join nodo H on H.no_vu_id = F.vu_id and H.no_modo = 'DES'
+        join aeropuerto I on I.ap_id = G.no_ap_id
+        join aeropuerto J on J.ap_id = H.no_ap_id
+        where F.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and F.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy')
+    ) BASE
+    join aseguradora ase on ase.ase_id = "id aseguradora";
+end;
+
+/*
+    select ase.ase_logo, BASE.* FROM
+    (
+        select distinct A.ase_id "id aseguradora", '01-01-2020' || ' - ' || '29-01-2020' "Fecha (desde - hasta)",
+        (
+            select count(co.co_id) FROM contrato co
+            where co.co_pv_id = C.pv_id
+        ) 
+        "Cantidad de servicios",
+        I.ap_locacion.pais "Lugar de destino",
+        J.ap_locacion.pais "Lugar de origen"
+        FROM aseguradora A
+        join seguro D on D.se_ase_id = A.ase_id
+        join Contrato B on B.co_se_id = D.se_id
+        join Plan_Viaje C on C.pv_id = B.co_pv_id
+        join vuelo_plan E on E.vp_pv_id = C.pv_id
+        join vuelo F on F.vu_id = E.vp_vu_id
+        join nodo G on G.no_vu_id = F.vu_id and G.no_modo = 'ORI'
+        join nodo H on H.no_vu_id = F.vu_id and H.no_modo = 'DES'
+        join aeropuerto I on I.ap_id = G.no_ap_id
+        join aeropuerto J on J.ap_id = H.no_ap_id
+        where F.vu_fecha.fecha_in >= to_date('01-01-2020','dd-mm-yyyy') and F.vu_fecha.fecha_in <= to_date('29-01-2020', 'dd-mm-yyyy')
+    ) BASE
+    join aseguradora ase on ase.ase_id = "id aseguradora";
+*/
