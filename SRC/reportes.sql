@@ -145,6 +145,30 @@ begin
     ORDER BY "Cantidad de servicios" DESC;
 end;
 /
+create or replace procedure repo9(cur out sys_refcursor, p_fecha_s varchar, p_fecha_r varchar, correo varchar)
+is 
+begin
+    open cur for
+    select ho.ho_foto "Foto del automovil", BASE.* from
+    (
+        select distinct A.ho_id "id hotel", A.ho_nombre "Marca-Modelo Automovil",
+        G.u_correo "Correo de usuario",
+        D.rh_fecha.fecha_in "Fecha y hora de inicio",
+        D.rh_fecha.fecha_out "Fecha y hora de fin",
+        B.au_precio || 'USD/dia'"Precio por dia",
+        D.aa_precio_total || 'USD' "Precio total"
+        FROM modelo_auto A
+        join automovil B on B.au_mau_id = A.mau_id
+        join alquiler_sp C on C.asp_id = B.au_asp_id
+        join alquiler_auto D on D.aa_au_id = B.au_id
+        join plan_viaje E on E.pv_id = D.aa_pv_id
+        join plan_usuario F on F.pu_pv_id = E.pv_id
+        join Usuario G on G.u_id = F.pu_u_id and G.u_correo = correo
+        where D.aa_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and D.aa_fecha.fecha_in <= to_date(p_fecha_r,'dd-mm-yyyy')
+    ) BASE
+    join hotel ho on ho.ho_id = "id hotel";
+end;
+/
 create or replace procedure repo10(cur out sys_refcursor, lugar varchar, p_fecha_s varchar, p_fecha_r varchar)
 is 
 begin
@@ -172,11 +196,29 @@ begin
     join Hotel ho on ho.ho_id = "id hotel";
 end;
 /
-create or replace procedure repo11(cur out sys_refcursor, p_fecha_s varchar, p_fecha_r varchar)
+create or replace procedure repo11(cur out sys_refcursor, p_fecha_s varchar, p_fecha_r varchar, correo varchar)
 is 
 begin
     open cur for
-    
+    select mau.mau_foto "Foto del automovil", BASE.* from
+    (
+        select distinct A.mau_id "id modelo", A.mau_nombre "Marca-Modelo Automovil", C.asp_logo "Proveedor de servicio",
+        G.u_correo "Correo de usuario", D.aa_dir_recogida "Direccion de recogida",
+        D.aa_dir_devolucion "Direccion de devolucion",
+        D.aa_fecha.fecha_in "Fecha y hora de inicio",
+        D.aa_fecha.fecha_out "Fecha y hora de fin",
+        B.au_precio || 'USD/dia'"Precio por dia",
+        D.aa_precio_total || 'USD' "Precio total"
+        FROM modelo_auto A
+        join automovil B on B.au_mau_id = A.mau_id
+        join alquiler_sp C on C.asp_id = B.au_asp_id
+        join alquiler_auto D on D.aa_au_id = B.au_id
+        join plan_viaje E on E.pv_id = D.aa_pv_id
+        join plan_usuario F on F.pu_pv_id = E.pv_id
+        join Usuario G on G.u_id = F.pu_u_id and G.u_correo = correo
+        where D.aa_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and D.aa_fecha.fecha_in <= to_date(p_fecha_r,'dd-mm-yyyy')
+    ) BASE
+    join modelo_auto mau on mau.mau_id = "id modelo";
 end;
 /
 create or replace procedure repo12(cur out sys_refcursor, p_fecha_s varchar, p_fecha_r varchar)
