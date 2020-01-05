@@ -153,8 +153,11 @@ begin
     (
         select distinct A.ho_id "id hotel", A.ho_nombre "Marca-Modelo Automovil",
         G.u_correo "Correo de usuario",
-        D.rh_fecha.fecha_in "Fecha y hora de inicio",
-        D.rh_fecha.fecha_out "Fecha y hora de fin",
+        D.rh_fecha.fecha_in "Fecha de entrada",
+        D.rh_fecha.fecha_out "Fecha de salida",
+        B.th_huespedes "Huespedes",
+        B.th_des "Descripcion",
+        A.ho_locacion.direccion "Direccion Exacta",
         B.th_precio || 'USD/dia'"Precio por dia",
         D.rh_precio_total || 'USD' "Precio total"
         FROM hotel A
