@@ -123,12 +123,7 @@ begin
             join unidad_avion ua on ua.ua_id = asi.asi_ua_id
             join nodo noF on noF.no_vu_id = vu.vu_id and noF.no_modo = 'ORI'
             join nodo noG on noG.no_vu_id = vu.vu_id and noG.no_modo = 'DES'
-    join vuelo E on E.vu_id = D.vp_vu_id
-    join nodo F on F.no_vu_id = E.vu_id and F.no_modo = 'ORI'
-    join nodo G on G.no_vu_id = E.vu_id and G.no_modo = 'DES'
-    join aeropuerto H on H.ap_id = F.no_ap_id
-    join aeropuerto I on I.ap_id = G.no_ap_id
-    wh            join aeropuerto aeH on aeH.ap_id = noF.no_ap_id
+            join aeropuerto aeH on aeH.ap_id = noF.no_ap_id
             join aeropuerto aeI on aeI.ap_id = noG.no_ap_id
             where ua.ua_al_id = 1 and 
             vu.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and vu.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy') and
@@ -138,7 +133,12 @@ begin
     join unidad_avion B on B.ua_al_id = A.al_id
     join asiento C on C.asi_ua_id = B.ua_id
     join vuelo_plan D on D.vp_asi_id = C.asi_id
-ere E.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and E.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy') and
+    join vuelo E on E.vu_id = D.vp_vu_id
+    join nodo F on F.no_vu_id = E.vu_id and F.no_modo = 'ORI'
+    join nodo G on G.no_vu_id = E.vu_id and G.no_modo = 'DES'
+    join aeropuerto H on H.ap_id = F.no_ap_id
+    join aeropuerto I on I.ap_id = G.no_ap_id
+    where E.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and E.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy') and
     H.ap_locacion.pais = origen and I.ap_locacion.pais = destino) BASE
     join Aerolinea AL on AL.al_id = "id aero"
     where rownum <= 5
