@@ -98,7 +98,7 @@ create or replace procedure repo7(cur out sys_refcursor, p_fecha_s varchar, p_fe
 is 
 begin
     open cur for
-    select  p_fecha_s || ' - ' || p_fecha_r "fecha", D.ap_locacion.pais "Lugar de origen", E.ap_locacion.pais "Lugar de destino",
+    select  distinct p_fecha_s || ' - ' || p_fecha_r "fecha", D.ap_locacion.pais "Lugar de origen", E.ap_locacion.pais "Lugar de destino",
     --Se selecciona el count de los vuelos
         (select count(*) from vuelo_plan Z where Z.vp_vu_id = A.vu_id) "Cantidad de reservaciones"
     from vuelo A 
@@ -123,7 +123,12 @@ begin
             join unidad_avion ua on ua.ua_id = asi.asi_ua_id
             join nodo noF on noF.no_vu_id = vu.vu_id and noF.no_modo = 'ORI'
             join nodo noG on noG.no_vu_id = vu.vu_id and noG.no_modo = 'DES'
-            join aeropuerto aeH on aeH.ap_id = noF.no_ap_id
+    join vuelo E on E.vu_id = D.vp_vu_id
+    join nodo F on F.no_vu_id = E.vu_id and F.no_modo = 'ORI'
+    join nodo G on G.no_vu_id = E.vu_id and G.no_modo = 'DES'
+    join aeropuerto H on H.ap_id = F.no_ap_id
+    join aeropuerto I on I.ap_id = G.no_ap_id
+    wh            join aeropuerto aeH on aeH.ap_id = noF.no_ap_id
             join aeropuerto aeI on aeI.ap_id = noG.no_ap_id
             where ua.ua_al_id = 1 and 
             vu.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and vu.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy') and
@@ -133,12 +138,7 @@ begin
     join unidad_avion B on B.ua_al_id = A.al_id
     join asiento C on C.asi_ua_id = B.ua_id
     join vuelo_plan D on D.vp_asi_id = C.asi_id
-    join vuelo E on E.vu_id = D.vp_vu_id
-    join nodo F on F.no_vu_id = E.vu_id and F.no_modo = 'ORI'
-    join nodo G on G.no_vu_id = E.vu_id and G.no_modo = 'DES'
-    join aeropuerto H on H.ap_id = F.no_ap_id
-    join aeropuerto I on I.ap_id = G.no_ap_id
-    where E.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and E.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy') and
+ere E.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and E.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy') and
     H.ap_locacion.pais = origen and I.ap_locacion.pais = destino) BASE
     join Aerolinea AL on AL.al_id = "id aero"
     where rownum <= 5
@@ -149,22 +149,22 @@ create or replace procedure repo9(cur out sys_refcursor, p_fecha_s varchar, p_fe
 is 
 begin
     open cur for
-    select ho.ho_foto "Foto del automovil", BASE.* from
+    select ho.ho_foto "Foto del lugar", BASE.* from
     (
         select distinct A.ho_id "id hotel", A.ho_nombre "Marca-Modelo Automovil",
         G.u_correo "Correo de usuario",
         D.rh_fecha.fecha_in "Fecha y hora de inicio",
         D.rh_fecha.fecha_out "Fecha y hora de fin",
-        B.au_precio || 'USD/dia'"Precio por dia",
-        D.aa_precio_total || 'USD' "Precio total"
-        FROM modelo_auto A
-        join automovil B on B.au_mau_id = A.mau_id
-        join alquiler_sp C on C.asp_id = B.au_asp_id
-        join alquiler_auto D on D.aa_au_id = B.au_id
-        join plan_viaje E on E.pv_id = D.aa_pv_id
+        B.th_precio || 'USD/dia'"Precio por dia",
+        D.rh_precio_total || 'USD' "Precio total"
+        FROM hotel A
+        join tipo_habitacion B on B.th_ho_id = A.ho_id
+        join habitacion C on C.ha_th_id = B.th_id
+        join reserva_hotel D on D.rh_ha_id = C.ha_id
+        join plan_viaje E on E.pv_id = D.rh_pv_id
         join plan_usuario F on F.pu_pv_id = E.pv_id
         join Usuario G on G.u_id = F.pu_u_id and G.u_correo = correo
-        where D.aa_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and D.aa_fecha.fecha_in <= to_date(p_fecha_r,'dd-mm-yyyy')
+        where D.rh_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and D.rh_fecha.fecha_in <= to_date(p_fecha_r,'dd-mm-yyyy')
     ) BASE
     join hotel ho on ho.ho_id = "id hotel";
 end;
@@ -178,19 +178,17 @@ begin
         select DISTINCT A.ho_id "id hotel", A.ho_locacion.ciudad "Nombre del lugar", to_date(p_fecha_s,'dd-mm-yyyy') "Fecha de inicio", to_date(p_fecha_r,'dd-mm-yyyy') "Fecha de fin", 
             (
                 select count(rh.rh_id) "Cantidad de reservas" from reserva_hotel rh
-                join tipo_habitacion B on B.th_ho_id = A.ho_id
-                join habitacion C on C.ha_th_id = B.th_id
                 where rh.rh_ha_id = C.ha_id and C.ha_th_id = B.th_id and A.ho_id = B.th_ho_id 
                 and rh.rh_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and rh.rh_fecha.fecha_in <= to_date(p_fecha_r,'dd-mm-yyyy') 
             ) "Cantidad de reservas",
             (
                 select coalesce(avg(rh.rh_puntuacion), 0) "Puntuacion promedio" from reserva_hotel rh
-                join tipo_habitacion B on B.th_ho_id = A.ho_id
-                join habitacion C on C.ha_th_id = B.th_id
                 where rh.rh_ha_id = C.ha_id and C.ha_th_id = B.th_id and A.ho_id = B.th_ho_id 
                 and rh.rh_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and rh.rh_fecha.fecha_in <= to_date(p_fecha_r,'dd-mm-yyyy') and rh.rh_puntuacion is not null
             ) "Puntuacion promedio"
         from hotel A
+        join tipo_habitacion B on B.th_ho_id = A.ho_id
+        join habitacion C on C.ha_th_id = B.th_id
         where A.ho_nombre = lugar
     ) BASE
     join Hotel ho on ho.ho_id = "id hotel";
@@ -221,7 +219,7 @@ begin
     join modelo_auto mau on mau.mau_id = "id modelo";
 end;
 /
-create or replace procedure repo12(cur out sys_refcursor, p_fecha_s varchar, p_fecha_r varchar)
+create or replace procedure repo12(cur out sys_refcursor, p_fecha_s varchar)
 is 
 begin
     open cur for
@@ -234,7 +232,7 @@ begin
         join nodo C on C.no_vu_id = A.vu_id and C.no_modo = 'DES'
         join aeropuerto D on D.ap_id = B.no_ap_id
         join aeropuerto E on E.ap_id = C.no_ap_id
-        where A.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and A.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy')
+        where A.vu_fecha.fecha_in = to_date(p_fecha_s,'dd-mm-yyyy')
     ) BASE
     join vuelo_plan vp on vp.vp_vu_id = "id vuelo"
     join asiento asi on asi.asi_id = vp_asi_id
