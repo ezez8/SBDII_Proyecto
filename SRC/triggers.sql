@@ -240,7 +240,7 @@ begin
     V_blob BLOB;
     V_bfile BFILE;
     BEGIN 
-        INSERT INTO hotel(ho_id, ho_nombre, ho_puntuacion, ho_locacion, ho_foto) VALUES (:new.ho_id, :new.ho_nombre, :new.ho_puntuacion, :new.ho_locacion, empty_blob()) RETURNING ho_foto INTO V_blob;
+        INSERT INTO hotel(ho_id, ho_nombre, ho_puntuacion, ho_locacion, ho_des, ho_foto) VALUES (:new.ho_id, :new.ho_nombre, :new.ho_puntuacion, :new.ho_locacion, :new.ho_des, empty_blob()) RETURNING ho_foto INTO V_blob;
         V_bfile := BFILENAME('IMGS_HO', :new.ho_nombre||'.jpg');
         DBMS_LOB.OPEN(V_bfile, DBMS_LOB.LOB_READONLY);
         DBMS_LOB.LOADFROMFILE(V_blob, V_bfile, SYS.DBMS_LOB.GETLENGTH(V_bfile));

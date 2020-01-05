@@ -5,7 +5,7 @@ create or replace view vi_mau as
     select mau_id, mau_nombre, mau_pasajeros, mau_m_id from modelo_auto;
 
 create or replace view vi_ho as
-    select ho_id, ho_nombre, ho_puntuacion, ho_locacion from hotel;
+    select ho_id, ho_nombre, ho_puntuacion, ho_locacion, ho_des from hotel;
 
 create or replace view vi_al as
     select al_id, al_nombre, al_tipo from aerolinea;
