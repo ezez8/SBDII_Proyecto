@@ -182,7 +182,7 @@ begin
     open cur for
     select ho.ho_foto "Foto del lugar", BASE.* FROM
     (
-        select DISTINCT A.ho_id "id hotel", A.ho_locacion.ciudad "Nombre del lugar", to_date(p_fecha_s,'dd-mm-yyyy') "Fecha de inicio", to_date(p_fecha_r,'dd-mm-yyyy') "Fecha de fin", 
+        select DISTINCT A.ho_id "id hotel", A.ho_nombre "Nombre del lugar", to_date(p_fecha_s,'dd-mm-yyyy') "Fecha de inicio", to_date(p_fecha_r,'dd-mm-yyyy') "Fecha de fin", 
             (
                 select count(rh.rh_id) "Cantidad de reservas" from reserva_hotel rh
                 where rh.rh_ha_id = C.ha_id and C.ha_th_id = B.th_id and A.ho_id = B.th_ho_id 
