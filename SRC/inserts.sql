@@ -648,6 +648,13 @@ insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, 
 insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(45, 'NOR', 'IYV', reg_sta('ACT'), 3 , 3061 , 33);
 insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(46, 'NOR', 'IYV', reg_sta('ACT'), 3 , 1061 , 34);
 
+--
+
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(47, 'NOR', 'IYV', reg_sta('ACT'), 4 , 1062 , 3);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(48, 'NOR', 'IYV', reg_sta('ACT'), 5 , 1063 , 4);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(49, 'NOR', 'IYV', reg_sta('ACT'), 6 , 1064 , 5);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(50, 'NOR', 'IYV', reg_sta('ACT'), 7 , 1065 , 6);
+insert into vuelo_plan(vp_id, vp_tipo, vp_modo, vp_status, vp_pv_id, vp_asi_id, vp_vu_id) values(51, 'NOR', 'IYV', reg_sta('ACT'), 8 , 1066 , 7);
 ---------------------------------------ALQUILER_AUTO------------------------
 insert into alquiler_auto(aa_id, aa_dir_recogida, aa_dir_devolucion, aa_fecha, aa_precio_total, aa_status, aa_pv_id, aa_au_id) values(1 , 'dir_recogida', 'dir_devolucion', reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 200, reg_sta('ACT'), 1 , 1 );
 insert into alquiler_auto(aa_id, aa_dir_recogida, aa_dir_devolucion, aa_fecha, aa_precio_total, aa_status, aa_pv_id, aa_au_id) values(2 , 'dir_recogida', 'dir_devolucion', reg_ope(to_date('02-01-2020 14:00:00','dd-mm-yyyy hh24:mi:ss'),to_date('28-01-2020 07:00:00','dd-mm-yyyy hh24:mi:ss')), 200, reg_sta('ACT'), 1 , 2 );
