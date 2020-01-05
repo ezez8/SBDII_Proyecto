@@ -158,7 +158,11 @@ begin
         B.th_huespedes "Huespedes",
         B.th_des "Descripcion",
         A.ho_locacion.direccion "Direccion Exacta",
-        B.th_precio || 'USD/dia'"Precio por dia",
+        (
+                select coalesce(avg(rh.rh_puntuacion), 0) "Puntuacion promedio" from reserva_hotel rh
+                where rh.rh_ha_id = C.ha_id and C.ha_th_id = B.th_id and A.ho_id = B.th_ho_id 
+                and rh.rh_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and rh.rh_fecha.fecha_in <= to_date(p_fecha_r,'dd-mm-yyyy') and rh.rh_puntuacion is not null
+        ) "Puntuacion promedio",
         D.rh_precio_total || 'USD' "Precio total"
         FROM hotel A
         join tipo_habitacion B on B.th_ho_id = A.ho_id
