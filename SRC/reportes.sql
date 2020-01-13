@@ -207,7 +207,7 @@ begin
     open cur for
     select mau.mau_foto "Foto del automovil", asp.asp_logo "Proveedor de servicio", BASE.* from
     (
-        select distinct A.mau_id "id modelo", A.mau_nombre "Marca-Modelo Automovil",
+        select distinct A.mau_id "id modelo", A.mau_nombre || ' ' ||  L.m_nombre "Marca-Modelo Automovil",
         G.u_correo "Correo de usuario", D.aa_dir_recogida "Direccion de recogida",
         D.aa_dir_devolucion "Direccion de devolucion",
         D.aa_fecha.fecha_in "Fecha y hora de inicio",
@@ -221,6 +221,7 @@ begin
         join plan_viaje E on E.pv_id = D.aa_pv_id
         join plan_usuario F on F.pu_pv_id = E.pv_id
         join Usuario G on G.u_id = F.pu_u_id and G.u_correo = correo
+        join Marca L on L.m_id = A.mau_m_id
         where D.aa_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and D.aa_fecha.fecha_in <= to_date(p_fecha_r,'dd-mm-yyyy')
     ) BASE
     join modelo_auto mau on mau.mau_id = "id modelo"
@@ -229,19 +230,23 @@ begin
 end;
 /
 create or replace procedure repo12(cur out sys_refcursor, p_fecha_s varchar)
-is 
+is
+    margen_fecha_o varchar(50);
+    margen_fecha_s varchar(50);
 begin
+    margen_fecha_o:= p_fecha_s || ' 00:00';
+    margen_fecha_s:= p_fecha_s || ' 23:59';
     open cur for
     select AL.al_logo, BASE.* from
     (
         select  DISTINCT A.vu_id "id vuelo", A.vu_fecha.fecha_in "Fecha y hora de vuelo", D.ap_locacion.pais "Lugar de origen", E.ap_locacion.pais "Lugar de destino",
-            A.vu_fecha.fecha_in + 1/24 * A.vu_duracion "Hora estimada de llegada"
+            A.vu_fecha.fecha_in + 1/24 * A.vu_duracion "Hora estimada de llegada", A.vu_status.status "Status de vuelo"
         from vuelo A 
         join nodo B on B.no_vu_id = A.vu_id and B.no_modo = 'ORI'
         join nodo C on C.no_vu_id = A.vu_id and C.no_modo = 'DES'
         join aeropuerto D on D.ap_id = B.no_ap_id
         join aeropuerto E on E.ap_id = C.no_ap_id
-        where A.vu_fecha.fecha_in = to_date(p_fecha_s,'dd-mm-yyyy')
+        where A.vu_fecha.fecha_in <= to_date(margen_fecha_s,'dd-mm-yyyy hh:mm') AND A.vu_fecha.fecha_in >= to_date(margen_fecha_o,'dd-mm-yyyy hh:mm')
     ) BASE
     join vuelo_plan vp on vp.vp_vu_id = "id vuelo"
     join asiento asi on asi.asi_id = vp_asi_id
