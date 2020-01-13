@@ -107,7 +107,7 @@ begin
     join aeropuerto D on D.ap_id = B.no_ap_id
     join aeropuerto E on E.ap_id = C.no_ap_id
     where A.vu_fecha.fecha_in >= to_date(p_fecha_s,'dd-mm-yyyy') and A.vu_fecha.fecha_in <= to_date(p_fecha_r, 'dd-mm-yyyy')
-    and rownum <= 10
+    and rownum <= 15
     order by "Cantidad de reservaciones" desc;
 end;
 /
