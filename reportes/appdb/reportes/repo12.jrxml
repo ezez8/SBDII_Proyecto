@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repo12" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9a3491d6-3508-41e7-a46e-170c7545be10">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC Adapter "/>
+	<parameter name="p_fecha_s" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{call repo12($P{ORACLE_REF_CURSOR},$P{p_fecha_s})}]]>
+	</queryString>
+	<field name="AL_LOGO" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="AL_LOGO"/>
+	</field>
+	<field name="id vuelo" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="id vuelo"/>
+	</field>
+	<field name="Fecha y hora de vuelo" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="Fecha y hora de vuelo"/>
+	</field>
+	<field name="Lugar de origen" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Lugar de origen"/>
+	</field>
+	<field name="Lugar de destino" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Lugar de destino"/>
+	</field>
+	<field name="Hora estimada de llegada" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="Hora estimada de llegada"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="190" y="24" width="200" height="30" uuid="52bada01-826b-45ba-a59e-6ca0d63fbf4f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte 12]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="30" uuid="f91d1842-08c2-4d6c-8509-ff7604d1e9f9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0b4235c6-f2d7-4a74-9047-fd42b5c09117"/>
+				</reportElement>
+				<text><![CDATA[Fecha y hora de vuelo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="100" height="30" uuid="e0245c4b-356a-4554-be6d-d3dc97429cfc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9e13ba12-fede-4115-92c1-cbdcaf07a7df"/>
+				</reportElement>
+				<text><![CDATA[Lugar de origen]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="100" height="30" uuid="5aaecf3a-ab9a-48b7-8f81-aa93d6d761e4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c863879f-a972-486c-b73f-a66e200fb229"/>
+				</reportElement>
+				<text><![CDATA[Lugar de destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="100" height="30" uuid="36837fcc-2985-465e-8318-3fa6d03be998">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c863879f-a972-486c-b73f-a66e200fb229"/>
+				</reportElement>
+				<text><![CDATA[Lugar de destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="70" height="30" uuid="5588020c-dd8a-490a-80e9-d8d650909056">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3145ba7c-9f86-499d-a917-0185b45a3d6e"/>
+				</reportElement>
+				<text><![CDATA[Hora estimada de llegada]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="80" height="30" uuid="2ea3470b-2360-47dc-ab56-325c46872700">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0b4235c6-f2d7-4a74-9047-fd42b5c09117"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Fecha y hora de vuelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="100" height="30" uuid="5e912860-3dcf-4bb3-80e0-76efb0bd2ef7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9e13ba12-fede-4115-92c1-cbdcaf07a7df"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Lugar de origen}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="100" height="30" uuid="5125f936-b277-444d-9f94-0eb772acc083">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c863879f-a972-486c-b73f-a66e200fb229"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Lugar de destino}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement x="280" y="0" width="100" height="50" uuid="eab44bdd-0728-4118-a7c1-418a94fdfcfb"/>
+				<imageExpression><![CDATA[$F{AL_LOGO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="480" y="0" width="70" height="30" uuid="f9e4640f-ddad-4bbb-bcea-c389d93370d0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3145ba7c-9f86-499d-a917-0185b45a3d6e"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Hora estimada de llegada}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
