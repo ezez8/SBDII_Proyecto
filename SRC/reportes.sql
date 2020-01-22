@@ -231,22 +231,18 @@ end;
 /
 create or replace procedure repo12(cur out sys_refcursor, p_fecha_s varchar)
 is
-    margen_fecha_o varchar(50);
-    margen_fecha_s varchar(50);
 begin
-    margen_fecha_o:= p_fecha_s || ' 00:00';
-    margen_fecha_s:= p_fecha_s || ' 23:59';
     open cur for
     select AL.al_logo, BASE.* from
     (
         select  DISTINCT A.vu_id "id vuelo", A.vu_fecha.fecha_in "Fecha y hora de vuelo", D.ap_locacion.pais "Lugar de origen", E.ap_locacion.pais "Lugar de destino",
-            A.vu_fecha.fecha_in + 1/24 * A.vu_duracion "Hora estimada de llegada", A.vu_status.status "Status de vuelo"
+            A.vu_fecha.fecha_in + (1/24 * A.vu_duracion) "Hora estimada de llegada", A.vu_status.status "Status de vuelo"
         from vuelo A 
         join nodo B on B.no_vu_id = A.vu_id and B.no_modo = 'ORI'
         join nodo C on C.no_vu_id = A.vu_id and C.no_modo = 'DES'
         join aeropuerto D on D.ap_id = B.no_ap_id
         join aeropuerto E on E.ap_id = C.no_ap_id
-        where A.vu_fecha.fecha_in <= to_date(margen_fecha_s,'dd-mm-yyyy hh:mm') AND A.vu_fecha.fecha_in >= to_date(margen_fecha_o,'dd-mm-yyyy hh:mm')
+        where to_date(to_char(A.vu_fecha.fecha_in,'dd-mm-yyyy'), 'dd-mm-yyyy') = to_date(p_fecha_s,'dd-mm-yyyy')
     ) BASE
     join vuelo_plan vp on vp.vp_vu_id = "id vuelo"
     join asiento asi on asi.asi_id = vp_asi_id

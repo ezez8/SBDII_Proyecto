@@ -18,4 +18,4 @@
 
 @/u01/app/oracle/SBDII_Proyecto/SRC/reportes;
 
-commit;
+exec commit;

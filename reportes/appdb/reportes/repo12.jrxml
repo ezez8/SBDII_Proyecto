@@ -25,6 +25,9 @@
 	<field name="Hora estimada de llegada" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="Hora estimada de llegada"/>
 	</field>
+	<field name="Status de vuelo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Status de vuelo"/>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -40,57 +43,90 @@
 		</band>
 	</title>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="66" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="80" height="30" uuid="f91d1842-08c2-4d6c-8509-ff7604d1e9f9">
+				<reportElement x="0" y="0" width="80" height="60" uuid="f91d1842-08c2-4d6c-8509-ff7604d1e9f9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0b4235c6-f2d7-4a74-9047-fd42b5c09117"/>
 				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Fecha y hora de vuelo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="80" y="0" width="100" height="30" uuid="e0245c4b-356a-4554-be6d-d3dc97429cfc">
+				<reportElement x="80" y="0" width="100" height="60" uuid="e0245c4b-356a-4554-be6d-d3dc97429cfc">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9e13ba12-fede-4115-92c1-cbdcaf07a7df"/>
 				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Lugar de origen]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="0" width="100" height="30" uuid="5aaecf3a-ab9a-48b7-8f81-aa93d6d761e4">
+				<reportElement x="180" y="0" width="100" height="60" uuid="5aaecf3a-ab9a-48b7-8f81-aa93d6d761e4">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c863879f-a972-486c-b73f-a66e200fb229"/>
 				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Lugar de destino]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="280" y="0" width="100" height="30" uuid="36837fcc-2985-465e-8318-3fa6d03be998">
+				<reportElement x="280" y="0" width="100" height="60" uuid="36837fcc-2985-465e-8318-3fa6d03be998">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c863879f-a972-486c-b73f-a66e200fb229"/>
 				</reportElement>
-				<text><![CDATA[Lugar de destino]]></text>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Logo de Aerolinea]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="480" y="0" width="70" height="30" uuid="5588020c-dd8a-490a-80e9-d8d650909056">
+				<reportElement x="480" y="0" width="70" height="60" uuid="5588020c-dd8a-490a-80e9-d8d650909056">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3145ba7c-9f86-499d-a917-0185b45a3d6e"/>
 				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Hora estimada de llegada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="100" height="60" uuid="7c63c3e3-dc6f-45c3-b363-e03c4bfd439b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8f824182-e3e7-4f1c-97a9-b37e65d84b75"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="50" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="80" height="30" uuid="2ea3470b-2360-47dc-ab56-325c46872700">
+				<reportElement x="0" y="0" width="80" height="50" uuid="2ea3470b-2360-47dc-ab56-325c46872700">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0b4235c6-f2d7-4a74-9047-fd42b5c09117"/>
 				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{Fecha y hora de vuelo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="80" y="0" width="100" height="30" uuid="5e912860-3dcf-4bb3-80e0-76efb0bd2ef7">
+				<reportElement x="80" y="0" width="100" height="50" uuid="5e912860-3dcf-4bb3-80e0-76efb0bd2ef7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9e13ba12-fede-4115-92c1-cbdcaf07a7df"/>
 				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{Lugar de origen}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="180" y="0" width="100" height="30" uuid="5125f936-b277-444d-9f94-0eb772acc083">
+				<reportElement x="180" y="0" width="100" height="50" uuid="5125f936-b277-444d-9f94-0eb772acc083">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c863879f-a972-486c-b73f-a66e200fb229"/>
 				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{Lugar de destino}]]></textFieldExpression>
 			</textField>
 			<image scaleImage="FillFrame">
@@ -98,10 +134,22 @@
 				<imageExpression><![CDATA[$F{AL_LOGO}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="480" y="0" width="70" height="30" uuid="f9e4640f-ddad-4bbb-bcea-c389d93370d0">
+				<reportElement x="480" y="0" width="70" height="50" uuid="f9e4640f-ddad-4bbb-bcea-c389d93370d0">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3145ba7c-9f86-499d-a917-0185b45a3d6e"/>
 				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{Hora estimada de llegada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="100" height="50" uuid="c012192f-297e-44d0-96c1-18e4a36cb825">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8f824182-e3e7-4f1c-97a9-b37e65d84b75"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Status de vuelo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
